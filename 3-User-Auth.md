@@ -74,7 +74,7 @@ MongoDB Altas, the second one is Schema instance name.
 
 - Create a Schema ====> Create a model ====> export the model
 
-### `Step2: Create User Routes`
+### `Step2: Create Post User Route`
 
 `Install dependencies`
 ```bash
@@ -113,9 +113,9 @@ router.post(
 module.exports = router;
 ```
 
-`Side-note:How does the validation dependency work?`
+`Side-note: How does the route validation work?`
 
-- In express route, there are 3 arguments, the second one is the validation one which is an option, if you hava more than 1 validation, you should put them into a `[]`.
+- In express route, there are 3 arguments, the second one is the validation one which is an option, if you have more than 1 validation, you should put them into a `[]`.
 - In this case, we put validations in the second argument, and check three things:
 `req.body.name`, `req.body.email`, `req.body.password`.
 
@@ -132,6 +132,6 @@ app.use(express.json({ extended: false }));
 <img src="./assets/12.png" width=90%>
 </p>
 
-- We invoke the built-in function `validationResult(req)`, req is the argument, the function will return error if some of the `req` is not satisfy the check condition.
+- We invoke the built-in function `validationResult(req)`, req is the argument, the function will return error if some of the `req` is not satisfy the check conditions.
 
 - If it has error, the route will return some error message.
