@@ -60,3 +60,6 @@ module.exports = router;
 <p align="center">
 <img src="./assets/10.png" width=80%>
 </p>
+
+`Note:`
+- You can test other routes in this way.
