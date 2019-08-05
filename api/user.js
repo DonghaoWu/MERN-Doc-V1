@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { check, validationResult } = require('express-validator');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const { User } = require('../models');
 
@@ -61,7 +62,23 @@ router.post(
       // e. save the object in MongoDB Altas
       newUser.save();
       // f. Return json-web-token
-      res.send('User register');
+      const payload = {
+        newUser: {
+          id: newUser.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        'mysecrettoken',
+        {
+          expiresIn: 360000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');

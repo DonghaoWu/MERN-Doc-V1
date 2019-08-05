@@ -13,6 +13,7 @@
 - express-validator
 - gravatar
 - bcryptjs
+- jsonwebtoken
 
 ### `Step1: Set up User model`
 
@@ -146,7 +147,7 @@ app.use(express.json({ extended: false }));
 
 #### `D. Add post route response`
 
-`Install dependency`
+##### - `Install dependency`
 
 ```bash
 $ npm install gravatar --save
@@ -217,9 +218,48 @@ module.exports = router;
 ```
 
 `Side-Note:`
-- validate the req.body ===> check if the user existed ===> get gravatar ===> create a real object `newUser` by User model ===>Encrypt password and modify the value of `newUser.password` ===>Save the `newUser` in database.
 
+- Validate the req.body ===> Check if the user existed ===> Get gravatar ===> Create a real object `newUser` by User model ===> Encrypt password and modify the value of `newUser.password` ===> Save the `newUser` in database.
 
 #### `E. Implementing Json-Web-Token`
 
 `Location: /api/user.js`
+
+##### `Install dependency`
+
+```bash
+$ npm install jsonwebtoken --save
+```
+
+##### - Add dependency.
+
+```js
+const jwt = require('jsonwebtoken');
+```
+
+```js
+// f. Return json-web-token
+      const payload = {
+        newUser: {
+          id: newUser.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        'mysecrettoken',
+        {
+          expiresIn: 360000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
+```
+
+`Side-Note(Chinese):`
+- payload是一个object；
+- jwt.sign是一个依赖中的内建函数，它有四个参数，第一个是目标对象，第二个是打包码，第三个是包裹有效时间，第四个是可选参数，是一个回调函数，对打包过程的一个反馈。
+- 总的来说，jwt.sign就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据，是一个数据变形的过程。
+- 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
