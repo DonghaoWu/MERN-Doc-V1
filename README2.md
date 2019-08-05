@@ -55,7 +55,7 @@ router.get(`/`, (req, res) =>{
 module.exports = router;
 ```
 
-`C. test it in browser, you can get this.`
+#### `C. test it in browser, you can get this.`
 <p align="center">
-<img src="./assets/1.png" width=80%>
+<img src="./assets/10.png" width=80%>
 </p>
