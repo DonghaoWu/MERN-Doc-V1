@@ -43,6 +43,8 @@ router.use("/post", require("./post"));
 module.exports = router;
 ```
 
+#### `C. Test.`
+
 `set simple contents and test it.`
 `Location: ./api/auth.js`
 ```js
@@ -54,8 +56,7 @@ router.get(`/`, (req, res) =>{
 
 module.exports = router;
 ```
-
-#### `C. test it in browser, you can get this.`
+`You can get this in browser.`
 <p align="center">
 <img src="./assets/10.png" width=80%>
 </p>
