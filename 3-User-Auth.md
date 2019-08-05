@@ -218,3 +218,8 @@ module.exports = router;
 
 `Side-Note:`
 - validate the req.body ===> check if the user existed ===> get gravatar ===> create a real object `newUser` by User model ===>Encrypt password and modify the value of `newUser.password` ===>Save the `newUser` in database.
+
+
+#### `E. Implementing Json-Web-Token`
+
+`Location: /api/user.js`
