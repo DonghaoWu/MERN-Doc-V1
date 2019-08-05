@@ -44,7 +44,7 @@ router.post(
       });
 
       // c. Create a new user instance by User model, Now user is a real object
-      user = new User({
+      newUser = new User({
         name,
         email,
         avatar,
@@ -54,13 +54,13 @@ router.post(
   
       // d. Encrypt password
       const salt = await bcrypt.genSalt(10);
-      //Change the object attribute
-      user.password = await bcrypt.hash(password, salt);
+      // Change the object attribute
+      newUser.password = await bcrypt.hash(password, salt);
       // e. save the object in MongoDB Altas
-      user.save();
-  
+      newUser.save();
       // f. Return json-web-token
       res.send('User register');
+
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
