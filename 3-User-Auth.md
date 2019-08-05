@@ -356,6 +356,17 @@ module.exports = router;
 ```
 
 #### `G Test it`
+- In postman
 <p align="center">
 <img src="./assets/13.png" width=90%>
+</p>
+
+- In jwt.io
+<p align="center">
+<img src="./assets/14.png" width=90%>
+</p>
+
+- In MongoDB Altas
+<p align="center">
+<img src="./assets/15.png" width=90%>
 </p>
