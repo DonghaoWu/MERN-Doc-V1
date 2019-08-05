@@ -119,15 +119,15 @@ module.exports = router;
 - In this case, we put validations in the second argument, and check three things:
 req.body.name, req.body.email, req.body.password.
 
-#### `Why we can check in this way? `
-#### First, we can check the middleware in server.js
+#### `Why we can check these three in this way? `
+#### First, we already added middleware in server.js
 ```js
 app.use(express.json({ extended: false }));
 ```
 #### Second, it depends on the way we send data in Postman
 <p align="center">
-<img src="./assets/11.png" width=80%>
+<img src="./assets/11.png" width=90%>
 </p>
 <p align="center">
-<img src="./assets/12.png" width=80%>
+<img src="./assets/12.png" width=90%>
 </p>
