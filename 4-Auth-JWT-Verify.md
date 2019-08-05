@@ -113,7 +113,7 @@ module.exports = router;
 <li>通过 model `User.findById`获得对应的 user 数据</li>
 </ol>
 
-####`总结`：
+#### `总结`：
 - 在这个Get route中，request是不需要任何参数的，只需要在x-auth-token输入token就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙的前后一致性才能解码成功。
 
 ### `Step4: Test it.`
