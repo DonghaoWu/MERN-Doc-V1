@@ -204,7 +204,7 @@ async (req, res) => {
     // Change the object attribute
     newUser.password = await bcrypt.hash(password, salt);
     // e. Save the object in MongoDB Altas
-    newUser.save();
+    newUser.save(); // Now you get the access to the newUser._id in MongoDB Altas.
 
     // f. Return json-web-token
     res.send('User register');
@@ -239,6 +239,7 @@ const jwt = require('jsonwebtoken');
 
 ```js
 // f. Return json-web-token
+// Now you get the access to the newUser._id in MongoDB Altas.
 const payload = {
   newUser: {
     id: newUser.id
@@ -329,7 +330,6 @@ router.post(
 
       newUser.save();
 
-      // Now you get the access to the newUser._id in MongoDB Altas.
       const payload = {
         newUser: {
           id: newUser.id
