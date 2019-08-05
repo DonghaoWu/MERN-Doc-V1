@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { check, validationResult } = require('express-validator');
 
+const {User} = require('../models')
+
 //@route   Post api/user
 //@desc    Register new user
 //@access  Public
@@ -17,7 +19,7 @@ router.post(
       'Please enter a password with 6 or more charters'
     ).isLength({ min: 6 })
   ],
-  (req, res) => {
+  async (req, res) => {
     console.log(req.body)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

@@ -99,7 +99,8 @@ const db =
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useCreateIndex:true,
     });
 
     console.log('MongoDB connected.=============>');
@@ -171,7 +172,8 @@ const db =
 const connectDB = async () => {
   try {
     await mongoose.connect(db, {
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useCreateIndex:true,
     });
 
     console.log('MongoDB connected.=============>');
@@ -216,3 +218,8 @@ $ nodemon server.js
 - app.use(express.json({ extended: false }))
 - app.use(express.urlencoded({ extended: true }))
 - app.use(morgan('dev'))
+
+`Side-note: What are these set up used for?`
+
+- useNewUrlParser: true
+- useCreateIndex: true

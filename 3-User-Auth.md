@@ -11,9 +11,8 @@
 - nodemon
 - mongoose
 - express-validator
-- 
-- 
-
+-
+-
 
 ### `Step1: Set up User model`
 
@@ -64,11 +63,13 @@ const UserSchema = new mongoose.Schema({
 
 module.exports = User = mongoose.model('user', UserSchema);
 ```
+
 `note:`
+
 - In this model, we use two mongoose built-in methods.
 - One is mongoose.Schema, which will create a Schema instance.
 - The other one is mongoose.model('user', UserSchema), takes two arguments, the first one as a collecion name in
-MongoDB Altas, the second one is Schema instance name.
+  MongoDB Altas, the second one is Schema instance name.
 
 - In the end of this file, it export a Model.
 
@@ -77,11 +78,14 @@ MongoDB Altas, the second one is Schema instance name.
 ### `Step2: Create Post User Route`
 
 #### `A. Install dependencies`
+
 ```bash
 $ npm install express-validator
 ```
 
 #### `B. Add post route validation`
+
+`Location: /api/user.js`
 
 ```js
 const router = require('express').Router();
@@ -117,14 +121,18 @@ module.exports = router;
 
 - In express route, there are 3 arguments, the second one is the validation one which is an option, if you have more than 1 validation, you should put them into a `[]`.
 - In this case, we put validations in the second argument, and check three things:
-`req.body.name`, `req.body.email`, `req.body.password`.
+  `req.body.name`, `req.body.email`, `req.body.password`.
 
-##### `Why we can check these three in this way? `
+##### `Why we can check these three in this way?`
+
 ##### First, we already added middleware in server.js
+
 ```js
 app.use(express.json({ extended: false }));
 ```
+
 ##### Second, it depends on the way we send data in Postman
+
 <p align="center">
 <img src="./assets/11.png" width=90%>
 </p>
@@ -137,3 +145,44 @@ app.use(express.json({ extended: false }));
 - If it has error, the route will return some error message.
 
 #### `D. Add post route response`
+
+`Location: /api/user.js`
+
+##### - Add model, to create a data in collection.
+
+```js
+const { User } = require('../models');
+```
+
+##### - Change the response in async way.
+
+```js
+async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const {name, email, password} = req.body;
+  try{
+  // See if user exists
+  let user = await User.findOne({email:email})
+
+  if(user){
+    res.status(400).json({errors:[{msg:'User already exists'}]})
+  }
+
+  // Get users gravatar
+
+  // Encrypt password
+
+  // Return json-web-token
+  }catch(err){
+    console.error(err.message);
+    res.status(500).send('Server error')
+  }
+
+};
+
+module.exports = router;
+```
