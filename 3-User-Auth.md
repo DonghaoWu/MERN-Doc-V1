@@ -113,18 +113,18 @@ router.post(
 module.exports = router;
 ```
 
-`Side-note: How does the route validation work?`
+#### `Side-note: How does the route validation work?`
 
 - In express route, there are 3 arguments, the second one is the validation one which is an option, if you have more than 1 validation, you should put them into a `[]`.
 - In this case, we put validations in the second argument, and check three things:
 `req.body.name`, `req.body.email`, `req.body.password`.
 
-#### `Why we can check these three in this way? `
-#### First, we already added middleware in server.js
+##### `Why we can check these three in this way? `
+##### First, we already added middleware in server.js
 ```js
 app.use(express.json({ extended: false }));
 ```
-#### Second, it depends on the way we send data in Postman
+##### Second, it depends on the way we send data in Postman
 <p align="center">
 <img src="./assets/11.png" width=90%>
 </p>
