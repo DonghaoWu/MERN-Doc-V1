@@ -11,7 +11,7 @@ app.use(morgan("dev"));
 
 //DB here!
 const db =
-  "mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://donghao:donghao123@cluster-mren-tygf4.mongodb.net/test?retryWrites=true&w=majority";
 
 const connectDB = async () => {
   try {
@@ -32,9 +32,8 @@ const connectDB = async () => {
 //Invoke the function and connect to MongoDB Altas.
 connectDB();
 
-/*
-Routes here!
-*/
+//Routes here!
+app.use("/api", require('./api'));
 
 const server = app.listen(port, () => {
   console.log(`Port ${port} is listening now.==============>`);
