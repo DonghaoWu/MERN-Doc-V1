@@ -108,8 +108,8 @@ module.exports = router;
 
 <ol>
 <li>创建一个新用户，用jsonwebtoken内建函数将生成的MongoDB ALtas对应的数据的`_id`值打包，并返回一个令牌，这过程需要一个自定义打包钥匙。</li>
-<li>创建一个中间件，捕获header的‘x-auth-token’值，并用打包钥匙对其进行打包，获得原始数据，把原始数据的id值赋值在request中。</li>
-<li>在auth的get路径中，当request经过中间件后，req.user.id就是令牌中原始数据的user.id值。</li>
+<li>创建一个中间件，捕获header的‘x-auth-token’值，并用打包钥匙对其进行解码，获得原始数据，把原始数据的id值赋值在request中。</li>
+<li>在auth的get路径中，当request经过中间件auth后，req.user.id就是令牌中原始数据的user.id值。</li>
 <li>通过 model `User.findById`获得对应的 user 数据</li>
 </ol>
 
