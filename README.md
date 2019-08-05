@@ -133,7 +133,7 @@ const port = 5000;
 const app = express();
 
 //Middleware here!
-app.use(express.json());
+app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
@@ -160,7 +160,7 @@ const port = 5000;
 const app = express();
 
 //Middleware here!
-app.use(express.json());
+app.use(express.json({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
@@ -198,6 +198,7 @@ const server = app.listen(port, () => {
 - Before test, you should change the mongoDB connection String and password to your own.
 
 ### `Step4: Test and run`
+
 `Location:root directory`
 
 ```bash
@@ -209,3 +210,9 @@ $ nodemon server.js
 <p align="center">
 <img src="./assets/9.png" width=80%>
 </p>
+
+`Side-note: What is the middleware used for?`
+
+- app.use(express.json({ extended: false }))
+- app.use(express.urlencoded({ extended: true }))
+- app.use(morgan('dev'))

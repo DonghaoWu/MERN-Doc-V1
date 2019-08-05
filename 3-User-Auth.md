@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 2: Set up User Route.`
+## `Part 3: Set up User Route.`
 
 ### `Check Dependencies`
 
@@ -10,6 +10,10 @@
 - morgan
 - nodemon
 - mongoose
+- express-validator
+- 
+- 
+
 
 ### `Step1: Set up User model`
 
@@ -71,3 +75,59 @@ MongoDB Altas, the second one is Schema instance name.
 - Create a Schema ====> Create a model ====> export the model
 
 ### `Step2: Create User Routes`
+
+`Install dependencies`
+```bash
+$ npm install express-validator
+```
+
+`Add post route validation`
+
+```js
+const router = require('express').Router();
+const { check, validationResult } = require('express-validator');
+//@route   Post api/user
+//@desc    Register new user
+//@access  Public
+router.post(
+  '/',
+  [
+    check('name', 'Name is required')
+      .not()
+      .isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more charters'
+    ).isLength({ min: 6 })
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    res.send('User route.');
+  }
+);
+
+module.exports = router;
+```
+
+`Side-note:How does the validation dependency work?`
+
+- In express route, there are 3 arguments, the second one is the validation one which is an option, if you hava more than 1 validation, you should put them into a `[]`.
+- In this case, we put validations in the second argument, and check three things:
+req.body.name, req.body.email, req.body.password.
+
+#### `Why we can check in this way? `
+#### First, we can check the middleware in server.js
+```js
+app.use(express.json({ extended: false }));
+```
+#### Second, it depends on the way we send data in Postman
+<p align="center">
+<img src="./assets/11.png" width=80%>
+</p>
+<p align="center">
+<img src="./assets/12.png" width=80%>
+</p>
