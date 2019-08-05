@@ -329,6 +329,7 @@ router.post(
 
       newUser.save();
 
+      // Now you get the access to the newUser._id in MongoDB Altas.
       const payload = {
         newUser: {
           id: newUser.id
