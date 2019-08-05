@@ -68,11 +68,4 @@ MongoDB Altas, the second one is Schema instance name.
 
 - In the end of this file, it export a Model.
 
-flow
-st=>start: Start
-op=>operation: Your Operation
-cond=>condition: Yes or No?
-e=>end
-st->op->cond
-cond(yes)->e
-cond(no)->op
+- Create a Schema ====> Create a model ====> export the model
