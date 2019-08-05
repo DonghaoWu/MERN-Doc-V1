@@ -76,12 +76,12 @@ MongoDB Altas, the second one is Schema instance name.
 
 ### `Step2: Create Post User Route`
 
-`Install dependencies`
+#### `Install dependencies`
 ```bash
 $ npm install express-validator
 ```
 
-`Add post route validation`
+#### `Add post route validation`
 
 ```js
 const router = require('express').Router();
@@ -135,3 +135,5 @@ app.use(express.json({ extended: false }));
 - We invoke the built-in function `validationResult(req)`, req is the argument, the function will return error if some of the `req` is not satisfy the check conditions.
 
 - If it has error, the route will return some error message.
+
+#### `Add post route response`
