@@ -19,14 +19,14 @@
 
 - (Chinese) 正如前端使用 react-router-dom 去组织前端路径树一样，express 也有相似功能让你更好地组织后端路径树,这是提升文档组织性的方法，像工程师一样思考。
 
-#### `Add a center route in .server.js, we can call it 'api'`
+#### `A. Add a center route in .server.js, we can call it 'api'`
 
 `Location: server.js`
 ```js
 app.use("/api", require("./api"));
 ```
 
-#### `Create a api folder, create a index.js file inside of it`
+#### `B. Create a api folder, create a index.js file inside of it`
 
 `Location: new api folder, ./api/index.js`
 
@@ -55,7 +55,7 @@ router.get(`/`, (req, res) =>{
 module.exports = router;
 ```
 
-`test it in browser, you can get this.`
+`C. test it in browser, you can get this.`
 <p align="center">
 <img src="./assets/1.png" width=80%>
 </p>
