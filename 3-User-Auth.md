@@ -11,8 +11,8 @@
 - nodemon
 - mongoose
 - express-validator
--
--
+- gravatar
+- bcryptjs
 
 ### `Step1: Set up User model`
 
@@ -146,11 +146,20 @@ app.use(express.json({ extended: false }));
 
 #### `D. Add post route response`
 
+`Install dependency`
+
+```bash
+$ npm install gravatar --save
+$ npm install bcryptjs --save
+```
+
 `Location: /api/user.js`
 
-##### - Add model, to create a data in collection.
+##### - Add model, add dependencies.
 
 ```js
+const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 ```
 
@@ -163,25 +172,41 @@ async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const {name, email, password} = req.body;
-  try{
-  // See if user exists
-  let user = await User.findOne({email:email})
+  const { name, email, password } = req.body;
+  try {
+    // See if user exists
+    let user = await User.findOne({ email: email });
 
-  if(user){
-    res.status(400).json({errors:[{msg:'User already exists'}]})
-  }
+    if (user) {
+      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+    }
 
-  // Get users gravatar
+    // Get users gravatar
+    const avatar = gravatar.url(email, {
+      s: '200',
+      r: 'pg',
+      d: 'mm'
+    });
 
-  // Encrypt password
+    user = new User({
+      name,
+      email,
+      avatar,
+      password
+    });
 
-  // Return json-web-token
-  }catch(err){
+    // Encrypt password
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    user.save();
+
+    // Return json-web-token
+    res.send('User register');
+  } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error')
+    res.status(500).send('Server error');
   }
-
 };
 
 module.exports = router;
