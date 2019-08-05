@@ -265,6 +265,7 @@ jwt.sign(
 - 总的来说，jwt.sign 就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据(一个全新object，只有一对键值)，其实就是一个数据变形的过程。
 - 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
 - 在这里有一个建议就是，最好不要把 Connection String 和 jwtSecret 上传和公开。
+- 在语句`newUser.save();`之后， 我们就可以通过`newUser.id`去获得newUser在MongoDB中的`_id`。
 
 #### `F. Final post route code`
 
