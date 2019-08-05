@@ -239,6 +239,95 @@ const jwt = require('jsonwebtoken');
 
 ```js
 // f. Return json-web-token
+const payload = {
+  newUser: {
+    id: newUser.id
+  }
+};
+
+jwt.sign(
+  payload,
+  'mysecrettoken',
+  {
+    expiresIn: 360000
+  },
+  (err, token) => {
+    if (err) throw err;
+    res.json({ token });
+  }
+);
+```
+
+#### `Side-Note(Chinese):`
+
+- payload 是一个 object；
+- jwt.sign 是一个依赖中的内建函数，它有四个参数，第一个是目标对象，第二个是打包码，第三个是包裹有效时间，第四个是可选参数，是一个回调函数，对打包过程的一个反馈。
+- 总的来说，jwt.sign 就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据，是一个数据变形的过程。
+- 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
+- 在这里有一个建议就是，最好不要把 Connection String 和 jwtSecret 上传和公开。
+
+#### `F. Final post route code`
+
+```js
+const router = require('express').Router();
+const { check, validationResult } = require('express-validator');
+const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const { User } = require('../models');
+
+//@route   Post api/user
+//@desc    Register new user
+//@access  Public
+
+router.post(
+  '/',
+  [
+    check('name', 'Name is required')
+      .not()
+      .isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check(
+      'password',
+      'Please enter a password with 6 or more charters'
+    ).isLength({ min: 6 })
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, email, password } = req.body;
+    try {
+      let user = await User.findOne({ email: email });
+
+      if (user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists' }] });
+      }
+
+      const avatar = gravatar.url(email, {
+        s: '200',
+        r: 'pg',
+        d: 'mm'
+      });
+
+      newUser = new User({
+        name,
+        email,
+        avatar,
+        password
+      });
+
+      const salt = await bcrypt.genSalt(10);
+
+      newUser.password = await bcrypt.hash(password, salt);
+
+      newUser.save();
+
       const payload = {
         newUser: {
           id: newUser.id
@@ -256,10 +345,17 @@ const jwt = require('jsonwebtoken');
           res.json({ token });
         }
       );
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  }
+);
+
+module.exports = router;
 ```
 
-`Side-Note(Chinese):`
-- payload是一个object；
-- jwt.sign是一个依赖中的内建函数，它有四个参数，第一个是目标对象，第二个是打包码，第三个是包裹有效时间，第四个是可选参数，是一个回调函数，对打包过程的一个反馈。
-- 总的来说，jwt.sign就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据，是一个数据变形的过程。
-- 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
+#### `G Test it`
+<p align="center">
+<img src="./assets/13.png" width=90%>
+</p>
