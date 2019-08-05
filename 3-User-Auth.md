@@ -68,8 +68,7 @@ MongoDB Altas, the second one is Schema instance name.
 
 - In the end of this file, it export a Model.
 
-```dot
-digraph G{
-    A -> B
-}
+```flow
+st => start: Start
+e => end:End
 ```
