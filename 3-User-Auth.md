@@ -69,6 +69,10 @@ MongoDB Altas, the second one is Schema instance name.
 - In the end of this file, it export a Model.
 
 ```flow
-st => start: Start
-e => end:End
+st=>start: Start
+e=>end: End
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes or No?
+io=>inputoutput: catch something...
 ```
