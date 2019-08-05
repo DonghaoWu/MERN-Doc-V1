@@ -1,7 +1,7 @@
 const router = require("express").Router();
 
-//@route   Get api/auth
-//@desc    Authenticate user & get token
+//@route   Post api/user
+//@desc    Register new user
 //@access  Public
 
 router.get(`/`, (req, res) =>{

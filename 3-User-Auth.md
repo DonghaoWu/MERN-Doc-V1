@@ -69,3 +69,5 @@ MongoDB Altas, the second one is Schema instance name.
 - In the end of this file, it export a Model.
 
 - Create a Schema ====> Create a model ====> export the model
+
+### `Step2: Create User Routes`
