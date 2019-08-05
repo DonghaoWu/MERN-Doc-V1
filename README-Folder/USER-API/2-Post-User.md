@@ -10,10 +10,10 @@
 - morgan
 - nodemon
 - mongoose
-- express-validator
-- gravatar
-- bcryptjs
-- jsonwebtoken
+- express-validator (new)
+- gravatar (new)
+- bcryptjs (new)
+- jsonwebtoken (new)
 
 ### `Step1: Set up User model`
 
