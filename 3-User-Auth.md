@@ -81,7 +81,7 @@ module.exports = User = mongoose.model('user', UserSchema);
 #### `A. Install dependencies`
 
 ```bash
-$ npm install express-validator
+$ npm install express-validator --save
 ```
 
 #### `B. Add post route validation`
@@ -126,13 +126,13 @@ module.exports = router;
 
 ##### `Why we can check these three in this way?`
 
-##### First, we already added middleware in server.js
+##### First, we already added middleware in server.js .
 
 ```js
 app.use(express.json({ extended: false }));
 ```
 
-##### Second, it depends on the way we send data in Postman
+##### Second, it depends on the way we send data in Postman.
 
 <p align="center">
 <img src="./assets/11.png" width=90%>
