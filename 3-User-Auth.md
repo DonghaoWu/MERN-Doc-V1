@@ -117,7 +117,7 @@ module.exports = router;
 
 - In express route, there are 3 arguments, the second one is the validation one which is an option, if you hava more than 1 validation, you should put them into a `[]`.
 - In this case, we put validations in the second argument, and check three things:
-req.body.name, req.body.email, req.body.password.
+`req.body.name`, `req.body.email`, `req.body.password`.
 
 #### `Why we can check these three in this way? `
 #### First, we already added middleware in server.js
@@ -131,3 +131,7 @@ app.use(express.json({ extended: false }));
 <p align="center">
 <img src="./assets/12.png" width=90%>
 </p>
+
+- We invoke the built-in function `validationResult(req)`, req is the argument, the function will return error if some of the `req` is not satisfy the check condition.
+
+- If it has error, the route will return some error message.
