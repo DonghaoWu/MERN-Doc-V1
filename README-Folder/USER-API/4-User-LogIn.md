@@ -18,9 +18,9 @@
 ### `Step1: Import dependencies`
 
 ```js
-const bcrypt = require('bcryptjs');
-const {check, validationResult} = require(`express-validator`);
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs');//解码对比用
+const {check, validationResult} = require(`express-validator`);//验证格式用
+const jwt = require('jsonwebtoken');//生成token用
 ```
 
 ### `Step2: Create a Post auth route.`
