@@ -52,15 +52,7 @@ router.post(
       if(!isMatch){
         return res.status(400).json({errors:[{msg:'Invalid Credentials'}]});
       }
-
-      //
-      // const payload = {
-      //   newUser: {
-      //     id: newUser.id
-      //   }
-      // };
-
-      //payload的命名规则。
+      
       const payload = {
         user: {
           id: user.id

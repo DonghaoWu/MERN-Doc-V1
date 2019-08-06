@@ -26,98 +26,73 @@ const jwt = require('jsonwebtoken')
 ### `Step2: Create a Post auth route.`
 
 ```js
-const jwt = require('jsonwebtoken');
-const secret = 'mysecrettoken';
+router.post(
+  '/',
+  [
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-module.exports = function(req, res, next) {
-  // Get token form header
-  const token = req.header('x-auth-token');
+    const { email, password } = req.body;
+    try {
+      let user = await User.findOne({ email: email });
 
-  //Check if not token
-  if (!token) {
-    return res.status(401).json({ msg: 'No token, authorization denied.' });
+      if (!user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid Credentials' }] });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if(!isMatch){
+        return res.status(400).json({errors:[{msg:'Invalid Credentials'}]});
+      }
+
+      //之前的编码
+      // const payload = {
+      //   newUser: {
+      //     id: newUser.id
+      //   }
+      // };
+
+      //payload的命名规则。中间件的定义与使用都有规则。
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        'mysecrettoken',
+        {
+          expiresIn: 360000
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token: token });
+        }
+      );
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
   }
-
-  try {
-    const decoded = jwt.verify(token, secret);
-
-    req.user = decoded.newUser;
-
-    next();
-  } catch (err) {
-    res.staus(401).json({ msg: 'Token is not valid' });
-  }
-};
+);
 ```
 
-#### `Side-note(Chinese):`
 
-- 这个中间件的用途在于在调用实际 API 之前对 request 进行预处理或者过滤处理，比如在这个中间件中，先提取`req.header的‘x-auth-token’`部分,然后进行判断有无，然后使用 jsonwebtoken 的内建函数进行解码。
-- 需要注意的是 jwt.verify()函数需要两个参数，一个是 request 中的令牌，另外一个是打包令牌时使用的钥匙，这个函数返回的是打包前的原本数据。
-- 我们只提取原本数据中的`newUser`值，并把值附在 request 上面，这样 req 就有了一个新的 key pair。
-- 这个中间件的设置是，如果解码成功，则把改造后的 req 穿到下一个中间件或者实际 API 函数，如果解码不成功，产生错误并反馈。
-- #### `这个中间件的编导逻辑很重要，需要重点反复练习。`
+`Side-Note:`
+- 本段的逻辑是实现登陆。
+- 输入两个值在request中， 一个是email， 一个是password，通过依赖中间件的过滤，如果符合格式就继续。
+- 按照email去在Database中查找相关用户，如果没有就返回错误。
+- 如果有该email用户，则用`await bcrypt.compare(password, user.password)`来解密输入的密码与储存在database中的密码对比，若相同，则继续;
+#### - `生成一个payload，注意在auth.js中和user.js中都是用统一格式创造这个payload，但实际对象完全不一样，`这是中间件用法的难点`，在auth.js，user是指在database中查找出来的user，在user.js中，user是指刚创建的user。他们使用相同格式，因为在middleware的定义中使用的对象格式一样。`
 
-### `Step3: Use the new middleware in auth get route.`
-
-`Location:./middleware/auth.js`
-
-```js
-const router = require('express').Router();
-const auth = require('../middleware/auth');
-
-const { User } = require('../models');
-
-//@route   Get api/auth
-//@desc    Authenticate user & get token
-//@access  Public
-
-router.get(`/`, auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error.');
-  }
-});
-
-module.exports = router;
-```
-
-#### `Side-note(Chinese):`
-
-- request 通过中间件之后，req.user.id 的值就是对应的 user 在 MongoDB Altas 中的`_id`值。
-- 我们可以通过 model `User.findById`获得对应的 user 数据。
-
-- 整个过程可以归结为：
-
-<ol>
-<li>创建一个新用户，用jsonwebtoken内建函数将生成的MongoDB ALtas对应的数据的`_id`值打包，并返回一个令牌，这过程需要一个自定义打包钥匙。</li>
-<li>创建一个中间件，捕获header的‘x-auth-token’值，并用打包钥匙对其进行解码，获得原始数据，把原始数据的id值赋值在request中。</li>
-<li>在auth的get路径中，当request经过中间件auth后，req.user.id就是令牌中原始数据的user.id值。</li>
-<li>通过 model `User.findById`获得对应的 user 数据</li>
-</ol>
-
-#### `总结`：
-
-- 在这个 Get route 中，request 是不需要任何参数的，只需要在 x-auth-token 输入 token 就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙的前后一致性才能解码成功。
-
-### `Step4: Test it.`
-
-- In postman: Post a new user(localhost:5000/api/user)
-
-  <p align="center">
-  <img src="../../assets/13.png" width=90%>
-  </p>
-
-- In postman: Get a user(localhost:5000/api/auth)
-
-  <p align="center">
-  <img src="../../assets/16.png" width=90%>
-  </p>
-
-- Data in MongoDB Altas
-  <p align="center">
-  <img src="../../assets/15.png" width=90%>
-  </p>
+- 最后，确定有该用户后，用该用户的id制作成一个token令牌。
