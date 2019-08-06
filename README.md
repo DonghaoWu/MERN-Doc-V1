@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 1: How to set up MongoDB Altas.`
+## `How to set up MongoDB Altas.`
 
 ### `Check Dependencies`
 

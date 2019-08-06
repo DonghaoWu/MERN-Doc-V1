@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 2: Set up Route trees.`
+## `Part 1: Set up Route trees.`
 
 ### `Check Dependencies`
 
