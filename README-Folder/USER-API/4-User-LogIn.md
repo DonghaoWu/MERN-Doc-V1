@@ -95,6 +95,8 @@ router.post(
 - 如果有该email用户，则用`await bcrypt.compare(password, user.password)`来解密输入的密码与储存在database中的密码对比，若相同，则继续;
 - #### `确定有该用户并密码正确后，生成一个payload，注意在auth.js中和user.js中都是用统一格式创造这个payload，但实际对象完全不一样，`这是中间件用法的难点`，在auth.js，user是指在database中查找出来的user，在user.js中，user是指刚创建的user。他们使用相同格式，因为在middleware的定义中使用的对象格式一样。`
 
+- #### `在其他文件生成可被中间件处理的数据（如payload）时，要注意查清楚middleware的内部参数格式，要统一格式出现在所有文件中。`
+
 - 最后，用该用户的id制作成一个token令牌。
 
 ### `Step3: Test it.`
