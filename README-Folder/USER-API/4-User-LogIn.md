@@ -89,10 +89,27 @@ router.post(
 
 
 `Side-Note:`
-- 本段的逻辑是实现登陆。
+- 本段的逻辑是实现输入电子邮箱和密码，得到验证后返回一个包含user.id的token。
 - 输入两个值在request中， 一个是email， 一个是password，通过依赖中间件的过滤，如果符合格式就继续。
 - 按照email去在Database中查找相关用户，如果没有就返回错误。
 - 如果有该email用户，则用`await bcrypt.compare(password, user.password)`来解密输入的密码与储存在database中的密码对比，若相同，则继续;
 - #### `确定有该用户并密码正确后，生成一个payload，注意在auth.js中和user.js中都是用统一格式创造这个payload，但实际对象完全不一样，`这是中间件用法的难点`，在auth.js，user是指在database中查找出来的user，在user.js中，user是指刚创建的user。他们使用相同格式，因为在middleware的定义中使用的对象格式一样。`
 
 - 最后，用该用户的id制作成一个token令牌。
+
+### `Step3: Test it.`
+
+- In postman, post a new user
+<p align="center">
+<img src="../../assets/17.png" width=90%>
+</p>
+
+- In postman, post a log-in message(email & password)
+<p align="center">
+<img src="../../assets/18.png" width=90%>
+</p>
+
+- In postman, post a log-in message(email & password)
+<p align="center">
+<img src="../../assets/19.png" width=90%>
+</p>
