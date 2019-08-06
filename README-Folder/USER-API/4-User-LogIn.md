@@ -106,10 +106,10 @@ router.post(
 
 - In postman, post a log-in message(email & password)
 <p align="center">
-<img src="../../assets/18.png" width=90%>
+<img src="../../assets/19.png" width=90%>
 </p>
 
-- In postman, post a log-in message(email & password)
+- In postman, get the token.
 <p align="center">
-<img src="../../assets/19.png" width=90%>
+<img src="../../assets/18.png" width=90%>
 </p>
