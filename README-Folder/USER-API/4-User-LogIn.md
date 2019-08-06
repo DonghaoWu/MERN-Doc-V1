@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 4: Custom Auth Middleware & JWT Verify and Login Route.`
+## `Part 4: User Authentication / Login Route.`
 
 ### `Check Dependencies`
 
