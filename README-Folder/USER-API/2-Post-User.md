@@ -191,7 +191,7 @@ async (req, res) => {
     });
 
     // c. Create a new user instance by User model, now user is a real object
-    newUser = new User({
+    user = new User({
       name,
       email,
       avatar,
@@ -202,9 +202,9 @@ async (req, res) => {
     // d. Encrypt password
     const salt = await bcrypt.genSalt(10);
     // Change the object attribute
-    newUser.password = await bcrypt.hash(password, salt);
+    user.password = await bcrypt.hash(password, salt);
     // e. Save the object in MongoDB Altas
-    newUser.save(); // Now you get the access to the newUser._id in MongoDB Altas.
+    user.save(); // Now you get the access to the user._id in MongoDB Altas.
 
     // f. Return json-web-token
     res.send('User register');
@@ -219,7 +219,7 @@ module.exports = router;
 
 `Side-Note:`
 
-- Validate the req.body ===> Check if the user existed ===> Get gravatar ===> Create a real object `newUser` by User model ===> Encrypt password and modify the value of `newUser.password` ===> Save the `newUser` in database.
+- Validate the req.body ===> Check if the user existed ===> Get gravatar ===> Create a real object `user` by User model ===> Encrypt password and modify the value of `user.password` ===> Save the `user` in database.
 
 #### `E. Implementing Json-Web-Token`
 
@@ -239,10 +239,10 @@ const jwt = require('jsonwebtoken');
 
 ```js
 // f. Return json-web-token
-// Now you get the access to the newUser._id in MongoDB Altas.
+// Now you get the access to the user._id in MongoDB Altas.
 const payload = {
-  newUser: {
-    id: newUser.id
+  user: {
+    id: user.id
   }
 };
 
@@ -266,7 +266,7 @@ jwt.sign(
 - 总的来说，jwt.sign 就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据(一个全新object，只有一对键值)，其实就是一个数据变形的过程。
 - 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
 - 在这里有一个建议就是，最好不要把 Connection String 和 jwtSecret 上传和公开。
-- 在语句`newUser.save();`之后， 我们就可以通过`newUser.id`去获得newUser在MongoDB中的`_id`。
+- 在语句`user.save();`之后， 我们就可以通过`user.id`去获得user在MongoDB中的`_id`。
 
 #### `F. Final post route code`
 
@@ -317,7 +317,7 @@ router.post(
         d: 'mm'
       });
 
-      newUser = new User({
+      user = new User({
         name,
         email,
         avatar,
@@ -326,13 +326,13 @@ router.post(
 
       const salt = await bcrypt.genSalt(10);
 
-      newUser.password = await bcrypt.hash(password, salt);
+      user.password = await bcrypt.hash(password, salt);
 
-      newUser.save();
+      user.save();
 
       const payload = {
-        newUser: {
-          id: newUser.id
+        user: {
+          id: user.id
         }
       };
 

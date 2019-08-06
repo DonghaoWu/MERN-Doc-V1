@@ -31,9 +31,9 @@ router.post(
     const { name, email, password } = req.body;
     try {
       // a. See if user exists
-      let user = await User.findOne({ email: email });
+      let userFindByEmail = await User.findOne({ email: email });
 
-      if (user) {
+      if (userFindByEmail) {
         return res
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
@@ -47,7 +47,7 @@ router.post(
       });
 
       // c. Create a new user instance by User model, Now user is a real object
-      newUser = new User({
+      user = new User({
         name,
         email,
         avatar,
@@ -58,13 +58,13 @@ router.post(
       // d. Encrypt password
       const salt = await bcrypt.genSalt(10);
       // Change the object attribute
-      newUser.password = await bcrypt.hash(password, salt);
+      user.password = await bcrypt.hash(password, salt);
       // e. save the object in MongoDB Altas
-      newUser.save();
+      user.save();
       // f. Return json-web-token
       const payload = {
-        newUser: {
-          id: newUser.id
+        user: {
+          id: user.id
         }
       };
 

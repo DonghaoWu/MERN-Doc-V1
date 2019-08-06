@@ -29,7 +29,7 @@ router.post(
   '/',
   [
     check('email', 'Please include a valid email').isEmail(),
-    check('password', 'Password is required').exists()
+    check('password', 'Password is required').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -39,7 +39,6 @@ router.post(
 
     const { email, password } = req.body;
     try {
-      // a. See if user exists
       let user = await User.findOne({ email: email });
 
       if (!user) {
@@ -54,9 +53,17 @@ router.post(
         return res.status(400).json({errors:[{msg:'Invalid Credentials'}]});
       }
 
+      //
+      // const payload = {
+      //   newUser: {
+      //     id: newUser.id
+      //   }
+      // };
+
+      //payload的命名规则。
       const payload = {
-        newUser: {
-          id: newUser.id
+        user: {
+          id: user.id
         }
       };
 

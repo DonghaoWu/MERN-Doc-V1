@@ -15,29 +15,15 @@
 - bcryptjs (new)
 - jsonwebtoken (new)
 
-### `Step1: What do you get in the last part?`
-
-#### `After you register a new user, you will get a token object, like this`
+### `Step1: Import dependencies`
 
 ```js
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZXdVc2VyIjp7ImlkIjoiNWQ0ODQwMTBlOWM2YjBmMDRiN2ViNmRkIn0sImlhdCI6MTU2NTAxNjA4MCwiZXhwIjoxNTY1Mzc2MDgwfQ.4Vpm6v5BDWLjHEMLeB7JDo9Ma5dlZQR6hSL0tz8-7gQ"
-}
+const bcrypt = require('bcryptjs');
+const {check, validationResult} = require(`express-validator`);
+const jwt = require('jsonwebtoken')
 ```
 
-`And the most important data inside the token is`
-
-```js
-{
-  newUser: {
-    id: newUser.id;
-  }
-}
-```
-
-### `Step2: Create a custom middleware.`
-
-#### `Create a new folder call 'middleware', Location:./middleware/auth.js`
+### `Step2: Create a Post auth route.`
 
 ```js
 const jwt = require('jsonwebtoken');
@@ -114,21 +100,24 @@ module.exports = router;
 </ol>
 
 #### `总结`：
-- 在这个Get route中，request是不需要任何参数的，只需要在x-auth-token输入token就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙的前后一致性才能解码成功。
+
+- 在这个 Get route 中，request 是不需要任何参数的，只需要在 x-auth-token 输入 token 就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙的前后一致性才能解码成功。
 
 ### `Step4: Test it.`
 
 - In postman: Post a new user(localhost:5000/api/user)
-<p align="center">
-<img src="../../assets/13.png" width=90%>
-</p>
+
+  <p align="center">
+  <img src="../../assets/13.png" width=90%>
+  </p>
 
 - In postman: Get a user(localhost:5000/api/auth)
-<p align="center">
-<img src="../../assets/16.png" width=90%>
-</p>
+
+  <p align="center">
+  <img src="../../assets/16.png" width=90%>
+  </p>
 
 - Data in MongoDB Altas
-<p align="center">
-<img src="../../assets/15.png" width=90%>
-</p>
+  <p align="center">
+  <img src="../../assets/15.png" width=90%>
+  </p>

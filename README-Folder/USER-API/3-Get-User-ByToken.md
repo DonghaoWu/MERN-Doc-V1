@@ -29,8 +29,8 @@
 
 ```js
 {
-  newUser: {
-    id: newUser.id;
+  user: {
+    id: user.id;
   }
 }
 ```
@@ -55,7 +55,7 @@ module.exports = function(req, res, next) {
   try {
     const decoded = jwt.verify(token, secret);
 
-    req.user = decoded.newUser;
+    req.user = decoded.user;
 
     next();
   } catch (err) {
