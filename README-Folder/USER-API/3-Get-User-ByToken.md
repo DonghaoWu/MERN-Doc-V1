@@ -68,7 +68,7 @@ module.exports = function(req, res, next) {
 
 - 这个中间件的用途在于在调用实际 API 之前对 request 进行预处理或者过滤处理，比如在这个中间件中，先提取`req.header的‘x-auth-token’`部分,然后进行判断有无，然后使用 jsonwebtoken 的内建函数进行解码。
 - 需要注意的是 jwt.verify()函数需要两个参数，一个是 request 中的令牌，另外一个是打包令牌时使用的钥匙，这个函数返回的是打包前的原本数据。
-- 我们只提取原本数据中的`user`值，并把值附在 request 上面，这样 req 就有了一个新的 key pair。
+- 我们只提取原本数据中的`user`值，并把值附在 request 上面，这样 req 就有了一个新的 key pair(即`req.user = { id: user.id}`)。
 - 这个中间件的设置是，如果解码成功，则把改造后的 req 穿到下一个中间件或者实际 API 函数，如果解码不成功，产生错误并反馈。
 - #### `这个中间件的编导逻辑很重要，需要重点反复练习。`
 
