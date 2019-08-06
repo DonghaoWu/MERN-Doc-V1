@@ -47,7 +47,7 @@ router.post(
       });
 
       // c. Create a new user instance by User model, Now user is a real object
-      user = new User({
+      let user = new User({
         name,
         email,
         avatar,

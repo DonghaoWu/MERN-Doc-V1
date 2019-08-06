@@ -177,9 +177,9 @@ async (req, res) => {
 
   try {
     // a. See if user exists
-    let user = await User.findOne({ email: email });
+    let userFindByEmail = await User.findOne({ email: email });
 
-    if (user) {
+    if (userFindByEmail) {
       return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
     }
 
@@ -191,7 +191,7 @@ async (req, res) => {
     });
 
     // c. Create a new user instance by User model, now user is a real object
-    user = new User({
+    let user = new User({
       name,
       email,
       avatar,
@@ -266,7 +266,7 @@ jwt.sign(
 - 总的来说，jwt.sign 就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据(一个全新object，只有一对键值)，其实就是一个数据变形的过程。
 - 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
 - 在这里有一个建议就是，最好不要把 Connection String 和 jwtSecret 上传和公开。
-- 在语句`user.save();`之后， 我们就可以通过`user.id`去获得user在MongoDB中的`_id`。
+- 在语句`user.save();`之后， 我们就可以通过`user.id`去获得新建user在MongoDB中的`_id`。
 
 #### `F. Final post route code`
 
@@ -303,33 +303,38 @@ router.post(
 
     const { name, email, password } = req.body;
     try {
-      let user = await User.findOne({ email: email });
+      // a. See if user exists
+      let userFindByEmail = await User.findOne({ email: email });
 
-      if (user) {
+      if (userFindByEmail) {
         return res
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
+      // b. Get users gravatar
       const avatar = gravatar.url(email, {
         s: '200',
         r: 'pg',
         d: 'mm'
       });
 
-      user = new User({
+      // c. Create a new user instance by User model, Now user is a real object
+      let user = new User({
         name,
         email,
         avatar,
         password
       });
+      //console.log(newUser);
 
+      // d. Encrypt password
       const salt = await bcrypt.genSalt(10);
-
+      // Change the object attribute
       user.password = await bcrypt.hash(password, salt);
-
+      // e. save the object in MongoDB Altas
       user.save();
-
+      // f. Return json-web-token
       const payload = {
         user: {
           id: user.id
@@ -344,7 +349,7 @@ router.post(
         },
         (err, token) => {
           if (err) throw err;
-          res.json({ token : token});
+          res.json({ token: token });
         }
       );
     } catch (err) {
