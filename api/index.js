@@ -6,4 +6,3 @@ router.use("/auth", require("./auth"));
 router.use("/profile", require("./profiles"));
 
 module.exports = router;
-

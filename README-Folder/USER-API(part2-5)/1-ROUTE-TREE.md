@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 1: Set up Route trees.`
+## `Set up Route trees.`
 
 ### `Check Dependencies`
 
@@ -12,9 +12,12 @@
 
 ### `Step1: Set up Route trees`
 
-#### 
+### `Brief Contents & codes position`
+- *2.1 set up main route in server.js
+- *2.2 Create ./api/index.js
+- *2.3 Test http://localhost:4000/api/auth
 
-- Originally we can add our routes to server.js, but we can organize things a lot better by separating them.
+- `Originally we can add our routes to server.js, but we can organize things a lot better by separating them.`
 
 - (Chinese) 正如前端使用 react-router-dom 去组织前端路径树一样，express 也有相似功能让你更好地组织后端路径树,这是提升文档组织性的方法，像工程师一样思考。
 
@@ -69,6 +72,7 @@ module.exports = router;
 #### `C. Test.`
 
 `set simple contents and test it.`
+
 `(*2.3)Location: ./api/auth.js`
 ```js
 const router = require("express").Router();
