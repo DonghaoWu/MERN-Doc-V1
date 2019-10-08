@@ -138,7 +138,7 @@ module.exports = connectDB;
 
 #### - `Express server set up.`
 
-`Install dependency`
+`Install dependencies`
 
 ```bash
 $ npm install --save express
@@ -168,7 +168,7 @@ Routes here!
 app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));
 ```
 
-#### `Finally, server.js should look like this:`
+- #### `Finally, server.js should look like this:`
 
 `(*1.3)location: ./server.js`
 
