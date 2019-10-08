@@ -1,38 +1,21 @@
+//*1.3
+//package
 const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require(`morgan`);
-const port = 5000;
+const connectDB = require('./config/db');
+//apply
 const app = express();
-
-//Middleware here!
+//middleware
 app.use(express.json({ extended: false }));
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
+//port
+const PORT = process.env.PORT || 4000;
 
-//DB here!
-const db =
-  'mongodb+srv://donghao:donghao123@cluster-mren-tygf4.mongodb.net/test?retryWrites=true&w=majority';
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useCreateIndex:true,
-    });
-
-    console.log('MongoDB connected.=============>');
-  } catch (err) {
-    console.error(err.message);
-    //Exit process with failure
-    process.exit(1);
-  }
-};
-//Invoke the function and connect to MongoDB Altas.
+/*
+DB here!
+*/
 connectDB();
 
-//Routes here!
-app.use('/api', require('./api'));
+/*
+Routes here!
+*/
 
-const server = app.listen(port, () => {
-  console.log(`Port ${port} is listening now.==============>`);
-});
+app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));

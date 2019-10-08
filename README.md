@@ -88,32 +88,45 @@ $ npm install mongoose --save
 
 #### - `DB set up.`
 
-`location: server.js`
+- install config package
+
+```bash
+$ npm install --save config
+```
+
+- create a new folder call 'config',then a new file 'default.json'
+`(*1.1)location: ./config.default.json`
+```js
+{
+    "mongoURI":"mongodb+srv://donghao:<password>@cluster0-qvchz.mongodb.net/test?retryWrites=true&w=majority",
+}
+```
+Notice: `Replace the <password> with the user password`
+
+-create a new file 'db.js'
+`(*1.2)location: ./config/db.js`
 
 ```js
-//Add your DB here.
 const mongoose = require('mongoose');
-
-//Your connection string from step2.
-const db =
-  'mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites=true&w=majority';
+const config = require('config');
+const db = config.get('mongoURI');
 
 const connectDB = async () => {
-  try {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useCreateIndex:true,
-    });
+    try {
+        await mongoose.connect(db, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+        });
+        console.log('MongoDb connected...');
+    } catch (err) {
+        console.error(err.message);
+        process.exit(1);
+    }
+}
 
-    console.log('MongoDB connected.=============>');
-  } catch (err) {
-    console.error(err.message);
-    //Eit process with failure
-    process.exit(1);
-  }
-};
-
-connectDB();
+module.exports = connectDB;
 ```
 
 #### - `Express server set up.`
@@ -129,16 +142,14 @@ $ npm install --save morgan
 `Add code, location: server.js`
 
 ```js
+//package
 const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require(`morgan`);
-const port = 5000;
+//apply
 const app = express();
-
-//Middleware here!
+//middleware
 app.use(express.json({ extended: false }));
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
+//port
+const PORT = process.env.PORT || 4000;
 
 /*
 DB here!
@@ -148,53 +159,40 @@ DB here!
 Routes here!
 */
 
-const server = app.listen(port, () => {
-  console.log(`Port ${port} is listening now.==============>`);
-});
+app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));
 ```
 
 #### `Finally, server.js should look like this:`
-
+`(*1.3)location: ./server.js`
 ```js
+//package
 const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require(`morgan`);
-const port = 5000;
+const connectDB = require('./config/db');
+//apply
 const app = express();
-
-//Middleware here!
+//middleware
 app.use(express.json({ extended: false }));
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('dev'));
+//port
+const PORT = process.env.PORT || 4000;
 
-//DB here!
-const db =
-  'mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites=true&w=majority';
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useCreateIndex:true,
-    });
-
-    console.log('MongoDB connected.=============>');
-  } catch (err) {
-    console.error(err.message);
-    //Exit process with failure
-    process.exit(1);
-  }
-};
-//Invoke the function and connect to MongoDB Altas.
+/*
+DB here!
+*/
 connectDB();
 
 /*
 Routes here!
 */
 
-const server = app.listen(port, () => {
-  console.log(`Port ${port} is listening now.==============>`);
-});
+app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));
+```
+
+`(1.4)location: ./package.json`: add Scripts
+```js
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
 ```
 
 `Note:`
@@ -206,7 +204,7 @@ const server = app.listen(port, () => {
 `Location:root directory`
 
 ```bash
-$ nodemon server.js
+$ npm run server
 ```
 
 - If you get this, it means everything works well.
