@@ -12,6 +12,13 @@
 - morgan
 - nodemon
 - mongoose
+- config
+
+### `Brief Contents`
+- *1.1 create config folder
+- *1.2 create db initialization
+- *1.3 set up server and connect db
+- *1.4 add scripts
 
 ### `Step1: Altas set up`
 
@@ -83,7 +90,7 @@ mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites
 #### - `Install mongoose dependency`
 
 ```bash
-$ npm install mongoose --save
+$ npm install --save mongoose 
 ```
 
 #### - `DB set up.`
@@ -192,7 +199,7 @@ Routes here!
 app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));
 ```
 
-`(1.4)location: ./package.json`: add Scripts
+`(*1.4)location: ./package.json`: add Scripts
 ```js
   "scripts": {
     "start": "node server",
