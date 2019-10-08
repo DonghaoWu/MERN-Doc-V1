@@ -95,7 +95,9 @@ $ npm install --save config
 ```
 
 - create a new folder call 'config',then a new file 'default.json'
+
 `(*1.1)location: ./config.default.json`
+
 ```js
 {
     "mongoURI":"mongodb+srv://donghao:<password>@cluster0-qvchz.mongodb.net/test?retryWrites=true&w=majority",
@@ -103,7 +105,8 @@ $ npm install --save config
 ```
 Notice: `Replace the <password> with the user password`
 
--create a new file 'db.js'
+- create a new file 'db.js'
+
 `(*1.2)location: ./config/db.js`
 
 ```js
@@ -163,7 +166,9 @@ app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));
 ```
 
 #### `Finally, server.js should look like this:`
+
 `(*1.3)location: ./server.js`
+
 ```js
 //package
 const express = require('express');
