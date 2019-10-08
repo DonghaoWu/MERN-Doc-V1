@@ -1,6 +1,11 @@
 # MERN-Template
 
-## In this app, I try to build a MERN stack template, which tech stack are MongoDB, Node.js, Express.js, React.js, and Redux.js.
+## In this app, I try to build a MERN stack template, which tech stack are 
+- MongoDB, 
+- Node.js, 
+- Express.js, 
+- React.js,
+- Redux.js.
 
 ## `Section: Backend`
 
