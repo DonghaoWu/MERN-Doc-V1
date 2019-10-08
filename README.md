@@ -9,7 +9,7 @@
 
 ## `Section: Backend`
 
-## `Set up MongoDB Altas.`
+### `Set up MongoDB Altas.`
 
 ### `Check Dependencies`
 
@@ -91,17 +91,10 @@ mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites
 
 ### `Step3: Time to code`
 
-#### - `Install mongoose dependency`
-
-```bash
-$ npm install --save mongoose 
-```
-
+#### - `Install dependencies`
 #### - `DB set up.`
-
-- install config package
-
 ```bash
+$ npm install --save mongoose
 $ npm install --save config
 ```
 
