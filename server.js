@@ -1,4 +1,4 @@
-//*1.3
+//*1.3 *2.1
 //package
 const express = require('express');
 const connectDB = require('./config/db');
@@ -17,5 +17,6 @@ connectDB();
 /*
 Routes here!
 */
+app.use("/api", require("./api"));
 
 app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));

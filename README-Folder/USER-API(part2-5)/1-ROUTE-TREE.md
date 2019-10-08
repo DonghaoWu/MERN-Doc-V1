@@ -7,7 +7,6 @@
 ### `Check Dependencies`
 
 - express
-- morgan
 - nodemon
 - mongoose
 
@@ -26,19 +25,43 @@
 app.use("/api", require("./api"));
 ```
 
+- Now, `(*2.1)./server.js`looks like this:
+```js
+//package
+const express = require('express');
+const connectDB = require('./config/db');
+//apply
+const app = express();
+//middleware
+app.use(express.json({ extended: false }));
+//port
+const PORT = process.env.PORT || 4000;
+
+/*
+DB here!
+*/
+connectDB();
+
+/*
+Routes here!
+*/
+app.use("/api", require("./api"));
+
+app.listen(PORT, () => console.log(`server is listening on port ${PORT} ===>`));
+```
+
 #### `B. Create a api folder, create a index.js file inside of it`
 
-`Location: new api folder, ./api/index.js`
+`(*2.2)Location: new api folder, ./api/index.js`
 
 - This index.js file is a central clearing house for our api routes, so we can access all api routes by going through "/api" first.
 
 ```js
 const router = require("express").Router();
 
-router.use("/user", require("./user"));
+router.use("/users", require("./users"));
 router.use("/auth", require("./auth"));
-router.use("/profile", require("./profile"));
-router.use("/post", require("./post"));
+router.use("/profiles", require("./profiles"));
 
 module.exports = router;
 ```
@@ -46,7 +69,7 @@ module.exports = router;
 #### `C. Test.`
 
 `set simple contents and test it.`
-`Location: ./api/auth.js`
+`(*2.3)Location: ./api/auth.js`
 ```js
 const router = require("express").Router();
 
