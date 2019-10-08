@@ -10,8 +10,6 @@
 - nodemon
 - mongoose
 
-### `Step1: Set up Route trees`
-
 ### `Brief Contents & codes position`
 - *2.1 set up main route in server.js
 - *2.2 Create ./api/index.js
@@ -22,6 +20,7 @@
 
 - (Chinese) 正如前端使用 react-router-dom 去组织前端路径树一样，express 也有相似功能让你更好地组织后端路径树,这是提升文档组织性的方法，像工程师一样思考。
 
+### `Set up Route trees`
 #### `A. Add a center route in .server.js, we can call it 'api'`
 
 `Location: server.js`
@@ -29,7 +28,7 @@
 app.use("/api", require("./api"));
 ```
 
-- Now, `(*2.1)./server.js`looks like this:
+- `(*2.1)./server.js`looks like this:
 ```js
 //package
 const express = require('express');
