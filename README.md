@@ -136,7 +136,7 @@ const connectDB = async () => {
 module.exports = connectDB;
 ```
 
-#### - `Express server set up.`
+- #### `Express server set up.`
 
 `Install dependencies`
 
