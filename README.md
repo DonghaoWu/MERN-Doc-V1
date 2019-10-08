@@ -1,4 +1,4 @@
-# MERN-Template
+# MERN-Template(part 1)
 
 ## In this app, I try to build a MERN stack template, which tech stack are 
 - MongoDB, 
