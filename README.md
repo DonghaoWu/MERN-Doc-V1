@@ -9,8 +9,6 @@
 
 ## `Section: Backend`
 
-### `Set up MongoDB Altas.`
-
 ### `Check Dependencies`
 
 - express
@@ -24,7 +22,7 @@
 - *1.3 set up server and connect db
 - *1.4 add scripts
 
-### `Step1: Altas set up`
+### `Step1: MongoDB Altas set up`
 
 <ol>
 <li> Sign in</li>
