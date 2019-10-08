@@ -17,10 +17,10 @@
 - config
 
 ### `Brief Contents`
-- *1.1 create config folder
-- *1.2 create db initialization
-- *1.3 set up server and connect db
-- *1.4 add scripts
+- *1.1 Create config folder
+- *1.2 Create db initialization
+- *1.3 Set up server and connect db
+- *1.4 Add scripts
 
 ### `Step1: MongoDB Altas set up`
 
@@ -90,7 +90,7 @@ mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites
 ### `Step3: Time to code`
 
 #### - `Install dependencies`
-#### - `DB set up.`
+#### - `DB initialization.`
 ```bash
 $ npm install --save mongoose
 $ npm install --save config
