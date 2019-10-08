@@ -14,7 +14,6 @@
 ### `Check Dependencies`
 
 - express
-- morgan
 - nodemon
 - mongoose
 - config
@@ -151,7 +150,6 @@ module.exports = connectDB;
 ```bash
 $ npm install --save express
 $ npm install --save nodemon
-$ npm install --save morgan
 ```
 
 `Add code, location: server.js`
