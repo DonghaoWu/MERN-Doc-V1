@@ -16,7 +16,7 @@
 - mongoose
 - config
 
-### `Brief Contents`
+### `Brief Contents & codes position`
 - *1.1 Create config folder
 - *1.2 Create db initialization
 - *1.3 Set up server and connect db
