@@ -1,4 +1,4 @@
-# MERN-Teplate(part 2)
+# MERN-Template(part 2)
 
 ## `Section: Backend`
 
