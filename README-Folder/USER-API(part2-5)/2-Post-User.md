@@ -7,7 +7,6 @@
 ### `Check Dependencies`
 
 - express
-- morgan
 - nodemon
 - mongoose
 - express-validator (new)
@@ -17,21 +16,20 @@
 
 ### `Step1: Set up User model`
 
-#### `B. Create a models folder, create a index.js file inside of it`
+#### `A. Create a models folder, create a index.js file inside of it`
 
-`Location: new api folder, ./api/index.js`
+`（*3.1）Location: new model folder: ./model/index.js`
 
-- This index.js file is a central clearing house for our api routes, so we can access all api routes by going through "/api" first.
+- This index.js file is a central clearing house for our api routes, so we can access all Data model through `./model/index.js`.
 
 ```js
 const User = require('./User.js');
-const Post = require('./Post.js');
-const Profile = require('./Profile,js');
+const Profile = require('./Profile.js');
 
-module.exports = { User, Post, Profile };
+module.exports = { User, Profile };
 ```
 
-#### `C. Create User model.`
+#### `B. Create User model.`
 
 `Location: ./models/User.js`
 
