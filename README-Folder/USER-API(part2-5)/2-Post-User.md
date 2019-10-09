@@ -14,14 +14,29 @@
 - bcryptjs (new)
 - jsonwebtoken (new)
 
+### `Brief Contents & codes position`
+- *3.1 Create ./model/index.js
+- *3.2 Create a user model
+- *3.3 Test http://localhost:4000/api/auth
+
+### `Important: `
+
+- How to add a new model? 
+
+#### `Add a model file, export the model ===> import the file in ./model/index.js, then export it.` 
+
+- What are high usage model methods?
+
+#### `let obj = new modelName({...}) ===> create a new model object` 
+#### `await obj.save() ===> save the obj in database` 
+
 ### `Step1: Set up User model`
 
 #### `A. Create a models folder, create a index.js file inside of it`
 
-`（*3.1）Location: new model folder: ./model/index.js`
+- This index.js file is a central clearing house for our models, so we can access all Data model through `./model/index.js`.
 
-- This index.js file is a central clearing house for our api routes, so we can access all Data model through `./model/index.js`.
-
+`(*3.1)Location: new model folder: ./model/index.js`
 ```js
 const User = require('./User.js');
 const Profile = require('./Profile.js');
@@ -31,7 +46,7 @@ module.exports = { User, Profile };
 
 #### `B. Create User model.`
 
-`Location: ./models/User.js`
+`(*3.2)Location: ./models/User.js`
 
 ```js
 //Require dependency
@@ -66,8 +81,8 @@ module.exports = User = mongoose.model('user', UserSchema);
 `note:`
 
 - In this model, we use two mongoose built-in methods.
-- One is mongoose.Schema, which will create a Schema instance.
-- The other one is mongoose.model('user', UserSchema), takes two arguments, the first one as a collecion name in
+- One is `mongoose.Schema`, which will create a Schema instance.
+- The other one is `mongoose.model('user', UserSchema)`, takes two arguments, the first one as a collecion name in
   MongoDB Altas, the second one is Schema instance name.
 
 - In the end of this file, it export a Model.
@@ -84,7 +99,7 @@ $ npm install express-validator --save
 
 #### `B. Add post route validation`
 
-`Location: /api/user.js`
+`(*3.3)Location: /api/user.js`
 
 ```js
 const router = require('express').Router();
