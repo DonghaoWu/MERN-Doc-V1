@@ -179,7 +179,7 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 ```
 
-##### - Change the response in async way.
+##### - Change the response in `async` way.
 
 ```js
 async (req, res) => {
