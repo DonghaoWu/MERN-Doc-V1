@@ -348,7 +348,9 @@ router.post('/', [
 
     // e. Save the object in MongoDB Altas
     await user.save(); // Now you get the access to the user._id in MongoDB Altas.
-    // f. if everything is ok, then return a json format object, with key `token`, and value(encrypted token)
+    // f. Return json-web-token
+    // Now you get the access to the user._id in MongoDB Altas.
+    // 经过操作后，mongoose中使用的user.id就是MongoDB中的user._id
     const payload = {
       user: {
           id: user.id,
