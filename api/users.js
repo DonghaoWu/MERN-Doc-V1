@@ -1,4 +1,4 @@
-//(*3.3)
+//(*3.4)
 const express = require('express');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
@@ -13,9 +13,9 @@ const { User } = require('../models');
 // @desc   Register User
 // @access public
 router.post('/', [
-    check('name', 'Name is required').not().isEmpty(),
-    check('email', 'Please includes a valid email').isEmail(),
-    check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
+  check('name', 'Name is required').not().isEmpty(),
+  check('email', 'Please includes a valid email').isEmail(),
+  check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
 ], async (req, res) => {
   //check errors results
   const errors = validationResult(req);
@@ -56,17 +56,21 @@ router.post('/', [
 
     // e. Save the object in MongoDB Altas
     await user.save(); // Now you get the access to the user._id in MongoDB Altas.
-    // f. if everything is ok, then return a json format object, with key `token`, and value(encrypted token)
+
+    // f. Return json-web-token
+    // Now you get the access to the user._id in MongoDB Altas.
+    // 经过操作后，mongoose中使用的user.id就是MongoDB中的user._id
     const payload = {
       user: {
-          id: user.id,
+        id: user.id,
       }
     }
     //If you decoded the token, you can get access user._id by `req.user.id`
     jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
-        if (err) throw err;
-        res.json({ token: token })
+      if (err) throw err;
+      res.json({ token: token })
     });
+
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
