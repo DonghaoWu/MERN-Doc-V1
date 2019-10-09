@@ -9,15 +9,17 @@
 - express
 - nodemon
 - mongoose
+- config
 - express-validator (new)
 - gravatar (new)
 - bcryptjs (new)
 - jsonwebtoken (new)
 
 ### `Brief Contents & codes position`
-- *3.1 Create ./model/index.js
+- *3.1 Create `./model/index.js`
 - *3.2 Create a user model
-- *3.3 Test http://localhost:5000/api/auth
+- *3.3 Add `jwtSecret` in `./config/default.json`
+- *3.4 Add Create a new user post route in `./api/users.js`
 
 ### `Important: `
 
@@ -259,9 +261,7 @@ $ npm install jsonwebtoken --save
 
 ```js
 const jwt = require('jsonwebtoken');
-```
-
-```js
+const config = require('config');
 // f. Return json-web-token
 // Now you get the access to the user._id in MongoDB Altas.
 // 经过操作后，mongoose中使用的user.id就是MongoDB中的user._id

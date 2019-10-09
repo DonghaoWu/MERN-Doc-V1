@@ -9,6 +9,7 @@
 - express
 - nodemon
 - mongoose
+- config
 
 ### `Brief Contents & codes position`
 - *2.1 set up main route in server.js
