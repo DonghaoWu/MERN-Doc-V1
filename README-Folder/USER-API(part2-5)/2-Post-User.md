@@ -25,7 +25,7 @@
 
 - `How to add a new model? `
 <ol>
-<li>Add a model file, export the model ===> import the file in ./model/index.js, then export it.</li>
+<li>Add a model file in folder `models`, export the model ===> import the file in ./model/index.js, then export it.</li>
 </ol>
 
 - `What are high usage model methods?`
