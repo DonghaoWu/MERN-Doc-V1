@@ -49,10 +49,10 @@ router.post(
 
       const isMatch = await bcrypt.compare(password, user.password);
 
-      if(!isMatch){
-        return res.status(400).json({errors:[{msg:'Invalid Credentials'}]});
+      if (!isMatch) {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
-      
+
       const payload = {
         user: {
           id: user.id
@@ -85,6 +85,5 @@ router.post(
 //   res.send(`This is Auth route.`)
 // })
 
-// module.exports = router;
-
 module.exports = router;
+
