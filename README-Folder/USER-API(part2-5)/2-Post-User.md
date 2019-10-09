@@ -17,7 +17,7 @@
 ### `Brief Contents & codes position`
 - *3.1 Create ./model/index.js
 - *3.2 Create a user model
-- *3.3 Test http://localhost:4000/api/auth
+- *3.3 Test http://localhost:5000/api/auth
 
 ### `Important: `
 
@@ -239,14 +239,22 @@ module.exports = router;
 
 #### `E. Implementing Json-Web-Token`
 
-`Location: /api/user.js`
+##### `Add jwtSecret`
+
+`(*3.3)Location: ./config/user.js`
+```js
+{
+    "mongoURI":"mongodb+srv://donghao:Qs5LEDWIaPITXIIn@cluster0-qvchz.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret":"mySecretToken"
+}
+```
 
 ##### `Install dependency`
 
 ```bash
 $ npm install jsonwebtoken --save
 ```
-
+`Location: /api/user.js`
 ##### - Add dependency.
 
 ```js
@@ -280,7 +288,7 @@ jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) =
 
 #### `F. Final post route code`
 
-`(*3.3)Location: /api/user.js`
+`(*3.4)Location: /api/user.js`
 
 ```js
 const express = require('express');

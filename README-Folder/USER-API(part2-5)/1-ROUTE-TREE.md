@@ -13,7 +13,7 @@
 ### `Brief Contents & codes position`
 - *2.1 set up main route in server.js
 - *2.2 Create ./api/index.js
-- *2.3 Test http://localhost:4000/api/auth
+- *2.3 Test http://localhost:5000/api/auth
 
 ### `Notice:`
 - `Originally we can add our routes to server.js, but we can organize things a lot better by separating them.`
@@ -38,7 +38,7 @@ const app = express();
 //middleware
 app.use(express.json({ extended: false }));
 //port
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 /*
 DB here!

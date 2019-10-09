@@ -153,7 +153,7 @@ const app = express();
 //middleware
 app.use(express.json({ extended: false }));
 //port
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 /*
 DB here!
@@ -179,7 +179,7 @@ const app = express();
 //middleware
 app.use(express.json({ extended: false }));
 //port
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 /*
 DB here!
