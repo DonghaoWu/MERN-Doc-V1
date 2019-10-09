@@ -16,10 +16,10 @@
 - jsonwebtoken (new)
 
 ### `Brief Contents & codes position`
-- *3.1 Create `./model/index.js`
-- *3.2 Create a user model
+- *3.1 Create `./models/index.js`
+- *3.2 Create a User model `./models/User.js`
 - *3.3 Add `jwtSecret` in `./config/default.json`
-- *3.4 Add Create a new user post route in `./api/users.js`
+- *3.4 Create a new user post route in `./api/users.js`
 
 ### `Important: `
 
@@ -40,7 +40,7 @@
 
 - This index.js file is a central clearing house for our models, so we can access all Data model through `./model/index.js`.
 
-`(*3.1)Location: new model folder: ./model/index.js`
+`(*3.1)Location: new model folder: ./models/index.js`
 ```js
 const User = require('./User.js');
 const Profile = require('./Profile.js');
