@@ -22,12 +22,15 @@
 ### `Important: `
 
 - `How to add a new model? `
-- Add a model file, export the model ===> import the file in ./model/index.js, then export it.
+<ol>
+<li>Add a model file, export the model ===> import the file in ./model/index.js, then export it.</li>
+</ol>
 
 - `What are high usage model methods?`
-
-- let obj = new modelName({...}) ===> create a new model object
-- await obj.save() ===> save the obj in database
+<ol>
+<li>let obj = new modelName({...}) ===> create a new model object</li>
+<li>await obj.save() ===> save the obj in database</li>
+</ol>
 
 ### `Step1: Set up User model`
 
