@@ -1,8 +1,7 @@
 # MERN-Template(part 4)
-#### work on Nov 17th
-## `Section: Backend`
+## `Section: Backend`(Get user object)
 
-## `Part 3: Custom Auth Middleware & JWT Verify and Login Route.`
+### `Summary`: In this documentation, we create a middleware to decode the token, then we create a auth route(get) to use this middle to get the id info from the incoming token, and return the user object at the end.
 
 ### `Check Dependencies`
 
@@ -14,6 +13,10 @@
 - gravatar (new)
 - bcryptjs (new)
 - jsonwebtoken (new)
+
+### `Brief Contents & codes position`
+- *4.1 Create a middleware call auth `./middleware/auth.js`
+- *4.2 Create a auth routh, `../api/auth.js`
 
 ### `Step1: What do you get in the last part?`
 
@@ -37,7 +40,9 @@
 
 ### `Step2: Create a custom middleware.`
 
-#### `Create a new folder call 'middleware', Location:./middleware/auth.js`
+#### `Create a new folder call 'middleware', Location:`
+
+`(*4.1)Location: ./middleware/auth.js`
 
 ```js
 const jwt = require('jsonwebtoken');
@@ -74,7 +79,7 @@ module.exports = function(req, res, next) {
 
 ### `Step3: Use the new middleware in auth get route.`
 
-`Location:./middleware/auth.js`
+`(*4.2)Location:./api/auth.js`
 
 ```js
 const router = require('express').Router();
@@ -114,7 +119,7 @@ module.exports = router;
 </ol>
 
 #### `总结`：
-- 在这个Get route中，request是不需要任何参数的，只需要在x-auth-token输入token就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙的前后一致性才能解码成功。
+- 在这个Get route中，request是不需要任何参数的，只需要在x-auth-token输入token就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙(const secret = 'mysecrettoken')的前后一致性才能解码成功。
 
 ### `Step4: Test it.`
 
