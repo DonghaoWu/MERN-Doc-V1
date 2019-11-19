@@ -114,7 +114,7 @@ router.post(
 <img src="../../assets/19.png" width=90%>
 </p>
 
-- In postman, get the token.
+- Get the token after you send the message.
 <p align="center">
 <img src="../../assets/18.png" width=90%>
 </p>
