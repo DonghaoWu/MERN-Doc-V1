@@ -21,6 +21,7 @@
 - *1.2 Create db initialization
 - *1.3 Set up server and connect db
 - *1.4 Add scripts
+#### `Before test, you should change the mongoDB connection String and password to your own.`
 
 ### `Step1: MongoDB Altas set up`
 
@@ -219,7 +220,7 @@ $ npm run server
 <img src="./assets/9.png" width=80%>
 </p>
 
-`Side-note: What is the middleware used for?`
+`Side-note: What is the middleware used for?(express:app.js)`
 
 - app.use(express.json({ extended: false }))
 - app.use(express.urlencoded({ extended: true }))
