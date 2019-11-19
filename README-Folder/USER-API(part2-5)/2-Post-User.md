@@ -1,6 +1,6 @@
 # MERN-Template(part 3)
 
-## `Section: Backend`(Get user token)
+## `Section: Backend`(Get user token after create a new user)
 
 ### `Summary`: In this documentation, we set up User register route(post), when a new user register, the back end can validate the info, then use the User model to create a new user, encrypted the password, then save the user info in the database, at the end of the route the app sends back a token with a user id info inside.
 
