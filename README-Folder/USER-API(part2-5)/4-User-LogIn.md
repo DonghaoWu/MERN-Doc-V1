@@ -1,6 +1,6 @@
 # MERN-Template(part 5)
 
-## `Section: Backend`
+## `Section: Backend`(Get user token after a user login)
 
 ### `Summary`: In this documentation, we set up User login route(post), when a user login, the back end can validate the info, search the database by email, then decoded the password and validate it, if everything is good, at the end of the route the app sends back a token with a user id info inside.
 
