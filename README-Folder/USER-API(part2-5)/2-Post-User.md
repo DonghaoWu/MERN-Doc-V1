@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 2: Set up User Route.`
+### `Summary`: In this documentation, we set up User register route, when a new user register, the back end can validate the info, then use the User model to create a new user, encrypted the password, then save the user info, at the end of the route, the app send back a token with a user id info inside.
 
 ### `Check Dependencies`
 
@@ -21,7 +21,7 @@
 - *3.3 Add `jwtSecret` in `./config/default.json`
 - *3.4 Create a new user post route in `./api/users.js`
 
-### `Important: `
+### `***Important: `
 
 - `How to add a new model? `
 <ol>
@@ -86,10 +86,10 @@ module.exports = User = mongoose.model('user', UserSchema);
 
 - In this model, we use two mongoose built-in methods.
 - One is `mongoose.Schema`, which will create a Schema instance.
-- The other one is `mongoose.model('user', UserSchema)`, takes two arguments, the first one as a collecion name in
-  MongoDB Altas, the second one is Schema instance name.
+- The other one is `mongoose.model('user', UserSchema)`, takes two arguments, the first perameter as a collecion name in
+  MongoDB Altas, the second perameter is Schema instance name.
 
-- In the end of this file, it export a Model.
+- In the end of this file, it exports a Model.
 
 - Create a Schema ====> Create a model ====> export the model
 
@@ -188,7 +188,7 @@ async (req, res) => {
   //check errors results
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    //In json format, it returns an array
+    //In json format, it returns an array, and stop the whole process.
     return res.status(400).json({ errors: errors.array() });
   }
   //get info from req.body(content-type: application/json)
@@ -237,7 +237,7 @@ module.exports = router;
 
 `Side-Note:`
 
-- Validate the req.body ===> Check if the user existed ===> Get gravatar ===> Create a real object `user` by User model ===> Encrypt password and modify the value of `user.password` ===> Save the `user` in database.
+- Validate the req.body ===> Check if the user existed ===> Get gravatar ===> Create a real object `user` by User model ===> Encrypt password ===> Save the `user` in database.
 
 #### `E. Implementing Json-Web-Token`
 
@@ -279,7 +279,7 @@ jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) =
 
 #### `Side-Note(Chinese):`
 
-- payload 是一个 object；
+- `payload 是一个 object，在这里的作用是把一个payload（包含用户id信息）转化成一个有时效性的token（包含用户ID信息）；`
 - jwt.sign 是一个依赖中的内建函数，它有四个参数，第一个是目标对象，第二个是打包码，第三个是包裹有效时间，第四个是可选参数，是一个回调函数，对打包过程的一个反馈。
 - 总的来说，jwt.sign 就是一个数据打包函数，输入数据和打包钥匙，最后生成一个有数据包信息的令牌数据(一个全新object，只有一对键值)，其实就是一个数据变形的过程。
 - 要补充的是，本程序设定的是重复用户的定义是不能有相同的电子邮箱。
