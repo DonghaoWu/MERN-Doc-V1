@@ -16,7 +16,7 @@
 
 ### `Brief Contents & codes position`
 - *4.1 Create a middleware call 'auth' `./middleware/auth.js`
-- *4.2 Create a auth routh, `../api/auth.js`
+- *4.2 Create a auth routh, `./api/auth.js`
 
 ### `Step1: What do you get in the last part?`
 

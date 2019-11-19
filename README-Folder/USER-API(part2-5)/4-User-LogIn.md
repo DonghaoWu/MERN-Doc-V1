@@ -2,7 +2,7 @@
 
 ## `Section: Backend`
 
-## `Part 4: User Authentication / Login Route.`
+### `Summary`: In this documentation, we set up User login route(post), when a user login, the back end can validate the info, search the database by email, then decoded the password and validate it, if everything is good, at the end of the route the app sends back a token with a user id info inside.
 
 ### `Check Dependencies`
 
@@ -15,8 +15,11 @@
 - bcryptjs (new)
 - jsonwebtoken (new)
 
-### `Step1: Import dependencies`
+### `Brief Contents & codes position`
+- *5.1 Create a login routh, `./api/auth.js`
 
+### `Step1: Import dependencies`
+`(*5.1)Location:./api/auth.js`
 ```js
 const bcrypt = require('bcryptjs');//解码对比用
 const {check, validationResult} = require(`express-validator`);//验证格式用
@@ -24,7 +27,7 @@ const jwt = require('jsonwebtoken');//生成token用
 ```
 
 ### `Step2: Create a Post auth route.`
-
+`(*5.1)Location:./api/auth.js`
 ```js
 router.post(
   '/',
