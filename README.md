@@ -9,6 +9,8 @@
 
 ## `Section: Backend`
 
+### `Summary`: In this documentation, we build the basic of a MERN stack: set up express server and connect to MongoDB Altas.
+
 ### `Check Dependencies`
 
 - express
