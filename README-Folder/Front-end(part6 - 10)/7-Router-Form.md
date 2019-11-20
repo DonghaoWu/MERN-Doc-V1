@@ -1,7 +1,7 @@
 # MERN-Template(part 7)
 ## `Section: Frontend`(Setup React-Router & Form)
 
-### `Summary`: In this documentation, we isetup react-router and Form for the front end.
+### `Summary`: In this documentation, we setup react-router and Form for the front end.
 
 ### `Check Dependencies:`
 
@@ -56,8 +56,9 @@ export default App;
 ```
 
 #### `Comments:`
-- 使用React-Router第一步是引用基本三大件：BrowserRouter Route Switch，并用Router包住整个视图；
+- 使用React-Router第一步是引用基本三大件：BrowserRouter, Route, Switch, 并用Router包住整个视图；
 - 在这里主要一个疑问是，为什么不把第一个Route放进Switch中，答案是第一个Route是要作为默认Route所以不用放进Switch中。
+
 ### `Step2: Create 'Register.js'.`
 
 #### `(*7.2)Location: ./client/src/components/auth/Register.js`
@@ -144,6 +145,23 @@ const Register = props => {
 export default Register;
 ```
 
+#### `Comments:`
+- 使用React-Form，主要关注几点，2个函数的定义onChange和onSubmit，然后使input区域的三个properties，（name， value，onChange）；
+- 在这里引用新state用法hook，有3个新变量，useState--原始state，formData--当前state，setFormData--改变state的method，格式如下。
+
+```js
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
+    });
+
+    setFormData({
+        ...formData, [e.target.name]: e.target.value
+    })
+```
+
 ### `Step3: Create 'Login.js'.`
 
 #### `(*7.3)Location: ./client/src/components/auth/Login.js`
@@ -205,8 +223,6 @@ const Login = () => {
 
 export default Login;
 ```
-- *7.4 Add Link tag to 'Navbar.js', `./client/src/components/layout/Navbar.js`
-- *7.5 Add Link tag to 'Landing.js', `./client/src/components/layout/Landing.js`
 
 ### `Step4: Add Link tag to 'Navbar.js'.`
 
