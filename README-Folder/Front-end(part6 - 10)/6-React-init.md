@@ -805,17 +805,16 @@ th, td {
 
 ### `Step6: Test it.`
 
-- In postman: Post a new user(localhost:5000/api/user)
+- Run command in the right directory
+
+```bash
+$ npm run dev
+```
 <p align="center">
-<img src="../../assets/13.png" width=90%>
+<img src="../../assets/19.png" width=90%>
 </p>
 
-- In postman: Get a user(localhost:5000/api/auth)
+- Then open the browser and show this
 <p align="center">
-<img src="../../assets/16.png" width=90%>
-</p>
-
-- Data in MongoDB Altas
-<p align="center">
-<img src="../../assets/15.png" width=90%>
+<img src="../../assets/20.png" width=90%>
 </p>
