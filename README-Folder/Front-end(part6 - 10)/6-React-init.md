@@ -82,7 +82,7 @@ $ cd ..
 
 ### `Step5: Change some code.`
 
-`(*6.1)Location: ./client/public/index.html`
+#### `(*6.1)Location: ./client/public/index.html`
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -105,7 +105,7 @@ $ cd ..
 </html>
 ```
 
-`(*6.2)Location: ./client/src/index.js`
+#### `(*6.2)Location: ./client/src/index.js`
 
 ```js
 import React from 'react';
@@ -115,7 +115,7 @@ import App from './App';
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-`(*6.3)Location: ./client/src/App.js`
+#### `(*6.3)Location: ./client/src/App.js`
 
 ```js
 import React, { Fragment } from 'react';
@@ -133,7 +133,7 @@ const App = () => (
 export default App;
 ```
 
-`(*6.4)Location: ./client/components/layout/Navbar.js`
+#### `(*6.4)Location: ./client/components/layout/Navbar.js`
 
 ```js
 import React from 'react'
@@ -156,7 +156,7 @@ const Navbar = props => {
 export default Navbar
 ```
 
-`(*6.5)Location: ./client/components/layout/Landing.js`
+#### `(*6.5)Location: ./client/components/layout/Landing.js`
 
 ```js
 import React from 'react'
@@ -183,7 +183,7 @@ const Landing = props => {
 export default Landing
 ```
 
-`(*6.6)Location: ./client/src/App.css`
+#### `(*6.6)Location: ./client/src/App.css`
 
 ```css
 /* Global Styles */
@@ -797,38 +797,6 @@ th, td {
 .grey{
   color:grey
 }
-```
-
-
-
-#### `Create a new folder call 'middleware', Location:`
-
-`(*4.1)Location: ./middleware/auth.js`
-
-```js
-const jwt = require('jsonwebtoken');
-const config = require('config');
-const secret = config.get('jwtSecret');
-
-module.exports = function(req, res, next) {
-  // Get token form header
-  const token = req.header('x-auth-token');
-
-  //Check if not token
-  if (!token) {
-    return res.status(401).json({ msg: 'No token, authorization denied.' });
-  }
-
-  try {
-    const decoded = jwt.verify(token, secret);
-
-    req.user = decoded.user;//{id: user.id}
-
-    next();
-  } catch (err) {
-    res.staus(401).json({ msg: 'Token is not valid' });
-  }
-};
 ```
 
 ### `Step6: Test it.`
