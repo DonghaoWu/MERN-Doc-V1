@@ -3,6 +3,10 @@
 
 ### `Summary`: In this documentation, we setup react-router and Form for the front end.
 
+### `Referen：`
+- [Basic React-Router](https://github.com/DonghaoWu/React-Level7-React-Router-Basic)
+- [Basic React-Form](https://github.com/DonghaoWu/React-Level4-React-Form-Basic)
+
 ### `Check Dependencies:`
 
 - concurrently (back-end)
@@ -147,7 +151,7 @@ export default Register;
 
 #### `Comments:`
 - 使用React-Form，主要关注几点，2个函数的定义onChange和onSubmit，然后使input区域的三个properties，（name， value，onChange）；
-- 在这里引用新state用法hook，有3个新变量，useState--原始state，formData--当前state，setFormData--改变state的method，格式如下。
+- 在这里引用新state用法hook，有3个新变量，useState--原始state，formData--当前state，setFormData--改变state的method，用法如下。
 
 ```js
     const [formData, setFormData] = useState({
@@ -156,6 +160,8 @@ export default Register;
         password: '',
         password2: '',
     });
+
+    const { name, email, password, password2 } = formData;
 
     setFormData({
         ...formData, [e.target.name]: e.target.value
