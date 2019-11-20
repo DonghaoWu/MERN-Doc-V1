@@ -139,7 +139,7 @@ export default connect(null, { setAlert })(Register);
         setAlert: PropTypes.func.isRequired,
    }
 ```
-#### 在这些步骤之后，可以在component中使用method:`props.setAlert(msg, alterType)`
+#### 在这些步骤之后，可以在component中使用method:`props.setAlert(msg, alertType)`
 
 ### `Step2: Create Alert component and connect state to it.`
 
