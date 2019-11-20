@@ -43,11 +43,17 @@ $ cd ..
 - index.css
 - App.test.js
 
+#### `Location: ./client/public folder`
+- favicon.ico
+- logo192.png
+- logo512.png
+- robots.txt
+
 ### `Step3: Add some files.`
 
 #### `Location: ./client folder`
 - new folder call 'img'
-- add a picture into 'img' folder
+- add a picture into 'img' folder as a background picture
 
 #### `Location: ./client/src folder`
 - new folder call 'components'
@@ -76,7 +82,30 @@ $ cd ..
 
 ### `Step5: Change some code.`
 
-`(*6.1)Location: ./client/src/index.js`
+`(*6.1)Location: ./client/public/index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <script src="https://kit.fontawesome.com/07a2063e2d.js" crossorigin="anonymous"></script>
+  <title>MERN template</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
+</html>
+```
+
+`(*6.2)Location: ./client/src/index.js`
 
 ```js
 import React from 'react';
@@ -86,21 +115,75 @@ import App from './App';
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-`(*6.2)Location: ./client/src/App.js`
+`(*6.3)Location: ./client/src/App.js`
 
 ```js
 import React, { Fragment } from 'react';
+import Landing from './components/layout/Landing';
+import Navbar from './components/layout/Navbar';
 import './App.css';
 
-const App = () =>
+const App = () => (
   <Fragment>
-    <h1>Hello</h1>
+    <Navbar />
+    <Landing />
   </Fragment>
+)
 
 export default App;
 ```
 
-`(*6.3)Location: ./client/src/App.css`
+`(*6.4)Location: ./client/components/layout/Navbar.js`
+
+```js
+import React from 'react'
+
+const Navbar = props => {
+    return (
+        <nav className="navbar bg-dark">
+            <h1>
+                <a href="index.html"><i className="fas fa-code"></i> MERN ICON</a>
+            </h1>
+            <ul>
+                <li><a href="profiles.html">User name</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    )
+}
+
+export default Navbar
+```
+
+`(*6.5)Location: ./client/components/layout/Landing.js`
+
+```js
+import React from 'react'
+
+const Landing = props => {
+    return (
+        <section className="landing">
+            <div className="dark-overlay">
+                <div className="landing-inner">
+                    <h1 className="x-large">MERN STACK</h1>
+                    <p className="lead">
+                        TEMPLATE
+            </p>
+                    <div className="buttons">
+                        <a href="register.html" className="btn btn-primary">Sign Up</a>
+                        <a href="login.html" className="btn btn-light">Login</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default Landing
+```
+
+`(*6.6)Location: ./client/src/App.css`
 
 ```css
 /* Global Styles */
@@ -748,59 +831,7 @@ module.exports = function(req, res, next) {
 };
 ```
 
-#### `Side-note(Chinese):`
-
-- 这个中间件的用途在于在调用实际 API 之前对 request 进行预处理或者过滤处理，比如在这个中间件中，先提取`req.header的‘x-auth-token’`部分,然后进行判断有无，然后使用 jsonwebtoken 的内建函数进行解码。
-- 需要注意的是 jwt.verify()函数需要两个参数，一个是 request 中的令牌，另外一个是打包令牌时使用的钥匙，这个函数返回的是打包前的原本数据。
-- 我们只提取原本数据中的`user`值，并把值附在 request 上面，这样 req 就有了一个新的 key pair<br>(即`req.user = { id: user.id}`)。
-- 这个中间件的设置是，如果解码成功，则把改造后的 req 穿到下一个中间件或者实际 API 函数，如果解码不成功，产生错误并反馈。
-- #### `这个中间件的编导逻辑很重要，需要重点反复练习。`
-
-### `Step3: Use the new middleware in auth get route.`
-
-`(*4.2)Location:./api/auth.js`
-
-```js
-const router = require('express').Router();
-const auth = require('../middleware/auth');
-
-const { User } = require('../models');
-
-//@route   Get api/auth
-//@desc    Authenticate user & get token
-//@access  Public
-
-router.get(`/`, auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error.');
-  }
-});
-
-module.exports = router;
-```
-
-#### `Side-note(Chinese):`
-
-- request 通过中间件之后，req.user.id 的值就是对应的 user 在 MongoDB Altas 中的`_id`值。
-- 我们可以通过 model `User.findById`获得对应的 user 数据。
-
-- 整个过程可以归结为：
-
-<ol>
-<li>创建一个新用户，用jsonwebtoken内建函数将生成的MongoDB ALtas对应的数据的`_id`值打包，并返回一个令牌，这过程需要一个自定义打包钥匙。</li>
-<li>创建一个中间件，捕获header的‘x-auth-token’值，并用打包钥匙对其进行解码，获得原始数据，把原始数据的id值赋值在request中。</li>
-<li>在auth的get路径中，当request经过中间件auth后，req.user.id就是令牌中原始数据的user.id值。</li>
-<li>通过 model `User.findById`获得对应的 user 数据</li>
-</ol>
-
-#### `总结`：
-- 在这个Get route中，request是不需要任何参数的，只需要在x-auth-token输入token就可以返回相应令牌里面对应的用户信息，在这个过程中要注意打包钥匙(const secret = 'mysecrettoken')的前后一致性才能解码成功。
-
-### `Step4: Test it.`
+### `Step6: Test it.`
 
 - In postman: Post a new user(localhost:5000/api/user)
 <p align="center">
