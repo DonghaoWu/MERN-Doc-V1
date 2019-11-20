@@ -3,7 +3,7 @@
 
 ### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
-### `Important`: Figuring out how dispatch function works is the key to understand Redux.（重点在于代码*8.5和*8.6）
+### `Important`: Figuring out how `dispatch` works is the key to understand Redux.（重点在于代码*8.5和*8.6）
 
 ### `Check Dependencies:`
 
@@ -26,7 +26,7 @@
 - *8.4 Create a new folder and a new file 'types.js' 
 `./client/src/actions/types.js`
 - *8.5 Create a 'alert.js' file.（for state） `./client/src/reducers/alert.js`
-- *8.6 Create a 'alert.js' file. (for action) `./client/src/actions/alert.js`
+- *8.6 Create a 'alert.js' file. (for method) `./client/src/actions/alert.js`
 
 ### `Step1: Create a 'store.js' file:`
 
@@ -173,7 +173,7 @@ export default function (state = initialState, action) {
 - 后面第5步还会加入文件夹action和其他文件。
 ### `这里是redux的第一个难点，它是怎么做到相应的函数执行时，这个reducer会捕捉到对应的type，然后改变state的？答案是dispatch函数，后面详解`
 
-### `Step6: Create a 'alert.js' file(for action).`
+### `Step6: Create a 'alert.js' file(for method).`
 
 #### `(*8.6)Location: ./client/src/actions/alert.js`
 
