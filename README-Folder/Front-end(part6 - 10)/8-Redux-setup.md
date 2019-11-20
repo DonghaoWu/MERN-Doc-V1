@@ -3,7 +3,7 @@
 
 ### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
-### `Important`: Figuring out how dispatch function works is the key to understand Redux.（重点在于代码*8.4和*8.6）
+### `Important`: Figuring out how dispatch function works is the key to understand Redux.（重点在于代码*8.5和*8.6）
 
 ### `Check Dependencies:`
 
@@ -25,8 +25,8 @@
 - *8.3 Create a new folder and a new file 'index.js' `./client/src/reducers/index.js`
 - *8.4 Create a new folder and a new file 'types.js' 
 `./client/src/actions/types.js`
-- *8.5 Create a 'alert.js' file（for state） `./client/src/reducers/alert.js`
-- *8.6 Create a 'alert.js' file(for action) `./client/src/actions/alert.js`
+- *8.5 Create a 'alert.js' file.（for state） `./client/src/reducers/alert.js`
+- *8.6 Create a 'alert.js' file. (for action) `./client/src/actions/alert.js`
 
 ### `Step1: Create a 'store.js' file:`
 
@@ -206,7 +206,7 @@ export const setAlert = (msg, alertType) => dispatch => {
 
 #### `这里回应第5步的疑问，dispatch是怎样操作的，在这里，dispatch把两参数打包成一个object，然后把它发出去，对应的reducer（在这里是./actions/alert.js）自动检测到object里面的type是自己拥有的之后，就会把object收回并按照object的内容进行处理对应的state`
 
-#### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer按照dispatch中参数的type值捕捉动作 =》改变对应state =》将state返回需要的component中。
+#### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer按照dispatch中参数的type值捕捉动作 =》改变对应state =》将state返回需要的component =》 对应component 进行re-render。
 
 #### 由上可以在后期总结出对应的`设计思路`.
 
