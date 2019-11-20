@@ -202,7 +202,7 @@ export default connect(mapStateToProps)(Alert);
 
 ### `Step4: Test it.`
 
-- Now you have client side validation(input field & password matching in Register page).
+- Now you have client-side validation(input field & password matching in Register page).
 
 <p align="center">
 <img src="../../assets/26.png" width=90%>
