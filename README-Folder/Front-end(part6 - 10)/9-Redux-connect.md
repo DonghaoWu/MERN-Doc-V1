@@ -139,7 +139,7 @@ export default connect(null, { setAlert })(Register);
         setAlert: PropTypes.func.isRequired,
    }
 ```
-#### 在这些步骤之后，可以在component中使用method:`props.setAlert()`
+#### 在这些步骤之后，可以在component中使用method:`props.setAlert(msg, alterType)`
 
 ### `Step2: Create Alert component and connect state to it.`
 
@@ -186,7 +186,7 @@ export default connect(mapStateToProps)(Alert);
         alerts: PropTypes.array.isRequired,
    }
 ```
-#### 在这些步骤之后，可以在component中使用state:`props.alerts`
+#### 在这些步骤之后，可以在component中使用state:`props.alerts` <-- 一个ARRAY
 
 ### `Step3: Put Alert component to App.js.`
 
@@ -205,9 +205,9 @@ export default connect(mapStateToProps)(Alert);
 - Now you have client side validation(input field & password matching in Register page).
 
 <p align="center">
-<img src="../../assets/25.png" width=90%>
+<img src="../../assets/26.png" width=90%>
 </p>
 
 <p align="center">
-<img src="../../assets/25.png" width=90%>
+<img src="../../assets/27.png" width=90%>
 </p>
