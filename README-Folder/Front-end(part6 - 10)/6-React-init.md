@@ -5,7 +5,7 @@
 
 ### `Check Dependencies:`
 
-- concurrently(back-end)
+- concurrently (back-end)
 - react
 - axios
 - react-router-dom
@@ -29,6 +29,7 @@ $ npm install concurrently
 $ cd client
 $ npm install axios react-router-dom redux react-redux redux-thunk redux-devtools-extension moment react-moment uuid
 $ rm -rf .git
+$ cd ..
 ```
 ### `Step2: Delete some files.`
 
