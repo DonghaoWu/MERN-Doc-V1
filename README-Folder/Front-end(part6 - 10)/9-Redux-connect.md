@@ -198,11 +198,15 @@ export default connect(mapStateToProps)(Alert);
 
 #### `Comments:`
 
-- 值得注意的是Alert在App.js中放置的位置，它是在Switch之外。
+- 值得注意的是Alert在App.js中放置的位置，它是在Switch之外，这样可以保证它可以出现在很多地方。
 
 ### `Step4: Test it.`
 
-- Now you have client side validation(input field & password matching).
+- Now you have client side validation(input field & password matching in Register page).
+
+<p align="center">
+<img src="../../assets/25.png" width=90%>
+</p>
 
 <p align="center">
 <img src="../../assets/25.png" width=90%>
