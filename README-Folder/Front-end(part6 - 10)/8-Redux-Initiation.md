@@ -3,7 +3,7 @@
 
 ### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
-### `Important`: Figuring out how `dispatch` works is the key to understand Redux.（重点在于代码*8.5和*8.6）
+### `Important`: Figuring out how `dispatch` works is the key to understand Redux.（重点在于代码8.5和8.6）
 
 ### `Check Dependencies:`
 
