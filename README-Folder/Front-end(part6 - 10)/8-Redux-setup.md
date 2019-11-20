@@ -1,7 +1,7 @@
 # MERN-Template(part 8)
-## `Section: Frontend`(Setup Redux reducers & actions)
+## `Section: Frontend`(Setup Redux)
 
-### `Summary`: In this documentation, we setup Redux reducers, stores, actions, types.
+### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
 ### `Important`: Figuring out how dispatch function works is the key to understand Redux.
 
