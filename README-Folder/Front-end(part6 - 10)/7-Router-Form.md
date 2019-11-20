@@ -280,16 +280,16 @@ export default Landing
 
 ### `Step6: Test it.`
 
-- Run command in the right directory
+- Make sure the button is working and direct to the right page
 
-```bash
-$ npm run dev
-```
 <p align="center">
-<img src="../../assets/20.png" width=90%>
+<img src="../../assets/22.png" width=90%>
 </p>
 
-- In the browser show this
 <p align="center">
-<img src="../../assets/21.png" width=90%>
+<img src="../../assets/23.png" width=90%>
+</p>
+
+<p align="center">
+<img src="../../assets/24.png" width=90%>
 </p>
