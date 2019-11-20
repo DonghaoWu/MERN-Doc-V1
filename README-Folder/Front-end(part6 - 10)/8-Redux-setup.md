@@ -212,7 +212,7 @@ export const setAlert = (msg, alertType) => dispatch => {
 
 ### `Step7: Test it.`
 
-- Ifyou follow the steps, you should get this so far, Which is fine, cause we didn't add  'Alert'  component.
+- If you follow the steps, you should get this so far, Which is fine cause we didn't add  'Alert'  component.
 
 <p align="center">
 <img src="../../assets/25.png" width=90%>
