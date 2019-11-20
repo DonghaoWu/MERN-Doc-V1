@@ -1,7 +1,7 @@
 # MERN-Template(part 6)
 ## `Section: Frontend`(Install Front end dependencies and clean up code)
 
-### `Summary`: In this documentation, we install some dependencies and clean up some code, we also set up react-router to the project.
+### `Summary`: In this documentation, we install some dependencies and clean up some code.
 
 ### `Check Dependencies:`
 
