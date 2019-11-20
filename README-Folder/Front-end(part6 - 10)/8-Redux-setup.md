@@ -140,7 +140,7 @@ import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
 const initialState = [];
 
 export default function (state = initialState, action) {
-    const { payload, type } = action;
+    const { type, payload } = action;
     switch (type) {
         case SET_ALERT:
             return [...state, payload];
@@ -208,7 +208,7 @@ export const setAlert = (msg, alertType) => dispatch => {
 
 #### `这里回应第三步的疑问，dispatch是怎样操作的，在这里，dispatch把两参数打包成一个object，然后把它发出去，对应的reducer（在这里是alert.js）自动检测到object里面的type是自己拥有的之后，就会把object收回并按照object的内容进行处理对应的state（alert）`
 
-#### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer捕捉到dispatch =》改变对应state =》将state返回需要的component中。
+#### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer按照dispatch中参数的type值捕捉动作 =》改变对应state =》将state返回需要的component中。
 
 #### 由上可以在后期总结出对应的`设计思路`.
 
