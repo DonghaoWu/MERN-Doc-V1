@@ -3,7 +3,7 @@
 
 ### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
-### `Important`: Figuring out how dispatch function works is the key to understand Redux.
+### `Important`: Figuring out how dispatch function works is the key to understand Redux.（重点在于代码*8.4和*8.6）
 
 ### `Check Dependencies:`
 
@@ -170,7 +170,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 ```
 #### `Comments:`
 
-- 联系回第4步，`import { SET_ALERT, REMOVE_ALERT } from '../actions/types';`就是指这个文件；
+- 回应第4步code，`import { SET_ALERT, REMOVE_ALERT } from '../actions/types';`就是指这个文件；
 - 这种做法用变量名代替字符串，是因为在reducer中写错变量名会报错，写错字符串不会报错。
 
 - *8.6 Create a 'alert.js' file(for action) `./client/src/actions/alert.js`
@@ -207,6 +207,10 @@ export const setAlert = (msg, alertType) => dispatch => {
 - dispatch函数有1个参数，是一个object，里面有连个key，一个是type，另外一个是payload。
 
 #### `这里回应第三步的疑问，dispatch是怎样操作的，在这里，dispatch把两参数打包成一个object，然后把它发出去，对应的reducer（在这里是alert.js）自动检测到object里面的type是自己拥有的之后，就会把object收回并按照object的内容进行处理对应的state（alert）`
+
+#### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer捕捉到dispatch =》改变对应state =》将state返回需要的component中。
+
+#### 由上可以在后期总结出对应的`设计思路`.
 
 ### `Step7: Test it.`
 
