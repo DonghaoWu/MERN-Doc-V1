@@ -811,10 +811,10 @@ th, td {
 $ npm run dev
 ```
 <p align="center">
-<img src="../../assets/19.png" width=90%>
+<img src="../../assets/20.png" width=90%>
 </p>
 
-- Then open the browser and show this
+- In the browser and show this
 <p align="center">
-<img src="../../assets/20.png" width=90%>
+<img src="../../assets/21.png" width=90%>
 </p>
