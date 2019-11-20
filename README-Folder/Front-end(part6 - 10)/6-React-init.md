@@ -24,6 +24,7 @@
 - *6.4 Create a component 'Navbar', `./client/components/layout/Navbar.js`
 - *6.5 Create a component 'Landing' `./client/components/layout/Landing.js`
 - *6.6 Add css code, `./client/src/App.css`
+- *6.7 Clean up code, `./client/public/manifest.json`
 
 ### `Step1: Install dependencies:`
 
@@ -800,6 +801,18 @@ th, td {
 }
 .grey{
   color:grey
+}
+```
+
+#### `(*6.7)Location: ./client/public/manifest.json`
+```js
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }
 ```
 
