@@ -121,7 +121,7 @@ export default combineReducers({
 #### `Comments:`
 
 - 回应第1步的comment，`import rootReducer from './reducers'`就是指这个文件；
-- 这个文件比较重要，因为它的名字是index.js，所以有集中窗口的功能，这里主要是`把所有的state集中在一起供外部使用`；
+- 这个文件比较重要，因为它的名字是index.js，所以有集中窗口的功能，这里主要是`把所有的state汇总在一起供外部使用`；
 - 比如这里面的引进来的alert，就是一个state，它在这里进行汇总，外界要使用的时候格式是这样(以下是Alert组件的部分代码，Alert组件需要这个state来判断状态)：
 
 ```js
@@ -134,7 +134,7 @@ export default connect(mapStateToProps)(Alert);
 
 ### `Step4: Create a new folder and a new file 'types.js'.`
 
-#### `(*8.4)Location: ./client/src/action/types.js`
+#### `(*8.4)Location: ./client/src/actions/types.js`
 
 ```js
 //for alert reducer
@@ -168,7 +168,7 @@ export default function (state = initialState, action) {
 
 #### `Comments:`
 
-- 回应第3步code，`import alert from './alert'`就是指这个文件；
+- 回应第3步code，`import alert from './alert'`就是指这个文件，也就是引进这里面的state；
 - 这个文件讲述如何设定原始state，state又是如何根据对应的动作（action）中的类型（type）和内容（payload）改变state的；
 - 后面第5步还会加入文件夹action和其他文件。
 ### `这里是redux的第一个难点，它是怎么做到相应的函数执行时，这个reducer会捕捉到对应的type，然后改变state的？答案是dispatch函数，后面详解`
@@ -204,7 +204,7 @@ export const setAlert = (msg, alertType) => dispatch => {
 - msg和alertType都是要进入payload的参数；
 - dispatch函数有1个参数，是一个object，里面有连个key，一个是type，另外一个是payload。
 
-#### `这里回应第4步的疑问，dispatch是怎样操作的，在这里，dispatch把两参数打包成一个object，然后把它发出去，对应的reducer（在这里是alert.js）自动检测到object里面的type是自己拥有的之后，就会把object收回并按照object的内容进行处理对应的state（alert）`
+#### `这里回应第5步的疑问，dispatch是怎样操作的，在这里，dispatch把两参数打包成一个object，然后把它发出去，对应的reducer（在这里是./actions/alert.js）自动检测到object里面的type是自己拥有的之后，就会把object收回并按照object的内容进行处理对应的state`
 
 #### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer按照dispatch中参数的type值捕捉动作 =》改变对应state =》将state返回需要的component中。
 
