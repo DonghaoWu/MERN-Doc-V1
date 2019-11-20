@@ -1,5 +1,5 @@
 # MERN-Template(part 4)
-## `Section: Backend`(Get user object from token)
+## `Section: Backend`(Return user object from token)
 
 ### `Summary`: In this documentation, we create a middleware to decode the token, then we create a auth route(get) to use this middle to get the id info from the incoming token, and return the user object at the end.
 

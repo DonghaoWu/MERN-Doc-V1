@@ -1,6 +1,6 @@
 # MERN-Template(part 2)
 
-## `Section: Backend`(Organized route)
+## `Section: Backend`(Organized back end route)
 
 ### `Summary`: In this documentation, we set up api route tree.
 
