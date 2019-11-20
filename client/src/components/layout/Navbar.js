@@ -1,4 +1,4 @@
-//*6.4
+//*6.4 *7.4
 import React from 'react';
 import { Link } from 'react-router-dom';
 

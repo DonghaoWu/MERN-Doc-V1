@@ -1,4 +1,4 @@
-//*6.3
+//*6.3 *7.1
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Landing from './components/layout/Landing';
