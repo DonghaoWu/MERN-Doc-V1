@@ -1,4 +1,34 @@
-//*7.2 *9.1
+# MERN-Template(part 9)
+## `Section: Frontend`(Connect Redux)
+
+### `Summary`: In this documentation, we connect components with state and function.
+
+### `重点`: 把method传到组件和把state传到组件的步骤需要熟练掌握（5步）。
+
+### `Check Dependencies:`
+
+- concurrently (back-end)
+- react
+- axios
+- react-router-dom
+- redux
+- react-redux
+- redux-thunk
+- redux-devtools-extension
+- moment
+- react-moment
+- uuid
+
+### `Brief Contents & code position`
+- *9.1 Connect method to 'Register'.`./client/src/components/auth/Register.js`
+- *9.2 Create Alert component and connect state to it.`./client/src/components/layout/Alert.js`
+- *9.3 Put Alert component to App.js' `./client/src/App.js`
+
+### `Step1: Connect method to 'Register to Redux:`
+
+#### `(*9.1)Location: ./client/src/components/auth/Register.js`
+
+```js
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -91,3 +121,89 @@ Register.propTypes = {
 }
 
 export default connect(null, { setAlert })(Register);
+```
+
+#### `Comments:`
+#### `Five steps:`
+
+```diff
++ connect -> method -> connect component -> PropTypes -> set PropTypes
+```
+
+```bash
+1. import { connect } from 'react-redux';
+2. import { setAlert } from '../../actions/alert';
+3. export default connect(null, { setAlert })(Register);
+4. import PropTypes from 'prop-types';
+5. Register.propTypes = {
+        setAlert: PropTypes.func.isRequired,
+   }
+```
+#### 在这些步骤之后，可以在component中使用method:`props.setAlert()`
+
+### `Step2: Create Alert component and connect state to it.`
+
+#### `(*9.2)Location: ./client/src/components/layout/Alert.js`
+
+```js
+import React from 'react'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+
+const Alert = (props) => props.alerts !== null && props.alerts.length > 0 && props.alerts.map(alert => (
+    <div key={alert.id} className={`alert alert-${alert.alertType}`}>
+        {alert.msg}
+    </div>
+))
+
+Alert.propTypes = {
+    alerts: PropTypes.array.isRequired,
+}
+
+const mapStateToProps = state => ({
+    alerts: state.alert
+})
+
+export default connect(mapStateToProps)(Alert);
+```
+
+#### `Comments:`
+#### `Five steps:`
+
+```diff
++ connect -> mapStateToProps -> connect component -> PropTypes -> set PropTypes
+```
+
+```bash
+1. import { connect } from 'react-redux';
+2. const mapStateToProps = state => ({
+        alerts: state.alert
+   })
+3. export default connect(mapStateToProps)(Alert);
+4. import PropTypes from 'prop-types';
+5. Alert.propTypes = {
+        alerts: PropTypes.array.isRequired,
+   }
+```
+#### 在这些步骤之后，可以在component中使用state:`props.alerts`
+
+### `Step3: Put Alert component to App.js.`
+
+#### `(*9.3)Location: ./client/src/App.js`
+
+```js
+//same as *8.2
+```
+
+#### `Comments:`
+
+- 值得注意的是Alert在App.js中放置的位置，它是在Switch之外。
+
+### `Step4: Test it.`
+
+- Now you have client side validation(input field & password matching).
+
+<p align="center">
+<img src="../../assets/25.png" width=90%>
+</p>

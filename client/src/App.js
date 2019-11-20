@@ -1,4 +1,4 @@
-//*6.3 *7.1 *8.2
+//*6.3 *7.1 *8.2 *9.3
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 //components
@@ -17,7 +17,7 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Fragment>
-        <Navbar />;
+        <Navbar />
           <Route exact path='/' component={Landing} />
         <section className='container'>
           <Alert />
