@@ -37,7 +37,10 @@
   }
 }
 ```
-### `重要备注：这里的id是在将数据成功存进MongoDB后自动由MongoDB生成的`
+
+```diff
++ `重要备注：这里的id是在将数据成功存进MongoDB后自动由MongoDB生成的`
+```
 
 ### `Step2: Create a custom middleware.`
 
