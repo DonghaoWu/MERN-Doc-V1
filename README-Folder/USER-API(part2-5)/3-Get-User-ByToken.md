@@ -3,6 +3,10 @@
 
 ### `Summary`: In this documentation, we create a middleware to decode the token, then we create a auth route(get) to use this middle to get the id info from the incoming token, and return the user object at the end.
 
+```diff
++ `重要备注：这里的id是在将数据成功存进MongoDB后自动由MongoDB生成的`
+```
+
 ### `Check Dependencies`
 
 - express
@@ -38,9 +42,6 @@
 }
 ```
 
-```diff
-+ `重要备注：这里的id是在将数据成功存进MongoDB后自动由MongoDB生成的`
-```
 
 ### `Step2: Create a custom middleware.`
 
