@@ -51,8 +51,8 @@ export default store;
 ```
 
 #### `Comments:`
-- 这是一个固定模块，不需要研究里面的运作，主要是设定一些store的参数；
-- 这个文件中有一个参数需要注意，就是rootReducer的路径，后面会生成一个新文件夹，名字叫‘reducer’，里面有一个index.js的文件。
+- 这是一个固定模版，暂时不需要研究里面的运作，主要功能是设定一些store的参数；
+- 这个文件中有一个参数需要注意，就是rootReducer的路径，后面第3步会生成一个新文件夹，名字叫‘reducer’，里面有一个index.js的文件。
 
 ### `Step2: Add store to App.js.`
 
@@ -99,7 +99,7 @@ export default App;
 `在这个文件中，主要改变有：`
 
 ```diff
-+ 加入了Provider，store，并包住App的所有内容，这保证保住内容都可以使用redux store；
++ 加入了Provider，store，并包住App的所有内容，这保证保住内容都可以分享redux store；
 + 加入了一个新的组件，Alert，在后面添加；
 ```
 
@@ -119,9 +119,9 @@ export default combineReducers({
 
 #### `Comments:`
 
-- 联系回第一步，`import rootReducer from './reducers'`就是指这个文件；
+- 回应第1步的comment，`import rootReducer from './reducers'`就是指这个文件；
 - 这个文件比较重要，因为它的名字是index.js，所以有集中窗口的功能，这里主要是`把所有的state集中在一起供外部使用`；
-- 比如这里面的引进来的alert，就是一个state，它在这里进行汇总，外界要使用的时候格式是这样(以下是Alert组件的部分代码，Alert组件需要这个state来显示信息)：
+- 比如这里面的引进来的alert，就是一个state，它在这里进行汇总，外界要使用的时候格式是这样(以下是Alert组件的部分代码，Alert组件需要这个state来判断状态)：
 
 ```js
 const mapStateToProps = state => ({
@@ -154,7 +154,7 @@ export default function (state = initialState, action) {
 
 #### `Comments:`
 
-- 联系回第3步，`import alert from './alert'`就是指这个文件；
+- 回应第3步code，`import alert from './alert'`就是指这个文件；
 - 这个文件讲述如何设定原始state，state又是如何根据对应的动作（action）中的类型（type）和内容（payload）改变state的；
 - 后面第5步还会加入文件夹action和其他文件。
 ### `这里是redux的第一个难点，它是怎么做到相应的函数执行时，这个reducer会捕捉到对应的type，然后改变state的？答案是dispatch函数，后面详解`
