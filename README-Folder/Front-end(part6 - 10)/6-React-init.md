@@ -827,7 +827,7 @@ $ npm run dev
 <img src="../../assets/20.png" width=90%>
 </p>
 
-- In the browser and show this
+- In the browser show this
 <p align="center">
 <img src="../../assets/21.png" width=90%>
 </p>
