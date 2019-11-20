@@ -208,7 +208,12 @@ export const setAlert = (msg, alertType) => dispatch => {
 
 #### 运行顺序应该是：function在component 中执行，带入参数（或没有）=》dispatch启动 =》对应reducer按照dispatch中参数的type值捕捉动作 =》改变对应state =》将state返回需要的component =》 对应component 进行re-render。
 
-#### 由上可以在后期总结出对应的`设计思路`.
+#### 由上可以在后期总结出对应的`设计思路`:
+
+- 在`./client/src/reducers/index.js`增加新state变量名称
+- 在`./client/src/reducers`增加新reducer文件
+- 在`./client/src/actions/types.js`增加新type变量
+- 在`./client/src/actions`增加新method文件
 
 ### `Step7: Test it.`
 
