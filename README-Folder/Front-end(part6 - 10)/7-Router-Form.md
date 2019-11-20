@@ -3,7 +3,7 @@
 
 ### `Summary`: In this documentation, we setup react-router and Form for the front end.
 
-### `Referen：`
+### `References：`
 - [Basic React-Router](https://github.com/DonghaoWu/React-Level7-React-Router-Basic)
 - [Basic React-Form](https://github.com/DonghaoWu/React-Level4-React-Form-Basic)
 
