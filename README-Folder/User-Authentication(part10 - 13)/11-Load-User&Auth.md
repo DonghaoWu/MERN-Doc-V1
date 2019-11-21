@@ -1,4 +1,4 @@
-# MERN-Template(part 11)
+# MERN-Template(part-11)
 ## `Section: Frontend`(Load a user info)
 
 ### `Summary`: In this documentation, we load user info by the token in cookies, or after we register load the user info.
@@ -134,7 +134,7 @@ export default function (state = initialState, action) {
 
 #### `Comments:`
 - 这里新加入两个type，第一个是用token读取成功的话，把用户信息放在state中（这里要考虑state是不稳定的情况，需要在刷新或者重新打开app的时候重新把用户信息放在state中，这里需要一个dispatch和一个UseEffect的帮助），但这样不是会对database进行多次api call吗？
-- 第二个type是当没有token或者其他原因造成向database读取用户信息失败的时候，清空state里面和cookies里面的信息，（不包括用户信息？？）
+- 第二个type是当没有token或者其他原因造成向database读取用户信息失败的时候，清空state里面和cookies里面的信息，（不包括清空用户信息？？）
 
 ### `Step4: Create the auth method.`
 
@@ -259,22 +259,22 @@ export default App;
 
 #### `Comments:`
 
-- 在这里主要讨论两段代码，第一段是
+- 在这里主要讨论两段代码，第一段：
 ```js
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 ```
-- 这个意思是每一次开启或重启app或者刷新时，都且只会检测一次cookies有没有token，有就作为每次发送api call的身份识别
-- 第二段是
+- 这个意思是每一次开启或重启app或者刷新时，都且只会检测一次cookies有没有token，有就作为每次发送api call的身份识别。
+- 第二段：
 ```js
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
 ```
-- 这个意思是每一次有state改变时，即引发re-render的时候，都会触动这个里面的函数loadUser()，而且是dispatch方式进行。而如果不放第二参数[]，当loadUser()改变state时，又会引发re-render，如此陷入循环。加入第二参数[]，可以使运行仅一次，在这里暂时理解为componentDidMount(),在收到state改变时，都会强制进行且只进行一次读取用户信息动作。
+- 这个意思是每一次有state改变时，即引发re-render的时候，都会触动这个里面的函数loadUser()，而且是dispatch方式进行。而如果不放第二参数[]，当loadUser()改变state时，又会引发re-render，如此陷入循环。加入第二参数[]，可以使运行仅一次，在这里暂时理解为componentDidMount(),在收到state改变时，都会强制进行且只进行一次读取用户信息动作（解释的不太好）。
 
-#### 通过第二段函数，可以实现app在改变state或者发送请求之前都会强制先读一次用户信息，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。
+#### 通过第二段函数，可以实现app在改变state或者发送请求之前都会强制先读一次用户信息，确认用户是否已成功读取并且授权，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。（疑问是每次都要向database发送api call会不会负荷太大？）
 
 ### `Step6: Test it.`
 
