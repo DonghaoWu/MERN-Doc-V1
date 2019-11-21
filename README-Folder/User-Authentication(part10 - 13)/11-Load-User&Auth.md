@@ -282,7 +282,7 @@ if (localStorage.token) {
 
 - 由以上可知，setAuthToken在app启动时会运行两次，一次在加载html前，一次在render前，app启动后每发出一次request都会运行一次（在useEffect内）。
 
-#### 通过第二段函数，`可以实现app在改变state/发送请求/refresh/render/之前都会强制先读一次用户信息，确认用户是否已成功读取并且授权`，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。（疑问是每次都要向database发送api call会不会负荷太大？）
+#### “重点”：通过第二段函数，`可以实现app在改变state/发送请求/refresh/render/之前都会强制先读一次用户信息，确认用户是否已成功读取并且授权`，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。（疑问是每次都要向database发送api call会不会负荷太大？）
 
 ### `Step6: Test it.`
 
