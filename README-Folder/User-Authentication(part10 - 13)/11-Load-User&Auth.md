@@ -278,17 +278,32 @@ if (localStorage.token) {
 
 ### `Step6: Test it.`
 
-- Register a new user, execute some action and change the state
+- Before you register a new user, 
 <p align="center">
-<img src="../../assets/28.png" width=90%>
+<img src="../../assets/31.png" width=90%>
 </p>
 
 - Register with same email.
 <p align="center">
-<img src="../../assets/29.png" width=90%>
+<img src="../../assets/32.png" width=90%>
 </p>
 
 - Check the new user whether in database
 <p align="center">
-<img src="../../assets/30.png" width=90%>
+<img src="../../assets/33.png" width=90%>
+</p>
+
+- Check the new user whether in database
+<p align="center">
+<img src="../../assets/34.png" width=90%>
+</p>
+
+- Check the new user whether in database
+<p align="center">
+<img src="../../assets/35.png" width=90%>
+</p>
+
+- Check the new user whether in database
+<p align="center">
+<img src="../../assets/36.png" width=90%>
 </p>
