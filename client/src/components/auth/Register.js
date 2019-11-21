@@ -1,4 +1,4 @@
-//*7.2 *9.1
+//*7.2 *9.1 *10.5
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
