@@ -298,7 +298,7 @@ if (localStorage.token) {
 <img src="../../assets/34.png" width=90%>
 </p>
 
-- After we refresh, useEffect works and run loadUser dispatch method, which calls the backend and set state before every refresh.
+- After we refresh, useEffect works and run loadUser() dispatch method, which calls the backend and set state before every request or refresh.
 <p align="center">
 <img src="../../assets/35.png" width=90%>
 </p>
