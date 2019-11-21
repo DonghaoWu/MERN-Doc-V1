@@ -15,10 +15,10 @@
 ```
 - `Design a new reducer`
 ```bash
-- 在`./client/src/reducers/index.js`增加新state变量名称
-- 在`./client/src/reducers`增加新reducer文件
-- 在`./client/src/actions/types.js`增加新type变量
-- 在`./client/src/actions`增加新method文件
+1. 在`./client/src/reducers/index.js`增加新state变量名称
+2. 在`./client/src/actions/types.js`增加新type变量
+3. 在`./client/src/reducers`增加新reducer文件
+4. 在`./client/src/actions`增加新method文件
 ```
 
 ### `Check Dependencies:`
@@ -36,19 +36,154 @@
 - uuid
 
 ### `Brief Contents & code position`
-- *9.1 Connect method to 'Register'.`./client/src/components/auth/Register.js`
-- *9.2 Create Alert component and connect state to it.`./client/src/components/layout/Alert.js`
-- *9.3 Put Alert component to App.js' `./client/src/App.js`
+- *10.1 Add a new reducer(state) to combineReducers.`./client/src/reducers/index.js`
+- *10.2 Add new types variable.`./client/src/actions/types.js`
+- *10.3 Create the auth reducer(state)' `./client/src/reducers/auth.js`
+- *10.4 Create the auth method' `./client/src/actions/auth.js`
+- *10.5 Connect the Register component.' `./client/src/components/auth/Register.js`
 
-### `Step1: Connect method to 'Register to Redux:`
+### `Step1: Add a new reducer(state) to combineReducers:`
 
-#### `(*9.1)Location: ./client/src/components/auth/Register.js`
+#### `(*10.1)Location: ./client/src/reducers/index.js`
+
+```js
+import { combineReducers } from 'redux';
+import alert from './alert';
+import auth from './auth'
+
+//components can access state from here.
+export default combineReducers({
+    alert: alert,
+    auth: auth
+});
+```
+
+#### `Comments:`
+- Add new reducer is the first step, so that every component can use the state.
+
+### `Step2: Add new types variable.`
+
+#### `(*10.2)Location: ./client/src/actions/types.js`
+
+```js
+//for alert reducer
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
+//for auth reducer
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+```
+
+#### `Comments:`
+- Think about how many results can get from register, then add the types variable.
+
+
+### `Step3: Create the auth reducer(state).`
+
+#### `(*10.3)Location: ./client/src/reducers/auth.js`
+
+```js
+import { REGISTER_SUCCESS, REGISTER_FAIL} from '../actions/types';
+
+const initialState = {
+    token: localStorage.getItem('token'),
+    isAuthenticated: null,
+    loading: true,
+    user: null,
+}
+export default function (state = initialState, action) {
+    const { type, payload } = action;
+    switch (type) {
+        case REGISTER_SUCCESS:
+            localStorage.setItem('token', payload.token)
+            return {
+                ...state,
+                ...payload,
+                isAuthenticated: true,
+                loading: false,
+            }
+        case REGISTER_FAIL:
+            localStorage.removeItem('token');
+            return {
+                ...state,
+                token: null,
+                isAuthenticated: false,
+                loading: false,
+            }
+        default:
+            return state;
+    }
+}
+```
+
+#### `Comments:`
+- 在这里有几个重要的设计，第一个是`token: localStorage.getItem('token')`，就是说起到初始状态时检测是否在本地cookies中保留token
+- 第二个是`localStorage.setItem('token', payload.token)`当注册成功时，后端返回一个token，首先要做的事情是把这个有效token放在cookies中，作为全局变量。
+- 第三个是`...payload,`这个操作相当于向state加入一个新propert，token。（是否也可以这样写：token: payload.token？）。
+- 第四个是`loading：false`这个相当于检测整个行为是否完成，对于一些长时间的API call进行行为终止检测很重要。
+- 第五个时`isAuthenticated: true`这个相当于一个全局变量，决定登陆是否成功时改变操作界面。
+- 第六个是无论是否成功register，都只改变auth state中的3个变量，而没有动user变量，这是比较好奇的。
+
+### `Step4: Create the auth method.`
+
+#### `(*10.4)Location: ./client/src/actions/auth.js`
+
+```js
+import axios from 'axios';
+import { REGISTER_SUCCESS, REGISTER_FAIL} from './types';
+import { setAlert } from './alert';
+
+export const register = ({ name, email, password }) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const body = JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+    })
+
+    try {
+        const res = await axios.post('/api/users', body, config);
+        dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data,
+        })
+    } catch (error) {
+        //---./routes/users.js line 23
+        const errors = error.response.data.errors;
+
+        if (errors) {
+            errors.forEach(error => dispatch(
+                setAlert(error.msg, 'danger')
+            ))
+        }
+        dispatch({
+            type: REGISTER_FAIL
+        })
+    }
+}
+```
+
+#### `Comments:`
+- 在这里有几个重要的设计，第一个是`async dispatch`，这个说明dispatch中也可以使用try，catch，await等关键词
+- 第二个是`({ name, email, password })`这里是不太明白为什么要用distructuring？不用可不可以？答案是不可以的，因为实际调用method的语句是`props.register(({ name: name, email: email, password: password }))`这里的参数是一个object，这样在取回信息是也应该是一个object。（这个地方比较难懂）
+- 第三个是`payload: res.data`，这里要注意的是axios返回的变量虽然包含token，但是是保存在`res.data`之中。
+- 第四个是`const errors = error.response.data.errors;`这个当查询为什么能这样获取错误message时，需要查看相应的后端代码，同时这个相当于back end validation在前端的展示，如何好好运用后端检验也是一个很好的话题。
+- 第五个时`dispatch({type: REGISTER_FAIL})`这里会涉及几个auth state中的变量，其中一个loading: false, 这里的意思时无论是否成功，都要有一个状态变量表示动作完成。
+
+### `Step5: Connect the Register component.`
+
+#### `(*10.5)Location: ./client/src/components/auth/Register.js`
 
 ```js
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 const Register = props => {
@@ -69,10 +204,10 @@ const Register = props => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (password !== password2) {
-            props.setAlert('Passwords do not match.', 'danger');
+            props.setAlert('Passwords do not match', 'danger');
         }
         else {
-            console.log('SUCCESS!')
+            props.register(({ name: name, email: email, password: password }));
         }
     }
 
@@ -134,96 +269,33 @@ const Register = props => {
 
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);
 ```
 
 #### `Comments:`
-#### `Five steps:`
+- 在这里有几个重要的设计，第一个是`async dispatch`，这个说明dispatch中也可以使用try，catch，await等关键词
+- 第二个是`({ name, email, password })`这里是不太明白为什么要用distructuring？不用可不可以？
+- 第三个是`payload: res.data`，这里要注意的是axios返回的变量虽然包含token，但是是保存在`res.data`之中。
+- 第四个是`const errors = error.response.data.errors;`这个当查询为什么能这样获取错误message时，需要查看相应的后端代码。
+- 第五个时`dispatch({type: REGISTER_FAIL})`这里会涉及几个auth state中的变量，其中一个loading: false, 这里的意思时无论是否成功，都要有一个状态变量表示动作完成。
 
-```diff
-+ connect -> method -> connect component -> PropTypes -> set PropTypes
-```
+### `Step6: Test it.`
 
-```bash
-1. import { connect } from 'react-redux';
-2. import { setAlert } from '../../actions/alert';
-3. export default connect(null, { setAlert })(Register);
-4. import PropTypes from 'prop-types';
-5. Register.propTypes = {
-        setAlert: PropTypes.func.isRequired,
-   }
-```
-#### 在这些步骤之后，可以在component中使用method:`props.setAlert(msg, alertType)`
-
-### `Step2: Create Alert component and connect state to it.`
-
-#### `(*9.2)Location: ./client/src/components/layout/Alert.js`
-
-```js
-import React from 'react'
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-
-const Alert = (props) => props.alerts !== null && props.alerts.length > 0 && props.alerts.map(alert => (
-    <div key={alert.id} className={`alert alert-${alert.alertType}`}>
-        {alert.msg}
-    </div>
-))
-
-Alert.propTypes = {
-    alerts: PropTypes.array.isRequired,
-}
-
-const mapStateToProps = state => ({
-    alerts: state.alert
-})
-
-export default connect(mapStateToProps)(Alert);
-```
-
-#### `Comments:`
-#### `Five steps:`
-
-```diff
-+ connect -> mapStateToProps -> connect component -> PropTypes -> set PropTypes
-```
-
-```bash
-1. import { connect } from 'react-redux';
-2. const mapStateToProps = state => ({
-        alerts: state.alert
-   })
-3. export default connect(mapStateToProps)(Alert);
-4. import PropTypes from 'prop-types';
-5. Alert.propTypes = {
-        alerts: PropTypes.array.isRequired,
-   }
-```
-#### 在这些步骤之后，可以在component中使用state:`props.alerts` <-- 一个ARRAY
-
-### `Step3: Put Alert component to App.js.`
-
-#### `(*9.3)Location: ./client/src/App.js`
-
-```js
-//same as *8.2
-```
-
-#### `Comments:`
-
-- 值得注意的是Alert在App.js中放置的位置，它是在Switch之外，这样可以保证它可以出现在很多地方。
-
-### `Step4: Test it.`
-
-- Now you have client-side validation(input field & password matching in Register page).
-
+- Register a new user, execute some action and change the state
 <p align="center">
-<img src="../../assets/26.png" width=90%>
+<img src="../../assets/28.png" width=90%>
 </p>
 
+- Register with same email.
 <p align="center">
-<img src="../../assets/27.png" width=90%>
+<img src="../../assets/29.png" width=90%>
+</p>
+
+- Check the new user whether in database
+<p align="center">
+<img src="../../assets/30.png" width=90%>
 </p>
