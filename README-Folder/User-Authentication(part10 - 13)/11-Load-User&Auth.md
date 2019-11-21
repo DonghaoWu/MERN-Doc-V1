@@ -3,6 +3,8 @@
 
 ### `Summary`: In this documentation, we load user info by the token in cookies, or after we register load the user info.
 
+### `备注`：在加入useEffect后，退出程序时会有一点小错误。
+
 ### `RECAP:`
 
 - `Connect a redux method to a component`
