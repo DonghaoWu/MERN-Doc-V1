@@ -121,7 +121,7 @@ export default function (state = initialState, action) {
 - 第二个是`localStorage.setItem('token', payload.token)`当注册成功时，后端返回一个token，首先要做的事情是把这个有效token放在cookies中，作为全局变量。
 - 第三个是`...payload,`这个操作相当于向state加入一个新propert，token。（是否也可以这样写：token: payload.token？）。
 - 第四个是`loading：false`这个相当于检测整个行为是否完成，对于一些长时间的API call进行行为终止检测很重要。
-- 第五个时`isAuthenticated: true`这个相当于一个全局变量，决定登陆是否成功时改变操作界面。
+- 第五个时`isAuthenticated: true`这不是一个全局变量，因为是一个stateless变量，每次刷新页面的时候都会返回原始状态，但后面会有代码让它保持一个状态。
 - 第六个是无论是否成功register，都只改变auth state中的3个变量，而没有动user变量，这是比较好奇的。
 
 ### `Step4: Create the auth method.`
@@ -276,7 +276,7 @@ export default connect(null, { setAlert, register })(Register);
 ```
 
 #### `Comments:`
-- 
+- 复习connect component to redux。
 
 ### `Step6: Test it.`
 
