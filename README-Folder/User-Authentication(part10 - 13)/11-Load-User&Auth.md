@@ -36,34 +36,15 @@
 - uuid
 
 ### `Brief Contents & code position`
-- *11.1 Add a new reducer(state) to combineReducers.`./client/src/reducers/index.js`
-- *11.2 Add new types variable.`./client/src/actions/types.js`
-- *11.3 Create the auth reducer(state)' `./client/src/reducers/auth.js`
-- *11.4 Create the auth method' `./client/src/actions/auth.js`
-- *11.5 Connect the Register component.' `./client/src/components/auth/Register.js`
+- *11.1 Add new types variable.`./client/src/actions/types.js`
+- *11.2 Create a new folder and new file, 'setAuthToken.js'`./client/src/utils/setAuthToken.js`
+- *11.3 Create the auth reducer(state). `./client/src/reducers/auth.js`
+- *11.4 Create the auth method. `./client/src/actions/auth.js`
+- *11.5 Add some code in App.js.`./client/src/App.js`
 
-### `Step1: Add a new reducer(state) to combineReducers:`
+### `Step1: Add new types variable.`
 
-#### `(*11.1)Location: ./client/src/reducers/index.js`
-
-```js
-import { combineReducers } from 'redux';
-import alert from './alert';
-import auth from './auth'
-
-//components can access state from here.
-export default combineReducers({
-    alert: alert,
-    auth: auth
-});
-```
-
-#### `Comments:`
-- Add new reducer is the first step, so that every component inside store can use the state.
-
-### `Step2: Add new types variable.`
-
-#### `(*11.2)Location: ./client/src/actions/types.js`
+#### `(*11.1)Location: ./client/src/actions/types.js`
 
 ```js
 //for alert reducer
@@ -72,18 +53,44 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 //for auth reducer
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+//for user state
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
 ```
 
 #### `Comments:`
-- Think about how many results can get from register, then add the types variable.
+- Think about how many results can get from register, then add the types variable.在这里设定是两种情况，分别处理读取用户信息成功和失败两种情况。
 
+### `Step2: Create a new folder and new file, 'setAuthToken.js'.`
+
+#### `(*11.2)Location: ../client/src/utils/setAuthToken.js`
+
+```js
+import axios from 'axios';
+
+const setAuthToken = token => {
+    if (token) {
+        axios.defaults.headers.common['x-auth-token'] = token;
+    }
+    else {
+        delete axios.defaults.headers.common['x-auth-token'];
+    }
+}
+
+export default setAuthToken;
+```
+
+#### `Comments:`
+- setAuthToken这个函数的功能是当有参数的时候把参数放在‘x-auth-token’，也就是自动设好token作为身份标示，如果参数为空，则清空原来的设定
+- 这个函数会在两个地方使用，第一个是App.js，放在component 前先检测是否已有token在localStorage中，如果有，就设定好身份标示，这个函数会在整个application应用开始时运行一次，这样是为了防止一种情况：`已经登陆/注册的用户关闭了app，但后来又重新打开了app`，此时token还是在cookies中的。
+- 第二个地方是loadUser dispatch method中，用来检测是否已经有token。
 
 ### `Step3: Create the auth reducer(state).`
 
-#### `(*11.3)Location: ./client/src/reducers/auth.js`
+#### `(*11.3)Location: ./client/src/actions/auth.js`
 
 ```js
-import { REGISTER_SUCCESS, REGISTER_FAIL} from '../actions/types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR } from '../actions/types';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -91,6 +98,7 @@ const initialState = {
     loading: true,
     user: null,
 }
+
 export default function (state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
@@ -102,7 +110,15 @@ export default function (state = initialState, action) {
                 isAuthenticated: true,
                 loading: false,
             }
+        case USER_LOADED:
+            return {
+                ...state,
+                isAuthenticated: true,
+                loading: false,
+                user: payload,
+            }
         case REGISTER_FAIL:
+        case AUTH_ERROR:
             localStorage.removeItem('token');
             return {
                 ...state,
@@ -117,12 +133,8 @@ export default function (state = initialState, action) {
 ```
 
 #### `Comments:`
-- 在这里有几个重要的设计，第一个是`token: localStorage.getItem('token')`，就是说起到初始状态时检测是否在本地cookies中保留token
-- 第二个是`localStorage.setItem('token', payload.token)`当注册成功时，后端返回一个token，首先要做的事情是把这个有效token放在cookies中，作为全局变量。
-- 第三个是`...payload,`这个操作相当于向state加入一个新property ---> token。（是否也可以这样写：token: payload.token？）答案是可以的！
-- 第四个是`loading：false`这个相当于检测整个行为是否完成，对于一些长时间的API call进行行为终止检测很重要。
-- 第五个时`isAuthenticated: true`这不是一个全局变量，因为是一个stateless变量，每次刷新页面的时候都会返回原始状态，但后面会有代码让它保持一个状态。
-- 第六个是无论是否成功register，都只改变auth state中的3个变量，而没有动user变量，这是比较好奇的。
+- 这里新加入两个type，第一个是用token读取成功的话，把用户信息放在state中（这里要考虑state是不稳定的情况，需要在刷新或者重新打开app的时候重新把用户信息放在state中，这里需要一个dispatch和一个UseEffect的帮助），但这样不是会对database进行多次api call吗？
+- 第二个type是当没有token或者其他原因造成向database读取用户信息失败的时候，清空state里面和cookies里面的信息，（不包括用户信息？？）
 
 ### `Step4: Create the auth method.`
 
@@ -130,9 +142,11 @@ export default function (state = initialState, action) {
 
 ```js
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL} from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR} from './types';
 import { setAlert } from './alert';
+import setAuthToken from '../utils/setAuthToken';
 
+//Register user
 export const register = ({ name, email, password }) => async dispatch => {
     const config = {
         headers: {
@@ -165,118 +179,102 @@ export const register = ({ name, email, password }) => async dispatch => {
         })
     }
 }
-```
 
-#### `Comments:`
-- 在这里有几个重要的设计，第一个是`async dispatch`，这个说明dispatch中也可以使用try，catch，await等关键词
-- 第二个是`({ name, email, password })`这里是不太明白为什么要用distructuring？不用可不可以？答案是不可以的，因为实际调用method的语句是`props.register(({ name: name, email: email, password: password }))`这里的参数是一个object，这样在取回信息是也应该是一个object。（这个地方比较难懂）
-- 第三个是`payload: res.data`，这里要注意的是axios返回的变量虽然包含token，但是是保存在`res.data`之中，当执行dispatch后，在reducer中可以通过`action.payload.token`获得。
-- 第四个是`const errors = error.response.data.errors;`这个查询为什么能这样获取错误message时，需要查看相应的后端代码，同时这个相当于back end validation在前端的展示，如何好好运用后端检验也是一个很好的话题。
-- 第五个时`dispatch({type: REGISTER_FAIL})`这里会涉及几个auth state中的变量，其中一个loading: false, 这里的意思时无论是否成功，都有一个状态变量表示动作完成。
-
-### `Step5: Connect the Register component.`
-
-#### `(*11.5)Location: ./client/src/components/auth/Register.js`
-
-```js
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setAlert } from '../../actions/alert';
-import { register } from '../../actions/auth';
-import PropTypes from 'prop-types';
-
-const Register = props => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        password2: '',
-    });
-
-    const { name, email, password, password2 } = formData;
-    const handleChange = (e) => {
-        setFormData({
-            ...formData, [e.target.name]: e.target.value
+//Load user
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+        setAuthToken(localStorage.token);
+    }
+    try {
+        const res = await axios.get('/api/auth');
+        dispatch({
+            type: USER_LOADED,
+            payload: res.data,
+        })
+    } catch (error) {
+        dispatch({
+            type: AUTH_ERROR
         })
     }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (password !== password2) {
-            props.setAlert('Passwords do not match', 'danger');
-        }
-        else {
-            props.register(({ name: name, email: email, password: password }));
-        }
-    }
-
-    return (
-        <Fragment>
-            <h1 className="large text-primary">Sign Up</h1>
-            <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-            <form className="form" action="create-profile.html" onSubmit={e => handleSubmit(e)}>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        name="name"
-                        value={name}
-                        onChange={e => handleChange(e)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="email"
-                        placeholder="Email Address"
-                        value={email}
-                        name="email"
-                        onChange={e => handleChange(e)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        minLength="6"
-                        value={password}
-                        onChange={e => handleChange(e)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        name="password2"
-                        minLength="6"
-                        value={password2}
-                        onChange={e => handleChange(e)}
-                        required
-                    />
-                </div>
-                <input type="submit" className="btn btn-primary" value="Register" />
-            </form>
-            <p className="my-1">
-                Already have an account? <Link to="/login">Login </Link>here
-            </p>
-        </Fragment>
-    )
 }
-
-Register.propTypes = {
-    setAlert: PropTypes.func.isRequired,
-    register: PropTypes.func.isRequired,
-}
-
-export default connect(null, { setAlert, register })(Register);
 ```
 
 #### `Comments:`
-- 复习connect component to redux。
+- 在这里主要讨论loadUser()的用途，它是一个`async dispatch函数`它会先检测有没有token在cookies，有就自动放在‘x-auth-token'x-auth-token'x-auth-token'中。
+- 然后不管有没有token，都会进行一个axios call尝试读取用户，如果成功读取就在reducer中把用户信息附上，如果不成功就清除reducer中的信息。
+
+### `Step5: Add some code in App.js.`
+
+#### `(*11.5)Location: ./client/src/App.js`
+
+```js
+import React, { Fragment, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+//components
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Alert from './components/layout/Alert';
+//Redux & files
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+//css
+import './App.css';
+
+//check the localStorage.token every time when refresh or open
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
+  //componentDidMount
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar />
+          <Route exact path='/' component={Landing} />
+          <section className='container'>
+            <Alert />
+            <Switch>
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/register' component={Register} />
+            </Switch>
+          </section>
+        </Fragment>
+      </Router>
+    </Provider>
+  )
+}
+
+export default App;
+```
+
+#### `Comments:`
+
+- 在这里主要讨论两段代码，第一段是
+```js
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+```
+- 这个意思是每一次开启或重启app或者刷新时，都且只会检测一次cookies有没有token，有就作为每次发送api call的身份识别
+- 第二段是
+```js
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+```
+- 这个意思是每一次有state改变时，即引发re-render的时候，都会触动这个里面的函数loadUser()，而且是dispatch方式进行。而如果不放第二参数[]，当loadUser()改变state时，又会引发re-render，如此陷入循环。加入第二参数[]，可以使运行仅一次，在这里暂时理解为componentDidMount(),在收到state改变时，都会强制进行且只进行一次读取用户信息动作。
+
+#### 通过第二段函数，可以实现app在改变state或者发送请求之前都会强制先读一次用户信息，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。
 
 ### `Step6: Test it.`
 
