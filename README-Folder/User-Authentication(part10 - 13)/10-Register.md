@@ -3,6 +3,8 @@
 
 ### `Summary`: In this documentation, we register a new user in the front end form, and call the back end api to add a new user in database.
 
+### `问题：`：在这段代码后留下一个问题，如何保持用户保持登录状态？
+
 ### `RECAP:`
 
 - `Connect a redux method to a component`
@@ -59,7 +61,7 @@ export default combineReducers({
 ```
 
 #### `Comments:`
-- Add new reducer is the first step, so that every component can use the state.
+- Add new reducer is the first step, so that every component inside store can use the state.
 
 ### `Step2: Add new types variable.`
 
@@ -119,7 +121,7 @@ export default function (state = initialState, action) {
 #### `Comments:`
 - 在这里有几个重要的设计，第一个是`token: localStorage.getItem('token')`，就是说起到初始状态时检测是否在本地cookies中保留token
 - 第二个是`localStorage.setItem('token', payload.token)`当注册成功时，后端返回一个token，首先要做的事情是把这个有效token放在cookies中，作为全局变量。
-- 第三个是`...payload,`这个操作相当于向state加入一个新propert，token。（是否也可以这样写：token: payload.token？）。
+- 第三个是`...payload,`这个操作相当于向state加入一个新property ---> token。（是否也可以这样写：token: payload.token？）答案是可以的！
 - 第四个是`loading：false`这个相当于检测整个行为是否完成，对于一些长时间的API call进行行为终止检测很重要。
 - 第五个时`isAuthenticated: true`这不是一个全局变量，因为是一个stateless变量，每次刷新页面的时候都会返回原始状态，但后面会有代码让它保持一个状态。
 - 第六个是无论是否成功register，都只改变auth state中的3个变量，而没有动user变量，这是比较好奇的。
