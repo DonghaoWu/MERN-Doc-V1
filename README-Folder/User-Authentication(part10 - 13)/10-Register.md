@@ -14,11 +14,12 @@
 + connect -> mapStateToProps -> connect component -> PropTypes -> set PropTypes
 ```
 - `Design a new reducer`
-
+```bash
 - 在`./client/src/reducers/index.js`增加新state变量名称
 - 在`./client/src/reducers`增加新reducer文件
 - 在`./client/src/actions/types.js`增加新type变量
 - 在`./client/src/actions`增加新method文件
+```
 
 ### `Check Dependencies:`
 
