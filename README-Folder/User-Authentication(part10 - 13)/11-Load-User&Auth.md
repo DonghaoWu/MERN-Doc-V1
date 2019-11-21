@@ -206,7 +206,7 @@ export const loadUser = () => async dispatch => {
 ```
 
 #### `Comments:`
-- 在这里主要讨论loadUser()的用途，它是一个`async dispatch函数`它会先检测有没有token在cookies，有就自动放在‘x-auth-token'x-auth-token'x-auth-token'中。
+- 在这里主要讨论loadUser()的用途，它是一个`async dispatch函数`它会先检测有没有token在cookies，有就自动放在‘x-auth-token'中。
 - 然后不管有没有token，都会进行一个axios call尝试读取用户，如果成功读取就在reducer中把用户信息附上，如果不成功就清除reducer中的信息。
 
 ### `Step5: Add some code in App.js.`
@@ -279,6 +279,8 @@ if (localStorage.token) {
   }, []);
 ```
 - 这个意思是每一次有state改变时，即引发re-render的时候，都会触动这个里面的函数loadUser()，而且是dispatch方式进行。而如果不放第二参数[]，当loadUser()改变state时，又会引发re-render，如此陷入循环。加入第二参数[]，可以使运行仅一次，在这里暂时理解为componentDidMount(),在收到state改变时，都会强制进行且只进行一次读取用户信息动作（解释的不太好）。
+
+- 由以上可知，setAuthToken在app启动时会运行两次，一次在加载html前，一次在render前，app启动后每发出一次request都会运行一次（在useEffect内）。
 
 #### 通过第二段函数，可以实现app在改变state或者发送请求之前都会强制先读一次用户信息，确认用户是否已成功读取并且授权，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。（疑问是每次都要向database发送api call会不会负荷太大？）
 
