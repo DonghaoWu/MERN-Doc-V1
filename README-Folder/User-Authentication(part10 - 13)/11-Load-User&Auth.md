@@ -278,32 +278,32 @@ if (localStorage.token) {
 
 ### `Step6: Test it.`
 
-- Before you register a new user, 
+- Before you register a new user, the loadUser() runs once, cannot get a user info.
 <p align="center">
 <img src="../../assets/31.png" width=90%>
 </p>
 
-- Register with same email.
+- No token in localStorage
 <p align="center">
 <img src="../../assets/32.png" width=90%>
 </p>
 
-- Check the new user whether in database
+- After register a new user, get 'REGISTER_SUCCESS', and change the state, but the state is not persistent, which means it will initiate after a refresh if we don't add userEffect method.
 <p align="center">
 <img src="../../assets/33.png" width=90%>
 </p>
 
-- Check the new user whether in database
+- Token is in localStorage
 <p align="center">
 <img src="../../assets/34.png" width=90%>
 </p>
 
-- Check the new user whether in database
+- After we refresh, useEffect works and run loadUser dispatch method, which calls the backend and set state before every refresh.
 <p align="center">
 <img src="../../assets/35.png" width=90%>
 </p>
 
-- Check the new user whether in database
+- Token is still in localStorage.
 <p align="center">
 <img src="../../assets/36.png" width=90%>
 </p>
