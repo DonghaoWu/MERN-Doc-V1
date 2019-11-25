@@ -301,7 +301,7 @@ if (localStorage.token) {
 <img src="../../assets/32.png" width=90%>
 </p>
 
-- After register a new user, get 'REGISTER_SUCCESS', and change the state, but the state is not persistent, which means it will initiate after a refresh if we don't add userEffect method.
+- After register a new user, get 'REGISTER_SUCCESS', and change the state, but the state is not persistent, which means it will initiate after a refresh if we don't add userEffect method.`(But the token is already in localStorage)`
 <p align="center">
 <img src="../../assets/33.png" width=90%>
 </p>
