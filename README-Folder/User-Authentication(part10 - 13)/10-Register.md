@@ -5,7 +5,7 @@
 
 ### `问题：`在这段代码后留下一个问题，如何保持用户保持登录状态？
 
-- 在这个部分，演示了如何在一个dispatch函数中引用另外一个dispatch函数：
+- （重要用法）在这个部分，演示了如何在一个dispatch函数中引用另外一个dispatch函数：
 ```js
 //这是一个async dispatch 函数片段，注意使用setAlert的用法。
 try {

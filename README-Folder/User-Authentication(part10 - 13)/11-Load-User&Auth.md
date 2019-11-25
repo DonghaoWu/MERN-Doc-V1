@@ -5,6 +5,11 @@
 
 ### `备注`：在加入useEffect后，退出程序时有时会有一点小错误。
 
+- 要在其他地方使用定义的dispatch函数，需要在前面加上关键词`dispatch`,比如
+```js
+store.dispatch(loadUser())
+```
+
 <p align="center">
 <img src="../../assets/37.png" width=90%>
 </p>
@@ -139,7 +144,7 @@ export default function (state = initialState, action) {
 ```
 
 #### `Comments:`
-- 这里新加入两个type，第一个是用token读取成功的话，把用户信息放在state中（这里要考虑state是不稳定的情况，需要在刷新或者重新打开app的时候重新把用户信息放在state中，这里需要一个dispatch和一个UseEffect的帮助），但这样不是会对database进行多次api call吗？
+- 这里新加入两个type，第一个是用token读取成功的话，把用户信息放在state中（这里要考虑state是不稳定的情况，需要在刷新或者重新打开app的时候重新把用户信息放在state中，这里需要一个dispatch和一个UseEffect的帮助），但这样不是会对database进行多次api call吗？（猜想此举时为了提高安全性。）
 - 第二个type是当没有token或者其他原因造成向database读取用户信息失败的时候，清空state里面和cookies里面的信息，（不包括清空用户信息？？）
 
 ### `Step4: Create the auth method.`
@@ -282,7 +287,7 @@ if (localStorage.token) {
 
 - 由以上可知，setAuthToken在app启动时会运行两次，一次在加载html前，一次在render前，app启动后每发出一次request都会运行一次（在useEffect内）。
 
-#### “重点”：通过第二段函数，`可以实现app在改变state/发送请求/refresh/render/之前都会强制先读一次用户信息，确认用户是否已成功读取并且授权`，从而保持相关reducer（state）里面的信息，从而保持登录状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。（疑问是每次都要向database发送api call会不会负荷太大？）
+#### “重点”：通过第二段函数，`可以实现app在改变state/发送请求/refresh/render/之前都会强制先读一次用户信息，确认用户是否已成功读取并且授权`，从而保持相关reducer（state）里面的信息，从而保证先确定是否处于登录授权状态。从这里也大概能解释为什么不把isAuthencatied设置为全局变量的原因，app要保持时刻保证用户状态才能决定能否发出请求。（疑问是每次都要向database发送api call会不会负荷太大？）
 
 ### `Step6: Test it.`
 
