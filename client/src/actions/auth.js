@@ -1,8 +1,26 @@
-//*10.4 *11.4
+//*10.4 *11.4 *12.3
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR} from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
+
+//Load user
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+        setAuthToken(localStorage.token);
+    }
+    try {
+        const res = await axios.get('/api/auth');
+        dispatch({
+            type: USER_LOADED,
+            payload: res.data,
+        })
+    } catch (error) {
+        dispatch({
+            type: AUTH_ERROR
+        })
+    }
+}
 
 //Register user
 export const register = ({ name, email, password }) => async dispatch => {
@@ -23,6 +41,9 @@ export const register = ({ name, email, password }) => async dispatch => {
             type: REGISTER_SUCCESS,
             payload: res.data,
         })
+        dispatch(loadUser());
+        //loadUser();
+
     } catch (error) {
         //---./routes/users.js line 23
         const errors = error.response.data.errors;
@@ -33,25 +54,42 @@ export const register = ({ name, email, password }) => async dispatch => {
             ))
         }
         dispatch({
-            type: REGISTER_FAIL
+            type: REGISTER_FAIL,
         })
     }
 }
 
-//Load user
-export const loadUser = () => async dispatch => {
-    if (localStorage.token) {
-        setAuthToken(localStorage.token);
+//Login user
+export const login = (email, password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        }
     }
+    const body = JSON.stringify({
+        email: email,
+        password: password,
+    })
+
     try {
-        const res = await axios.get('/api/auth');
+        const res = await axios.post('/api/auth', body, config);
         dispatch({
-            type: USER_LOADED,
+            type: LOGIN_SUCCESS,
             payload: res.data,
         })
+        dispatch(loadUser());
     } catch (error) {
+        //---./routes/users.js line 23
+        const errors = error.response.data.errors;
+
+        if (errors) {
+            errors.forEach(error => dispatch(
+                setAlert(error.msg, 'danger')
+            ))
+        }
         dispatch({
-            type: AUTH_ERROR
+            type: LOGIN_FAIL,
         })
     }
 }
+
