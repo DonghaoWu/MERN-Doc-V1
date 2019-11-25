@@ -1,7 +1,7 @@
 # MERN-Template(part 12)
 ## `Section: Frontend`(Login a user)
 
-### `Summary`: In this documentation, we login a new user in the front end form, and redirect to dashboard page.
+### `Summary`: In this documentation, we login a new user in the front end form, and redirect to home page.
 
 ### `RECAP:`
 
@@ -39,7 +39,8 @@
 - *12.1 Add new types variable.`./client/src/actions/types.js`
 - *12.2 Set up reducer(state)' `./client/src/reducers/auth.js`
 - *12.3 Create the login method' `./client/src/actions/auth.js`
-- *12.4 Connect the Register component.' `./client/src/components/auth/Register.js`
+- *12.4 Connect the Login component.' `./client/src/components/auth/Login.js`
+- *12.5 Add Redirect to Register component.' `./client/src/components/auth/Register.js`
 
 ### `Step1: Add new types variable.`
 
@@ -220,7 +221,7 @@ export const login = (email, password) => async dispatch => {
 ```js
 dispatch(loadUser());
 ```
-- 以上代码就是显示了如何在一个函数中引用dispatch函数。
+- 以上代码就是显示了如何在一个函数中`引用dispatch函数`，其作用就是当注册新用户或者登陆一个用户的时候，随后的动作就是把相关用户信息从database拿下来并附在reducer(state)当中。
 
 ### `Step4: Connect the Login component.`
 
@@ -250,6 +251,7 @@ const Login = props => {
         e.preventDefault();
         props.login(email, password);
     }
+
     if (props.isAuthenticated) {
         return <Redirect to='/' />
     }
@@ -304,6 +306,23 @@ export default connect(mapStateToProps, { login })(Login);
 - 复习connect component to redux。
 - 在这里的连接过程中引入了几个东西，第一个是函数login，第二个是reducer（state）中的auth.isAuthenticated，第三个是Redirect，method和state连接component的形式可以参考：
 - [Redux-Connection](https://github.com/DonghaoWu/MERN-Template-Documentation/blob/master/README-Folder/Front-end(part6-9)/9-Redux-Connection.md)
+
+- 关于Redirect的应用
+```js
+import { Redirect } from 'react-router-dom';
+if (props.isAuthenticated) {
+    return <Redirect to='/' />
+}
+```
+- 这一段放在return之前，意思就是先运行这个代码。Redirect代码段的使用和位置都值得注意。
+
+
+### `Step5: Add Redirect to Register component.`
+
+#### `(*12.5)Location: ./client/src/components/auth/Register.js`
+
+- 在 Register component 中加入上面Redirect代码。
+
 
 ### `Step6: Test it.`
 

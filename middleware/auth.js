@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const secret = config.get('jwtSecret');
 
-module.exports = function(req, res, next) {
+module.exports = function (req, res, next) {
   // Get token form header
   const token = req.header('x-auth-token');
 
@@ -16,9 +16,9 @@ module.exports = function(req, res, next) {
     const decoded = jwt.verify(token, secret);
 
     req.user = decoded.user;
-    
+
     next();
   } catch (err) {
-    res.staus(401).json({ msg: 'Token is not valid' });
+    res.status(401).json({ msg: 'Token is not valid' });
   }
 };
