@@ -303,7 +303,7 @@ export default connect(mapStateToProps, { login })(Login);
 #### `Comments:`
 - 复习connect component to redux。
 - 在这里的连接过程中引入了几个东西，第一个是函数login，第二个是reducer（state）中的auth.isAuthenticated，第三个是Redirect，method和state连接component的形式可以参考：
-- [Redux-Connection](https://github.com/DonghaoWu/React-Level7-React-Router-Basic)
+- [Redux-Connection](https://github.com/DonghaoWu/MERN-Template-Documentation/blob/master/README-Folder/Front-end(part6-9)/9-Redux-Connection.md)
 
 ### `Step6: Test it.`
 
