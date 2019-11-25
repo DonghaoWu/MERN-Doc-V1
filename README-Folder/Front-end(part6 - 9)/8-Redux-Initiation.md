@@ -3,7 +3,7 @@
 
 ### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
-### `Important`: Figuring out how `dispatch` works is the key to understand Redux.（重点在于代码8.5和8.6），dispatch中的打包object就是reducer中的action。
+### `Important`: Figuring out how `dispatch` works is the key to understand Redux.（重点在于代码8.5和8.6），dispatch中的打包object就是reducer中的action，这个object包含type和payload两个key，reducer按照type来决定动作，暗战payload决定相关动作内容。
 
 ### `Check Dependencies:`
 
@@ -100,7 +100,7 @@ export default App;
 `在这个文件中，主要改变有：`
 
 ```diff
-+ 加入了Provider，store，并包住App的所有内容，这保证保住内容都可以分享redux store；
++ 加入了Provider，store，并包住App的所有内容，这保证全部内容都可以分享redux store；
 + 加入了一个新的组件，Alert，在part-9添加；
 ```
 
@@ -143,7 +143,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 ```
 #### `Comments:`
 
-- 这种做法用变量名代替字符串，是因为在reducer中写错变量名会报错，写错字符串不会报错。
+- 这种做法用变量名代替字符串，是因为在reducer中写错变量名会报错，但是写错字符串不会报错。
 
 ### `Step5: Create a 'alert.js' file(for state).`
 
@@ -171,7 +171,7 @@ export default function (state = initialState, action) {
 - 回应第3步code，`import alert from './alert'`就是指这个文件，也就是引进这里面的state；
 - 这个文件讲述如何设定原始state，state又是如何根据对应的动作（action）中的类型（type）和内容（payload）改变state的；
 - 后面第5步还会加入文件夹action和其他文件。
-### `这里是redux的第一个难点，它是怎么做到相应的函数执行时，这个reducer会捕捉到对应的type，然后改变state的？答案是dispatch函数，后面详解`
+### `这里是redux的第一个难点，它是怎么做到相应的函数执行时，这个reducer会捕捉到对应的type，然后改变state的？答案是dispatch函数，后面详解。`
 
 ### `Step6: Create a 'alert.js' file(for method).`
 

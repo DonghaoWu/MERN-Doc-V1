@@ -174,7 +174,7 @@ const Landing = props => {
                     <h1 className="x-large">MERN STACK</h1>
                     <p className="lead">
                         TEMPLATE
-            </p>
+                    </p>
                     <div className="buttons">
                         <a href="register.html" className="btn btn-primary">Sign Up</a>
                         <a href="login.html" className="btn btn-light">Login</a>

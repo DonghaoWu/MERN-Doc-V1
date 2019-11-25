@@ -61,7 +61,7 @@ export default App;
 
 #### `Comments:`
 - 使用React-Router第一步是引用基本三大件：BrowserRouter, Route, Switch, 并用Router包住整个视图；
-- 在这里主要一个疑问是，为什么不把第一个Route放进Switch中，答案是第一个Route是要作为默认Route所以不用放进Switch中。
+- 在这里主要一个疑问是，为什么不把第一个Route放进Switch中，答案是第一个Route是要作为默认Route（Landing）即是第一个需要出现的页面，所以不用放进Switch中。
 
 ### `Step2: Create 'Register.js'.`
 
