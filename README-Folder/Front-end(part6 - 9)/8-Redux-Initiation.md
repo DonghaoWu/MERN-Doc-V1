@@ -4,6 +4,8 @@
 ### `Summary`: In this documentation, we setup Redux stores, reducers, actions, types.
 
 ### `Important`: Figuring out how `dispatch` works is the key to understand Redux.（重点在于代码8.5和8.6），dispatch中的打包object就是reducer中的action，这个object包含type和payload两个key，reducer按照type来决定动作，暗战payload决定相关动作内容。
+- 另外，一个函数里面可以使用多个dispatch，可以是多个dispatch原型，也可以是dispatch已打包好的dispatch函数。
+- dispatch也可以使用在error handling中。
 
 ### `Check Dependencies:`
 

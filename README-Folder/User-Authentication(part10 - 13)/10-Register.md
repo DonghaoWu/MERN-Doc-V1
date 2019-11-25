@@ -3,7 +3,31 @@
 
 ### `Summary`: In this documentation, we register a new user in the front end form, and call the back end api to add a new user in database.
 
-### `问题：`：在这段代码后留下一个问题，如何保持用户保持登录状态？
+### `问题：`在这段代码后留下一个问题，如何保持用户保持登录状态？
+
+- 在这个部分，演示了如何在一个dispatch函数中引用另外一个dispatch函数：
+```js
+//这是一个async dispatch 函数片段，注意使用setAlert的用法。
+try {
+    const res = await axios.post('/api/users', body, config);
+    dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+    })
+} catch (error) {
+    //---./routes/users.js line 23
+    const errors = error.response.data.errors;
+
+    if (errors) {
+        errors.forEach(error => dispatch(
+            setAlert(error.msg, 'danger')
+        ))
+    }
+    dispatch({
+        type: REGISTER_FAIL
+    })
+}
+```
 
 ### `RECAP:`
 
@@ -123,8 +147,8 @@ export default function (state = initialState, action) {
 - 第二个是`localStorage.setItem('token', payload.token)`当注册成功时，后端返回一个token，首先要做的事情是把这个有效token放在cookies中，作为全局变量。
 - 第三个是`...payload,`这个操作相当于向state加入一个新property ---> token。（是否也可以这样写：token: payload.token？）答案是可以的！
 - 第四个是`loading：false`这个相当于检测整个行为是否完成，对于一些长时间的API call进行行为终止检测很重要。
-- 第五个时`isAuthenticated: true`这不是一个全局变量，因为是一个stateless变量，每次刷新页面的时候都会返回原始状态，但后面会有代码让它保持一个状态。
-- 第六个是无论是否成功register，都只改变auth state中的3个变量，而没有动user变量，这是比较好奇的。
+- 第五个时`isAuthenticated: true`这不是一个全局变量，因为是一个stateless变量，每次刷新页面的时候都会返回原始状态（null），但后面会有代码让它持续刷新，保证处于授权状态才能发出request，这个变量是不能成为全局变量的（这应该处理涉及多设备登陆的情况）。
+- 第六个是无论是否成功register，都只改变auth state中的3个变量，而没有动user变量，这是比较好奇的，（改变user的工作交给了后面的LoadUser函数）。
 
 ### `Step4: Create the auth method.`
 
@@ -171,10 +195,11 @@ export const register = ({ name, email, password }) => async dispatch => {
 
 #### `Comments:`
 - 在这里有几个重要的设计，第一个是`async dispatch`，这个说明dispatch中也可以使用try，catch，await等关键词
-- 第二个是`({ name, email, password })`这里是不太明白为什么要用distructuring？不用可不可以？答案是不可以的，因为实际调用method的语句是`props.register(({ name: name, email: email, password: password }))`这里的参数是一个object，这样在取回信息是也应该是一个object。（这个地方比较难懂）
+- 第二个是`({ name, email, password })`这里是不太明白为什么要用distructuring？不用可不可以？答案是不可以的，因为实际调用method的语句是`props.register(({ name: name, email: email, password: password }))`这里的参数是一个object，这样在取回信息是也应该是一个object。（其实也不一定要以object作为参数，如果是按顺序填入的话，不实用object而使用多个单独变量也是可以的，后面有演示。）
 - 第三个是`payload: res.data`，这里要注意的是axios返回的变量虽然包含token，但是是保存在`res.data`之中，当执行dispatch后，在reducer中可以通过`action.payload.token`获得。
 - 第四个是`const errors = error.response.data.errors;`这个查询为什么能这样获取错误message时，需要查看相应的后端代码，同时这个相当于back end validation在前端的展示，如何好好运用后端检验也是一个很好的话题。
 - 第五个时`dispatch({type: REGISTER_FAIL})`这里会涉及几个auth state中的变量，其中一个loading: false, 这里的意思时无论是否成功，都有一个状态变量表示动作完成。
+- 这个例子的error handling做的很好。
 
 ### `Step5: Connect the Register component.`
 
@@ -282,12 +307,12 @@ export default connect(null, { setAlert, register })(Register);
 
 ### `Step6: Test it.`
 
-- Register a new user, execute some action and change the state
+- Register a new user, execute an action and change the state
 <p align="center">
 <img src="../../assets/28.png" width=90%>
 </p>
 
-- Register with same email.
+- Register with same email. （dispatch two actions）
 <p align="center">
 <img src="../../assets/29.png" width=90%>
 </p>
