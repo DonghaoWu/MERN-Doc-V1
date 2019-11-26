@@ -245,7 +245,7 @@ export const login = (email, password) => async dispatch => {
 ```
 
 #### `Comments:`
-- 在这里，login函数跟register函数差不多，但这里在register和login函数中都加了一句：
+- 在这里，login函数跟register函数差不多，但在register和login函数中都加了一句：
 ```js
 dispatch(loadUser());
 ```
