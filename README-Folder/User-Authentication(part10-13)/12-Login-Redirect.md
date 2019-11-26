@@ -352,22 +352,26 @@ if (props.isAuthenticated) {
 
 ### `Step6: Test it.`
 
-- Register a new user
+- Register a new user.
 <p align="center">
 <img src="../../assets/40.png" width=90%>
 </p>
 
-- Load the user and Redirect
+- Load the user and Redirect.
 <p align="center">
 <img src="../../assets/41.png" width=90%>
 </p>
 
-- Login with the new user
+- Delete the token in local Storage, Login with the new user.
 <p align="center">
 <img src="../../assets/42.png" width=90%>
 </p>
 
-- Load the user and Redirect
 <p align="center">
 <img src="../../assets/43.png" width=90%>
+</p>
+
+- Load the user and Redirect.
+<p align="center">
+<img src="../../assets/44.png" width=90%>
 </p>
