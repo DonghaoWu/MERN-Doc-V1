@@ -227,7 +227,7 @@ export const login = (email, password) => async dispatch => {
         })
 
         dispatch(loadUser());
-        
+
     } catch (error) {
         //---./routes/users.js line 23
         const errors = error.response.data.errors;
@@ -332,8 +332,7 @@ export default connect(mapStateToProps, { login })(Login);
 
 #### `Comments:`
 - 复习connect component to redux。
-- 在这里的连接过程中引入了几个东西，第一个是函数login，第二个是reducer（state）中的auth.isAuthenticated，第三个是Redirect，method和state连接component的形式可以参考：
-- [Redux-Connection](https://github.com/DonghaoWu/MERN-Template-Documentation/blob/master/README-Folder/Front-end(part6-9)/9-Redux-Connection.md)
+- 在这里的连接过程中引入了几个东西，第一个是函数login，第二个是reducer（state）中的auth.isAuthenticated，第三个是Redirect，method和state连接component的形式可以参考：[Redux-Connection](https://github.com/DonghaoWu/MERN-Template-Documentation/blob/master/README-Folder/Front-end(part6-9)/9-Redux-Connection.md)
 
 - 关于Redirect的应用
 ```js
