@@ -3,7 +3,31 @@
 
 ### `Summary`: In this documentation, we login a new user in the front end form, and redirect to home page.
 
-- 在制作这个文件的时候遇到两个问题，第一个是端口占用，第二个是登陆即退出。
+### `Bug notes:`
+
+- 端口占用
+<p align="center">
+<img src="../../assets/38.png" width=90%>
+</p>
+
+- 解决方法：查找并关闭端口
+```bash
+$ ps aux | grep node
+$ kill -9 PID
+```
+
+- 登陆即退出
+<p align="center">
+<img src="../../assets/39.png" width=90%>
+</p>
+
+- 解决方法：后端加密secrect前后不一，文件位置：`./aip/auth.js`
+```diff
++ const config = require('config');
++ config.get('jwtSecret'),(jwt.sign函数内）
+
+- 'mysecrettoken',(jwt.sign函数内）
+```
 
 ### `RECAP:`
 

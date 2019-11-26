@@ -1,7 +1,6 @@
 //*4.2, *5.1
 const router = require('express').Router();
 const auth = require('../middleware/auth');
-
 const config = require('config');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
