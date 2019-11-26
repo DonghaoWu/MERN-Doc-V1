@@ -302,11 +302,22 @@ export default connect(mapStateToProps, { logout })(Navbar);
 <img src="../../assets/45.png" width=60%>
 </p>
 
-- Logout the user.
+- Change the navbar.
 <p align="center">
 <img src="../../assets/46.png" width=90%>
 </p>
 
+- A new token in local storage.
 <p align="center">
 <img src="../../assets/47.png" width=90%>
+</p>
+
+- Logout the user, change the navbar.
+<p align="center">
+<img src="../../assets/48.png" width=90%>
+</p>
+
+- Delete the token in local storage.
+<p align="center">
+<img src="../../assets/49.png" width=90%>
 </p>
