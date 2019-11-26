@@ -302,7 +302,7 @@ export default connect(mapStateToProps, { logout })(Navbar);
 <img src="../../assets/45.png" width=60%>
 </p>
 
-- Change the navbar.
+- Redirect and change the navbar.
 <p align="center">
 <img src="../../assets/46.png" width=90%>
 </p>
