@@ -41,8 +41,9 @@ export const register = ({ name, email, password }) => async dispatch => {
             type: REGISTER_SUCCESS,
             payload: res.data,
         })
+
+        //loadUser()错误;
         dispatch(loadUser());
-        //loadUser();
 
     } catch (error) {
         //---./routes/users.js line 23
@@ -78,8 +79,9 @@ export const login = (email, password) => async dispatch => {
             payload: res.data,
         })
 
+        //loadUser()错误;
         dispatch(loadUser());
-        //loadUser();
+        
     } catch (error) {
         //---./routes/users.js line 23
         const errors = error.response.data.errors;
