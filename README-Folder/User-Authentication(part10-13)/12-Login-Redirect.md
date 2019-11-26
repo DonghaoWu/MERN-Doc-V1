@@ -352,32 +352,22 @@ if (props.isAuthenticated) {
 
 ### `Step6: Test it.`
 
-- Register a new user, execute an action and change the state
-<p align="center">
-<img src="../../assets/38.png" width=90%>
-</p>
-
-- Register with same email. （dispatch two actions）
-<p align="center">
-<img src="../../assets/39.png" width=90%>
-</p>
-
-- Check the new user whether in database
+- Register a new user
 <p align="center">
 <img src="../../assets/40.png" width=90%>
 </p>
 
-- Register a new user, execute an action and change the state
+- Load the user and Redirect
 <p align="center">
 <img src="../../assets/41.png" width=90%>
 </p>
 
-- Register with same email. （dispatch two actions）
+- Login with the new user
 <p align="center">
 <img src="../../assets/42.png" width=90%>
 </p>
 
-- Check the new user whether in database
+- Load the user and Redirect
 <p align="center">
 <img src="../../assets/43.png" width=90%>
 </p>
