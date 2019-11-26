@@ -341,8 +341,7 @@ if (props.isAuthenticated) {
     return <Redirect to='/' />
 }
 ```
-- 这一段放在return之前，意思就是先运行这个代码。Redirect代码段的使用和位置都值得注意。
-
+- 这一段放在return之前，意思就是先运行这个代码。Redirect代码段的使用和位置都值得注意，在react里面，不同的位置的代码的功能不一样。
 
 ### `Step5: Add Redirect to Register component.`
 
@@ -355,15 +354,30 @@ if (props.isAuthenticated) {
 
 - Register a new user, execute an action and change the state
 <p align="center">
-<img src="../../assets/28.png" width=90%>
+<img src="../../assets/38.png" width=90%>
 </p>
 
 - Register with same email. （dispatch two actions）
 <p align="center">
-<img src="../../assets/29.png" width=90%>
+<img src="../../assets/39.png" width=90%>
 </p>
 
 - Check the new user whether in database
 <p align="center">
-<img src="../../assets/30.png" width=90%>
+<img src="../../assets/40.png" width=90%>
+</p>
+
+- Register a new user, execute an action and change the state
+<p align="center">
+<img src="../../assets/41.png" width=90%>
+</p>
+
+- Register with same email. （dispatch two actions）
+<p align="center">
+<img src="../../assets/42.png" width=90%>
+</p>
+
+- Check the new user whether in database
+<p align="center">
+<img src="../../assets/43.png" width=90%>
 </p>
