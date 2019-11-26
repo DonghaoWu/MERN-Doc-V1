@@ -1,6 +1,6 @@
-//*10.4 *11.4 *12.3
+//*10.4 *11.4 *12.3 *13.3
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL } from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -81,7 +81,7 @@ export const login = (email, password) => async dispatch => {
 
         //loadUser()错误;
         dispatch(loadUser());
-        
+
     } catch (error) {
         //---./routes/users.js line 23
         const errors = error.response.data.errors;
@@ -95,5 +95,12 @@ export const login = (email, password) => async dispatch => {
             type: LOGIN_FAIL,
         })
     }
+}
+
+//Logout
+export const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT,
+    })
 }
 
