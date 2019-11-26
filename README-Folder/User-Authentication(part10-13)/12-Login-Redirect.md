@@ -364,11 +364,11 @@ if (props.isAuthenticated) {
 
 - Delete the token in local Storage, Login with the new user.
 <p align="center">
-<img src="../../assets/42.png" width=90%>
+<img src="../../assets/43.png" width=60%>
 </p>
 
 <p align="center">
-<img src="../../assets/43.png" width=90%>
+<img src="../../assets/42.png" width=90%>
 </p>
 
 - Load the user and Redirect.
