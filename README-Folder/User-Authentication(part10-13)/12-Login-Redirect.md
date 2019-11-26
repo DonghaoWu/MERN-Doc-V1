@@ -3,6 +3,8 @@
 
 ### `Summary`: In this documentation, we login a new user in the front end form, and redirect to home page.
 
+- 在制作这个文件的时候遇到两个问题，第一个是端口占用，第二个是登陆即退出。
+
 ### `RECAP:`
 
 - `Connect a redux method to a component`

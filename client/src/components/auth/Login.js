@@ -22,7 +22,6 @@ const Login = props => {
         e.preventDefault();
         props.login(email, password);
     }
-
     if (props.isAuthenticated) {
         return <Redirect to='/' />
     }

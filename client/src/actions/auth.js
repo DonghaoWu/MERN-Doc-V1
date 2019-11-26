@@ -77,7 +77,9 @@ export const login = (email, password) => async dispatch => {
             type: LOGIN_SUCCESS,
             payload: res.data,
         })
+
         dispatch(loadUser());
+        //loadUser();
     } catch (error) {
         //---./routes/users.js line 23
         const errors = error.response.data.errors;
