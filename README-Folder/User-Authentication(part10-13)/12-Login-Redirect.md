@@ -88,7 +88,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 ```
 
 #### `Comments:`
-- Think about how many results can get from register, then add the types variable. LOGIN_FAIL is for error handling.
+- Think about how many results can get from login, then add the types variable. LOGIN_FAIL is for error handling.
 
 ### `Step2: Set up reducer(state).`
 

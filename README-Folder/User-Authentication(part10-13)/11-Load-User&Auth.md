@@ -70,7 +70,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 ```
 
 #### `Comments:`
-- Think about how many results can get from register, then add the types variable.在这里设定是两种情况，分别处理读取用户信息成功和失败两种情况。
+- Think about how many results can get from load_user, then add the types variable.在这里设定是两种情况，分别处理读取用户信息成功和失败两种情况。
 
 ### `Step2: Create a new folder and new file, 'setAuthToken.js'.`
 

@@ -64,7 +64,7 @@ export const LOGOUT = 'LOGOUT';
 ```
 
 #### `Comments:`
-- Think about how many results can get from register, then add the types variable. 
+- Think about how many results can get from logout, then add the types variable. 
 
 ### `Step2: Set up reducer(state).`
 
