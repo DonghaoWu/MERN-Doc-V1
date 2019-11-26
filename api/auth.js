@@ -1,4 +1,5 @@
-//*4.2, *5.1
+//*2.3 *4.2, *5.1 *12.bug
+//本代码已经经过修正，修改过程参考part-12
 const router = require('express').Router();
 const auth = require('../middleware/auth');
 const config = require('config');
@@ -9,7 +10,7 @@ const { check, validationResult } = require('express-validator');
 const { User } = require('../models');
 
 //@route   Get api/auth
-//@desc    Authenticate user & get token
+//@desc    Get token and return user
 //@access  Public
 
 router.get(`/`, auth, async (req, res) => {
@@ -77,14 +78,6 @@ router.post(
     }
   }
 );
-
-
-//(*2.3)
-// const router = require("express").Router();
-
-// router.get(`/`, (req, res) =>{
-//   res.send(`This is Auth route.`)
-// })
 
 module.exports = router;
 

@@ -19,7 +19,7 @@
 - *5.1 Create a login routh, `./api/auth.js`
 
 ### `Step1: Import dependencies`
-`(*5.1)Location:./api/auth.js`
+`Location:./api/auth.js`
 ```js
 const bcrypt = require('bcryptjs');//解码对比用
 const {check, validationResult} = require(`express-validator`);//验证格式用
@@ -28,7 +28,35 @@ const jwt = require('jsonwebtoken');//生成token用
 
 ### `Step2: Create a Post auth route.`
 `(*5.1)Location:./api/auth.js`
+
 ```js
+const router = require('express').Router();
+const auth = require('../middleware/auth');
+const config = require('config');
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken');
+const { check, validationResult } = require('express-validator');
+
+const { User } = require('../models');
+
+//@route   Get api/auth
+//@desc    Get token and return user
+//@access  Public
+
+router.get(`/`, auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error.');
+  }
+});
+
+//@route   Post api/auth
+//@desc    Login a user & get token
+//@access  Public
+
 router.post(
   '/',
   [
@@ -53,9 +81,15 @@ router.post(
 
       const isMatch = await bcrypt.compare(password, user.password);
 
-      if(!isMatch){
-        return res.status(400).json({errors:[{msg:'Invalid Credentials'}]});
+      if (!isMatch) {
+        return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
       }
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
 
       //之前的编码
       // const payload = {
@@ -65,15 +99,10 @@ router.post(
       // };
 
       //payload的命名规则。中间件的定义与使用都有规则。
-      const payload = {
-        user: {
-          id: user.id
-        }
-      };
 
       jwt.sign(
         payload,
-        'mysecrettoken',
+        config.get('jwtSecret'),
         {
           expiresIn: 360000
         },
@@ -88,8 +117,9 @@ router.post(
     }
   }
 );
-```
 
+module.exports = router;
+```
 
 `Side-Note:`
 - 本段的逻辑是实现输入电子邮箱和密码，得到验证后返回一个包含user.id的token。
