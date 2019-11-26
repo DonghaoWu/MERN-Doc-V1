@@ -1,4 +1,4 @@
-# MERN-Template(part-11)
+# MERN-Template(part 11)
 ## `Section: Frontend`(Load a user info)
 
 ### `Summary`: In this documentation, we load user info by the token in cookies, or after we register load the user info.

@@ -4,6 +4,8 @@
 
 ### `Summary`: In this documentation, we set up User login route(post), when a user login, the back end can validate the info, search the database by email, then decoded the password and validate it, if everything is good, at the end of the route the app sends back a token with a user id info inside.
 
+- 这里有一处代码错误，jwt.sign函数处，在part-12中已经修正。
+
 ### `Check Dependencies`
 
 - express
@@ -32,7 +34,6 @@ const jwt = require('jsonwebtoken');//生成token用
 ```js
 const router = require('express').Router();
 const auth = require('../middleware/auth');
-const config = require('config');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
@@ -102,7 +103,7 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        'mySecretToken',//wrong code
         {
           expiresIn: 360000
         },
