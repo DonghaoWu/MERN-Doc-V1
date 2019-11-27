@@ -46,7 +46,7 @@
 ```
 
 #### `Comments:`
-- 这上面的内容因人而定，根据mongo设定的密码，还有自设定的加密secret决定。 
+- 这上面的内容因人而定，根据mongoDB Altas设定的连接密码，还有自设定的token加密secret。 
 
 ### `Step2: Add code in .gitignore.`
 
@@ -141,33 +141,33 @@ $ git push heroku master
 
 #### `Comments:`
 - You can find your heroku remote name here:
+
 <p align="center">
-<img src="../../assets/45.png" width=60%>
+<img src="./assets/54.png" width=60%>
 </p>
 
-### `Step5: Test it.`
-
-- Login with a user.
 <p align="center">
-<img src="../../assets/45.png" width=60%>
+<img src="./assets/55.png" width=60%>
+</p>
+
+### `Step6: Test it.`
+
+- Type in the commands in step5.
+<p align="center">
+<img src="./assets/56.png" width=60%>
 </p>
 
 - Redirect and change the navbar.
 <p align="center">
-<img src="../../assets/46.png" width=90%>
+<img src="./assets/57.png" width=90%>
 </p>
 
 - A new token in local storage.
 <p align="center">
-<img src="../../assets/47.png" width=90%>
+<img src="./assets/58.png" width=90%>
 </p>
 
 - Logout the user, change the navbar.
 <p align="center">
-<img src="../../assets/48.png" width=90%>
-</p>
-
-- Delete the token in local storage.
-<p align="center">
-<img src="../../assets/49.png" width=90%>
+<img src="./assets/59.png" width=90%>
 </p>
