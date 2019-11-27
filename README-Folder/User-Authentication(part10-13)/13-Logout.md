@@ -299,7 +299,7 @@ export default connect(mapStateToProps, { logout })(Navbar);
 
 - Login with a user.
 <p align="center">
-<img src="../../assets/45.png" width=60%>
+<img src="../../assets/45.png" width=90%>
 </p>
 
 - Redirect and change the navbar.
