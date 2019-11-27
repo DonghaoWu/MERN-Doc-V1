@@ -11,7 +11,7 @@ store.dispatch(loadUser())
 ```
 
 <p align="center">
-<img src="../../assets/37.png" width=80%>
+<img src="../../assets/37.png" width=85%>
 </p>
 
 ### `RECAP:`
@@ -293,30 +293,30 @@ if (localStorage.token) {
 
 - Before you register a new user, the loadUser() runs once, cannot get a user info.
 <p align="center">
-<img src="../../assets/31.png" width=80%>
+<img src="../../assets/31.png" width=85%>
 </p>
 
 - No token in localStorage
 <p align="center">
-<img src="../../assets/32.png" width=80%>
+<img src="../../assets/32.png" width=85%>
 </p>
 
 - After register a new user, get 'REGISTER_SUCCESS', and change the state, but the state is not persistent, which means it will initiate after a refresh if we don't add userEffect method.`(But the token is already in localStorage)`
 <p align="center">
-<img src="../../assets/33.png" width=80%>
+<img src="../../assets/33.png" width=85%>
 </p>
 
 - Token is in localStorage
 <p align="center">
-<img src="../../assets/34.png" width=80%>
+<img src="../../assets/34.png" width=85%>
 </p>
 
 - After we refresh, useEffect works and run loadUser() dispatch method, which calls the backend and set state before every request or refresh.
 <p align="center">
-<img src="../../assets/35.png" width=80%>
+<img src="../../assets/35.png" width=85%>
 </p>
 
 - Token is still in localStorage.
 <p align="center">
-<img src="../../assets/36.png" width=80%>
+<img src="../../assets/36.png" width=85%>
 </p>

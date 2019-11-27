@@ -299,25 +299,25 @@ export default connect(mapStateToProps, { logout })(Navbar);
 
 - Login with a user.
 <p align="center">
-<img src="../../assets/45.png" width=80%>
+<img src="../../assets/45.png" width=85%>
 </p>
 
 - Redirect and change the navbar.
 <p align="center">
-<img src="../../assets/46.png" width=80%>
+<img src="../../assets/46.png" width=85%>
 </p>
 
 - A new token in local storage.
 <p align="center">
-<img src="../../assets/47.png" width=80%>
+<img src="../../assets/47.png" width=85%>
 </p>
 
 - Logout the user, change the navbar.
 <p align="center">
-<img src="../../assets/48.png" width=80%>
+<img src="../../assets/48.png" width=85%>
 </p>
 
 - Delete the token in local storage.
 <p align="center">
-<img src="../../assets/49.png" width=80%>
+<img src="../../assets/49.png" width=85%>
 </p>

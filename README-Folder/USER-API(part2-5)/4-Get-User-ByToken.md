@@ -131,15 +131,15 @@ module.exports = router;
 
 - In postman: Post a new user(localhost:5000/api/user)
 <p align="center">
-<img src="../../assets/13.png" width=80%>
+<img src="../../assets/13.png" width=85%>
 </p>
 
 - In postman: Get a user(localhost:5000/api/auth)
 <p align="center">
-<img src="../../assets/16.png" width=80%>
+<img src="../../assets/16.png" width=85%>
 </p>
 
 - Data in MongoDB Altas
 <p align="center">
-<img src="../../assets/15.png" width=80%>
+<img src="../../assets/15.png" width=85%>
 </p>

@@ -33,31 +33,31 @@
 <li> Set up DataBase access</li>
 
 <p align="center">
-<img src="./assets/1.png" width=80%>
+<img src="./assets/1.png" width=85%>
 </p>
 
 <li> Set up Network access</li>
 
 <p align="center">
-<img src="./assets/2.png" width=80%>
+<img src="./assets/2.png" width=85%>
 </p>
 
 <li> Click on Clusters</li>
 <li> Click on connect</li>
 
 <p align="center">
-<img src="./assets/3.png" width=80%>
+<img src="./assets/3.png" width=85%>
 </p>
 
 <li> Click on Connect to your application</li>
 
 <p align="center">
-<img src="./assets/4.png" width=80%>
+<img src="./assets/4.png" width=85%>
 </p>
 
 <li> Copy your connection string</li>
 <p align="center">
-<img src="./assets/5.png" width=80%>
+<img src="./assets/5.png" width=85%>
 </p>
 
 </ol>
@@ -75,19 +75,19 @@ mongodb+srv://donghao:<password>@cluster-mren-tygf4.mongodb.net/test?retryWrites
 - picture 1
 
   <p align="center">
-  <img src="./assets/6.png" width=80% align= 'center'>
+  <img src="./assets/6.png" width=85% align= 'center'>
   </p>
 
 - picture 2 or you can edit and update your password here.
 
   <p align="center">
-  <img src="./assets/7.png" width=80% align= 'center'>
+  <img src="./assets/7.png" width=85% align= 'center'>
   </p>
 
 - picture 3
 
 <p align="center">
-<img src="./assets/8.png" width=80% align= 'center'>
+<img src="./assets/8.png" width=85% align= 'center'>
 </p>
 
 ### `Step3: Time to code`
@@ -219,7 +219,7 @@ $ npm run server
 - If you get this, it means everything works well.
 
 <p align="center">
-<img src="./assets/9.png" width=80%>
+<img src="./assets/9.png" width=85%>
 </p>
 
 `Side-note: What is the middleware used for?(position:*1.3)`

@@ -137,15 +137,15 @@ module.exports = router;
 
 - In postman, post a new user
 <p align="center">
-<img src="../../assets/17.png" width=80%>
+<img src="../../assets/17.png" width=85%>
 </p>
 
 - In postman, post a log-in message(email & password)
 <p align="center">
-<img src="../../assets/19.png" width=80%>
+<img src="../../assets/19.png" width=85%>
 </p>
 
 - Get the token after you send the message.
 <p align="center">
-<img src="../../assets/18.png" width=80%>
+<img src="../../assets/18.png" width=85%>
 </p>

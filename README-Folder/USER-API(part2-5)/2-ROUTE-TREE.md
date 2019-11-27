@@ -86,7 +86,7 @@ module.exports = router;
 ```
 `You can get this in browser which mean this route works.`
 <p align="center">
-<img src="../../assets/10.png" width=80%>
+<img src="../../assets/10.png" width=85%>
 </p>
 
 `Note:`

@@ -533,7 +533,7 @@ button {
 .landing-inner {
   color: #fff;
   height: 100%;
-  width: 80%;
+  width: 85%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -824,10 +824,10 @@ th, td {
 $ npm run dev
 ```
 <p align="center">
-<img src="../../assets/20.png" width=80%>
+<img src="../../assets/20.png" width=85%>
 </p>
 
 - In the browser show this
 <p align="center">
-<img src="../../assets/21.png" width=80%>
+<img src="../../assets/21.png" width=85%>
 </p>
