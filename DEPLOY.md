@@ -15,14 +15,14 @@
 <img src="./assets/51.png" width=90%>
 </p>
 
-- Type `heroku login` in the bash.
-<p align="center">
-<img src="./assets/52.png" width=90%>
-</p>
-
 - Click Log in button in the browser.
 <p align="center">
 <img src="./assets/53.png" width=90%>
+</p>
+
+- Type `heroku login` in the bash.
+<p align="center">
+<img src="./assets/52.png" width=90%>
 </p>
 
 ### `Brief Contents & code position`
