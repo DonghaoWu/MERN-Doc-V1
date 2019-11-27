@@ -7,18 +7,18 @@
 
 - Go to heroku website, create a new account
 <p align="center">
-<img src="../../assets/50.png" width=90%>
+<img src="./assets/50.png" width=90%>
 </p>
 - Delete the token in local storage.
 <p align="center">
-<img src="../../assets/51.png" width=90%>
+<img src="./assets/51.png" width=90%>
 </p>
 - Delete the token in local storage.
 <p align="center">
-<img src="../../assets/52.png" width=90%>
+<img src="./assets/52.png" width=90%>
 </p>
 <p align="center">
-<img src="../../assets/52.png" width=90%>
+<img src="./assets/53.png" width=90%>
 </p>
 
 ### `Brief Contents & code position`
