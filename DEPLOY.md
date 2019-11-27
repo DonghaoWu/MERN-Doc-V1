@@ -157,17 +157,16 @@ $ git push heroku master
 <img src="./assets/56.png" width=60%>
 </p>
 
-- Redirect and change the navbar.
 <p align="center">
 <img src="./assets/57.png" width=90%>
 </p>
 
-- A new token in local storage.
+- Deploy success.
 <p align="center">
 <img src="./assets/58.png" width=90%>
 </p>
 
-- Logout the user, change the navbar.
+- Open the app in heroku.
 <p align="center">
 <img src="./assets/59.png" width=90%>
 </p>
