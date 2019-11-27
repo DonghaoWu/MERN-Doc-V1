@@ -18,7 +18,7 @@
 - jsonwebtoken (new)
 
 ### `Brief Contents & codes position`
-- *5.1 Create a login routh, `./api/auth.js`
+- *5.1 Create a login routh. `./api/auth.js`
 
 ### `Step1: Import dependencies`
 `Location:./api/auth.js`

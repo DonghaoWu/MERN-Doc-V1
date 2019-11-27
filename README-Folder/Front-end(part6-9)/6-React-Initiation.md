@@ -18,13 +18,13 @@
 - uuid
 
 ### `Brief Contents & codes position`
-- *6.1 Clean up code and add font awesome CDN `./client/public/index.html`
-- *6.2 Clean up code, `./client/src/index.js`
+- *6.1 Clean up code and add font awesome CDN. `./client/public/index.html`
+- *6.2 Clean up code. `./client/src/index.js`
 - *6.3 Clean up code and import 2 components`./client/src/App.js`
-- *6.4 Create a component 'Navbar', `./client/components/layout/Navbar.js`
-- *6.5 Create a component 'Landing' `./client/components/layout/Landing.js`
-- *6.6 Add css code, `./client/src/App.css`
-- *6.7 Clean up code, `./client/public/manifest.json`
+- *6.4 Create a component 'Navbar'. `./client/components/layout/Navbar.js`
+- *6.5 Create a component 'Landing'. `./client/components/layout/Landing.js`
+- *6.6 Add css code. `./client/src/App.css`
+- *6.7 Clean up code. `./client/public/manifest.json`
 
 ### `Step1: Install dependencies:`
 

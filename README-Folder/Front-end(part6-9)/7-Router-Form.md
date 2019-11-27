@@ -22,7 +22,7 @@
 - uuid
 
 ### `Brief Contents & code position`
-- *7.1 Wrap the code with React Router `./client/src/App.js`
+- *7.1 Wrap the code with React Router. `./client/src/App.js`
 - *7.2 Create a new file, 'Register.js' `./client/src/components/auth/Register.js`
 - *7.3 Create a new file, 'Login.js' `./client/src/components/auth/Login.js`
 - *7.4 Add Link tag to 'Navbar.js', `./client/src/components/layout/Navbar.js`

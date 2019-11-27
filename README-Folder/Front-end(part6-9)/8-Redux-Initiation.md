@@ -23,12 +23,12 @@
 
 ### `Brief Contents & code position`
 - *8.1 Create a 'store.js' file `./client/src/store.js`
-- *8.2 Add store to App.js,`./client/src/App.js`
+- *8.2 Add store to App.js.`./client/src/App.js`
 - *8.3 Create a new folder and a new file 'index.js' `./client/src/reducers/index.js`
 - *8.4 Create a new folder and a new file 'types.js' 
 `./client/src/actions/types.js`
-- *8.5 Create a 'alert.js' file.（for state） `./client/src/reducers/alert.js`
-- *8.6 Create a 'alert.js' file. (for method) `./client/src/actions/alert.js`
+- *8.5 Create a 'alert.js' file.（for state). `./client/src/reducers/alert.js`
+- *8.6 Create a 'alert.js' file. (for method).`./client/src/actions/alert.js`
 
 ### `Step1: Create a 'store.js' file:`
 

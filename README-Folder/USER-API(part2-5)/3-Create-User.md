@@ -16,8 +16,8 @@
 - jsonwebtoken (new)
 
 ### `Brief Contents & codes position`
-- *3.1 Create `./models/index.js`
-- *3.2 Create a User model `./models/User.js`
+- *3.1 Create. `./models/index.js`
+- *3.2 Create a User model. `./models/User.js`
 - *3.3 Add `jwtSecret` in `./config/default.json`
 - *3.4 Create a new user post route in `./api/users.js`
 

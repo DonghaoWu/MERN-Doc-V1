@@ -64,9 +64,9 @@ try {
 ### `Brief Contents & code position`
 - *10.1 Add a new reducer(state) to combineReducers.`./client/src/reducers/index.js`
 - *10.2 Add new types variable.`./client/src/actions/types.js`
-- *10.3 Create the auth reducer(state)' `./client/src/reducers/auth.js`
-- *10.4 Create the auth method' `./client/src/actions/auth.js`
-- *10.5 Connect the Register component.' `./client/src/components/auth/Register.js`
+- *10.3 Create the auth reducer(state). `./client/src/reducers/auth.js`
+- *10.4 Create the auth method. `./client/src/actions/auth.js`
+- *10.5 Connect the Register component. `./client/src/components/auth/Register.js`
 
 ### `Step1: Add a new reducer(state) to combineReducers:`
 

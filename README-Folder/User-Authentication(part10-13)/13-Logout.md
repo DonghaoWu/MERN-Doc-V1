@@ -38,9 +38,9 @@
 
 ### `Brief Contents & code position`
 - *13.1 Add new types variable.`./client/src/actions/types.js`
-- *13.2 Set up reducer(state)' `./client/src/reducers/auth.js`
-- *13.3 Create the logout method' `./client/src/actions/auth.js`
-- *13.4 Connect the Navbar component.' `./client/src/components/layout/Navbar.js`
+- *13.2 Set up reducer(state). `./client/src/reducers/auth.js`
+- *13.3 Create the logout method. `./client/src/actions/auth.js`
+- *13.4 Connect the Navbar component. `./client/src/components/layout/Navbar.js`
 
 ### `Step1: Add new types variable.`
 

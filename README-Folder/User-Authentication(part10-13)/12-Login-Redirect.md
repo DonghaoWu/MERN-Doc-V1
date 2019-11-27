@@ -63,10 +63,10 @@ $ kill -9 PID
 
 ### `Brief Contents & code position`
 - *12.1 Add new types variable.`./client/src/actions/types.js`
-- *12.2 Set up reducer(state)' `./client/src/reducers/auth.js`
-- *12.3 Create the login method' `./client/src/actions/auth.js`
-- *12.4 Connect the Login component.' `./client/src/components/auth/Login.js`
-- *12.5 Add Redirect to Register component.' `./client/src/components/auth/Register.js`
+- *12.2 Set up reducer(state). `./client/src/reducers/auth.js`
+- *12.3 Create the login method. `./client/src/actions/auth.js`
+- *12.4 Connect the Login component. `./client/src/components/auth/Login.js`
+- *12.5 Add Redirect to Register component. `./client/src/components/auth/Register.js`
 
 ### `Step1: Add new types variable.`
 

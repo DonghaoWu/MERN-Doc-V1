@@ -22,7 +22,7 @@
 ### `Brief Contents & code position`
 - *9.1 Connect method to 'Register'.`./client/src/components/auth/Register.js`
 - *9.2 Create Alert component and connect state to it.`./client/src/components/layout/Alert.js`
-- *9.3 Put Alert component to App.js' `./client/src/App.js`
+- *9.3 Put Alert component to App.js'. `./client/src/App.js`
 
 ### `Step1: Connect method to 'Register to Redux:`
 
