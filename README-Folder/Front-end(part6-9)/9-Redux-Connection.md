@@ -205,9 +205,9 @@ export default connect(mapStateToProps)(Alert);
 - Now you have client-side validation(input field & password matching in Register page).
 
 <p align="center">
-<img src="../../assets/26.png" width=90%>
+<img src="../../assets/26.png" width=80%>
 </p>
 
 <p align="center">
-<img src="../../assets/27.png" width=90%>
+<img src="../../assets/27.png" width=80%>
 </p>

@@ -7,7 +7,7 @@
 
 - 端口占用
 <p align="center">
-<img src="../../assets/38.png" width=90%>
+<img src="../../assets/38.png" width=80%>
 </p>
 
 - 解决方法：查找并关闭端口
@@ -18,7 +18,7 @@ $ kill -9 PID
 
 - 登陆即退出
 <p align="center">
-<img src="../../assets/39.png" width=90%>
+<img src="../../assets/39.png" width=80%>
 </p>
 
 - 解决方法：后端加密secrect前后不一，文件位置：`./aip/auth.js`
@@ -354,12 +354,12 @@ if (props.isAuthenticated) {
 
 - Register a new user.
 <p align="center">
-<img src="../../assets/40.png" width=90%>
+<img src="../../assets/40.png" width=80%>
 </p>
 
 - Load the user and Redirect.
 <p align="center">
-<img src="../../assets/41.png" width=90%>
+<img src="../../assets/41.png" width=80%>
 </p>
 
 - Delete the token in local Storage, Login with the new user.
@@ -368,10 +368,10 @@ if (props.isAuthenticated) {
 </p>
 
 <p align="center">
-<img src="../../assets/42.png" width=90%>
+<img src="../../assets/42.png" width=80%>
 </p>
 
 - Load the user and Redirect.
 <p align="center">
-<img src="../../assets/44.png" width=90%>
+<img src="../../assets/44.png" width=80%>
 </p>

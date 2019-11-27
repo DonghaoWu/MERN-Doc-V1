@@ -152,10 +152,10 @@ app.use(express.json({ extended: false }));
 ##### Second, it depends on the way we send data in Postman.
 
 <p align="center">
-<img src="../../assets/11.png" width=90%>
+<img src="../../assets/11.png" width=80%>
 </p>
 <p align="center">
-<img src="../../assets/12.png" width=90%>
+<img src="../../assets/12.png" width=80%>
 </p>
 
 - We invoke the built-in function `validationResult(req)`, req is the argument, the function will return error if some of the `req` is not satisfy the check conditions.
@@ -373,15 +373,15 @@ module.exports = router;
 #### `G Test it`
 - In postman
 <p align="center">
-<img src="../../assets/13.png" width=90%>
+<img src="../../assets/13.png" width=80%>
 </p>
 
 - In jwt.io
 <p align="center">
-<img src="../../assets/14.png" width=90%>
+<img src="../../assets/14.png" width=80%>
 </p>
 
 - In MongoDB Altas
 <p align="center">
-<img src="../../assets/15.png" width=90%>
+<img src="../../assets/15.png" width=80%>
 </p>

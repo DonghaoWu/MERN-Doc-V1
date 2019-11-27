@@ -289,13 +289,13 @@ export default Landing
 - Make sure the button is working and direct to the right page
 
 <p align="center">
-<img src="../../assets/22.png" width=90%>
+<img src="../../assets/22.png" width=80%>
 </p>
 
 <p align="center">
-<img src="../../assets/23.png" width=90%>
+<img src="../../assets/23.png" width=80%>
 </p>
 
 <p align="center">
-<img src="../../assets/24.png" width=90%>
+<img src="../../assets/24.png" width=80%>
 </p>

@@ -309,15 +309,15 @@ export default connect(null, { setAlert, register })(Register);
 
 - Register a new user, execute an action and change the state
 <p align="center">
-<img src="../../assets/28.png" width=90%>
+<img src="../../assets/28.png" width=80%>
 </p>
 
 - Register with same email. （dispatch two actions）
 <p align="center">
-<img src="../../assets/29.png" width=90%>
+<img src="../../assets/29.png" width=80%>
 </p>
 
 - Check the new user whether in database
 <p align="center">
-<img src="../../assets/30.png" width=90%>
+<img src="../../assets/30.png" width=80%>
 </p>
