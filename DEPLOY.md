@@ -143,18 +143,18 @@ $ git push heroku master
 - You can find your heroku remote name here:
 
 <p align="center">
-<img src="./assets/54.png" width=60%>
+<img src="./assets/54.png" width=90%>
 </p>
 
 <p align="center">
-<img src="./assets/55.png" width=60%>
+<img src="./assets/55.png" width=90%>
 </p>
 
 ### `Step6: Test it.`
 
 - Type in the commands in step5.
 <p align="center">
-<img src="./assets/56.png" width=60%>
+<img src="./assets/56.png" width=90%>
 </p>
 
 <p align="center">
