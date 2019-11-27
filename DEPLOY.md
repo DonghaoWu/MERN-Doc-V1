@@ -5,6 +5,22 @@
 
 ### Before you deploy, heroku and git should be download and ready.
 
+- Go to heroku website, create a new account
+<p align="center">
+<img src="../../assets/50.png" width=90%>
+</p>
+- Delete the token in local storage.
+<p align="center">
+<img src="../../assets/51.png" width=90%>
+</p>
+- Delete the token in local storage.
+<p align="center">
+<img src="../../assets/52.png" width=90%>
+</p>
+<p align="center">
+<img src="../../assets/52.png" width=90%>
+</p>
+
 ### `Brief Contents & code position`
 - *14.1 Add a new file in config folder, call 'production.json'.`./config/production.json`
 - *14.2 Add code in .gitignore. `./.gitignore`
