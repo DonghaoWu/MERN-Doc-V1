@@ -9,16 +9,20 @@
 <p align="center">
 <img src="./assets/50.png" width=90%>
 </p>
-- Delete the token in local storage.
+
+- Download the heroku CLI.
 <p align="center">
 <img src="./assets/51.png" width=90%>
 </p>
-- Delete the token in local storage.
-<p align="center">
-<img src="./assets/52.png" width=90%>
-</p>
+
+- Click Log in button in the browser.
 <p align="center">
 <img src="./assets/53.png" width=90%>
+</p>
+
+- Type `heroku login` in the bash, if everything is good, should be like this.
+<p align="center">
+<img src="./assets/52.png" width=90%>
 </p>
 
 ### `Brief Contents & code position`
