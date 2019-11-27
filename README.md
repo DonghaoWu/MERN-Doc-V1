@@ -1,6 +1,6 @@
 # MERN-Template(part 1)
 
-## In this app, I try to build a MERN stack template, which tech stack are 
+## In this app, I build a MERN stack template, the tech stack are:
 - MongoDB, 
 - Node.js, 
 - Express.js, 

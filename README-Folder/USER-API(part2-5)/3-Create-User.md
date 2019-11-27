@@ -19,7 +19,7 @@
 - *3.1 Create. `./models/index.js`
 - *3.2 Create a User model. `./models/User.js`
 - *3.3 Add `jwtSecret` in `./config/default.json`
-- *3.4 Create a new user post route in `./api/users.js`
+- *3.4 Create a new user post route. `./api/users.js`
 
 ### `***Important: `
 
@@ -243,7 +243,7 @@ module.exports = router;
 
 ##### `Add jwtSecret`
 
-`(*3.3)Location: ./config/user.js`
+`(*3.3)Location: ./config/default.json`
 ```js
 {
     "mongoURI":"mongodb+srv://donghao:Qs5LEDWIaPITXIIn@cluster0-qvchz.mongodb.net/test?retryWrites=true&w=majority",
