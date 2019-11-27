@@ -12,7 +12,7 @@
 
 - 解决方法：查找并关闭端口
 ```bash
-$ ps aux | grep node
+$ lsof -i tcp:[PORT NUM]
 $ kill -9 PID
 ```
 
