@@ -16,7 +16,7 @@ $ lsof -i tcp:[PORT NUM]
 $ kill -9 PID
 ```
 
-- 登陆即退出
+- 登陆后自动退出（logout）
 <p align="center">
 <img src="../../assets/39.png" width=85%>
 </p>
