@@ -2,13 +2,13 @@
 
 ## This is a documentation about creating the MERN stack.
 
-## Quick final view(deployed):
+## Final view(deployed):
 
 <p align="center">
 <img src="./assets/59.png" width=85%>
 </p>
 
-### `Update notes:`[Click here]()
+### `Update notes:`[MERN Stack Documentation V1 Update file](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
 
 ### `References:`
 
