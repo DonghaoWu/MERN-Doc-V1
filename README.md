@@ -11,7 +11,7 @@
 <img src="./assets/59-2.png" width=85%>
 </p>
 
-### `Update notes:`[MERN Stack Doc V1 Update file - Check here](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
+### `Update note:`[MERN Stack Doc V1 Update file - Latest: 12/06/2019](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
 
 ### `References:`
 
