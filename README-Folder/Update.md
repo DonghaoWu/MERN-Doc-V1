@@ -72,7 +72,7 @@ export default connect(mapStateToProps, { logout })(Landing);
 ### #2
 #### Time: 12/06/2019
 
-#### Topic: After you push everything and want to add a new rule in .gitignore file, usually it doesn't work, the way to make it work is:
+#### Topic: After you push everything and want to add a new rule in .gitignore file, usually it doesn't work, the way to make it work is(后来添加的新的忽略规则不生效的处理方法):
 
 ```bash
 $ git rm -r --cached .
