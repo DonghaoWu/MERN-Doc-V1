@@ -16,9 +16,7 @@ import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
 //check the localStorage.token every time when refresh or open
-if (localStorage.token) {
-  setAuthToken(localStorage.token);
-}
+if (localStorage.token) setAuthToken(localStorage.token);
 
 const App = () => {
   //componentDidMount

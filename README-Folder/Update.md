@@ -83,3 +83,85 @@ $ git rm -r --cached .
 $ git add .
 $ git commit -m "update .gitignore"
 ```
+
+### #3
+#### Time: 12/07/2019
+
+#### Topic: In file `./client/App.js`, why use this code before component? Then run the same code in useEffect()?
+
+```js
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+```
+
+```js
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+```
+
+### #4
+#### Time: 12/07/2019
+
+#### Topic: In order to fix this error, 
+
+<p align="center">
+<img src="../assets/U3.png" width=85%>
+</p>
+
+#### I make this changes:
+- 4.1`Location: ./client/src/actions/auth.js`
+
+`From:`
+```js
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+        setAuthToken(localStorage.token);
+    }
+    try {
+        const res = await axios.get('/api/auth');
+        dispatch({
+            type: USER_LOADED,
+            payload: res.data,
+        })
+    } catch (error) {
+        dispatch({
+            type: AUTH_ERROR
+        })
+    }
+}
+```
+
+`To:`
+```js
+export const loadUser = () => async dispatch => {
+    if (localStorage.token) {
+        /*
+        when token is in localStorage, 
+        update it in axio header whenever 
+        you call this function.*/
+        setAuthToken(localStorage.token);
+
+        try {
+            const res = await axios.get('/api/auth');
+            dispatch({
+                type: USER_LOADED,
+                payload: res.data,
+            })
+        } catch (error) {
+            dispatch({
+                type: USER_LOAD_FAIL
+            })
+        }
+    }
+    else {
+        dispatch({
+            type: NO_TOKEN_IN_LOCAL_STORAGE
+        })
+    }
+}
+```
+
+- 4.2`Location: ./client/src/actions/types`
+- 4.2`Location: ./client/src/reducers/auth.js`

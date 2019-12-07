@@ -1,23 +1,31 @@
 //*10.4 *11.4 *12.3 *13.3
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, USER_LOAD_FAIL, NO_TOKEN_IN_LOCAL_STORAGE } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
 
 //Load user
 export const loadUser = () => async dispatch => {
     if (localStorage.token) {
+        //when token is in localStorage, 
+        //update it in axio header whenever you call this function.
         setAuthToken(localStorage.token);
+
+        try {
+            const res = await axios.get('/api/auth');
+            dispatch({
+                type: USER_LOADED,
+                payload: res.data,
+            })
+        } catch (error) {
+            dispatch({
+                type: USER_LOAD_FAIL
+            })
+        }
     }
-    try {
-        const res = await axios.get('/api/auth');
+    else {
         dispatch({
-            type: USER_LOADED,
-            payload: res.data,
-        })
-    } catch (error) {
-        dispatch({
-            type: AUTH_ERROR
+            type: NO_TOKEN_IN_LOCAL_STORAGE
         })
     }
 }
