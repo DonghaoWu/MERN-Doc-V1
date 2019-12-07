@@ -67,3 +67,15 @@ export default connect(mapStateToProps, { logout })(Landing);
 <p align="center">
 <img src="../assets/U1.png" width=85%>
 </p>
+
+
+### #2
+#### Time: 12/06/2019
+
+#### Topic: After you push everything and want to add a new rule in .gitignore file, usually it doesn't work, the way to make it work is:
+
+```bash
+$ git rm -r --cached .
+$ git add .
+$ git commit -m "update .gitignore"
+```
