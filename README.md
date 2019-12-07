@@ -8,7 +8,7 @@
 <img src="./assets/59.png" width=85%>
 </p>
 
-### `Update notes:`[MERN Stack Documentation V1 Update file - Click here](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
+### `Update notes:`[MERN Stack Doc V1 Update file - Check here](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
 
 ### `References:`
 
