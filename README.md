@@ -2,9 +2,7 @@
 
 ## This is a documentation about creating the MERN stack.
 
-## Final view(deployed):
-
-### [https://morning-crag-93371.herokuapp.com/](https://morning-crag-93371.herokuapp.com//)
+### Final view(deployed): [https://morning-crag-93371.herokuapp.com/](https://morning-crag-93371.herokuapp.com/)
 
 <p align="center">
 <img src="./assets/59.png" width=85%>
