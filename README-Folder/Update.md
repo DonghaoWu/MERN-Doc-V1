@@ -68,6 +68,10 @@ export default connect(mapStateToProps, { logout })(Landing);
 <img src="../assets/U1.png" width=85%>
 </p>
 
+<p align="center">
+<img src="../assets/U2.png" width=85%>
+</p>
+
 
 ### #2
 #### Time: 12/06/2019
