@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://donghao:F1IUkv1QoAlr9Lsn@cluster0-qvchz.mongodb.net/test?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://donghao:11F1IUkv1QoAlr9Lsn@cluster0-qvchz.mongodb.net/test?retryWrites=true&w=majority",
     "jwtSecret": "mySecretToken"
 }
