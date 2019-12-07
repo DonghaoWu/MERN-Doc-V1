@@ -1,4 +1,4 @@
-### `Number: 1`
+### #1
 #### Time: 12/06/2019
 
 #### Topic: Add a feature in Landing page and fix some arguments.
