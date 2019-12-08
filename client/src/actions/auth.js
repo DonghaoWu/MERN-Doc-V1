@@ -114,6 +114,5 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT,
     })
-    setAuthToken(localStorage.token);
 }
 

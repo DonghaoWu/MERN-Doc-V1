@@ -1,5 +1,6 @@
 //*10.3 *11.3 *12.2 *13.2
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, USER_LOAD_FAIL, NO_TOKEN_IN_LOCAL_STORAGE, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from '../actions/types';
+import setAuthToken from '../utils/setAuthToken';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -33,6 +34,7 @@ export default function (state = initialState, action) {
         case LOGIN_FAIL:
         case LOGOUT:
             localStorage.removeItem('token');
+            setAuthToken(localStorage.token);
             return {
                 ...state,
                 token: null,

@@ -175,21 +175,30 @@ export const loadUser = () => async dispatch => {
 
 - 5.1`Location: ./client/src/reducers/auth.js`
 
+```js
+        case REGISTER_FAIL:
+        case NO_TOKEN_IN_LOCAL_STORAGE:
+        case USER_LOAD_FAIL:
+        case LOGIN_FAIL:
+        case LOGOUT:
+            localStorage.removeItem('token');
+            setAuthToken(localStorage.token);
+            return {
+                ...state,
+                token: null,
+                isAuthenticated: false,
+                loading: false,
+                user: null
+            }
+```
+
 ### #6
 #### Time: 12/08/2019
 
 #### Question: Why my app initiate again when I press logout button?
 
 #### Answer: Not yet.
-- 6.1`Location: ./client/src/reducers/auth.js`
+- 6.1`Location: ./client/src/action/auth.js`
 
-`Change to:`
 
-```js
-export const logout = () => dispatch => {
-    dispatch({
-        type: LOGOUT,
-    })
-    setAuthToken(localStorage.token);
-}
-```
+
