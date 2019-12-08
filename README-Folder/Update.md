@@ -138,9 +138,10 @@ export const loadUser = () => async dispatch => {
 export const loadUser = () => async dispatch => {
     if (localStorage.token) {
         /*
-        when token is in localStorage, 
-        update it in axio header whenever 
-        you call this function.*/
+            when token is in localStorage, 
+            update it in axio header whenever 
+            you call this function.
+        */
         setAuthToken(localStorage.token);
 
         try {
