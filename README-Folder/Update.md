@@ -157,6 +157,7 @@ export const loadUser = () => async dispatch => {
         }
     }
     else {
+        setAuthToken(localStorage.token);
         dispatch({
             type: NO_TOKEN_IN_LOCAL_STORAGE
         })
@@ -167,16 +168,12 @@ export const loadUser = () => async dispatch => {
 - 4.2`Location: ./client/src/actions/types`
 - 4.2`Location: ./client/src/reducers/auth.js`
 
-
 ### #5
 #### Time: 12/07/2019
 
-#### Topic: After logout, clear all info in auth state.
+#### Topic: After logout/ login failed / register failed, clear all info in auth state.
 
 - 5.1`Location: ./client/src/reducers/auth.js`
-
-#### I seperated the case LOGOUT from origin.
-
 
 ### #6
 #### Time: 12/08/2019
@@ -184,3 +181,15 @@ export const loadUser = () => async dispatch => {
 #### Question: Why my app initiate again when I press logout button?
 
 #### Answer: Not yet.
+- 6.1`Location: ./client/src/reducers/auth.js`
+
+`Change to:`
+
+```js
+export const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT,
+    })
+    setAuthToken(localStorage.token);
+}
+```

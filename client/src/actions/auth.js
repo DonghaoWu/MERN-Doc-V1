@@ -27,6 +27,7 @@ export const loadUser = () => async dispatch => {
         }
     }
     else {
+        setAuthToken(localStorage.token);
         dispatch({
             type: NO_TOKEN_IN_LOCAL_STORAGE
         })
@@ -113,5 +114,6 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT,
     })
+    setAuthToken(localStorage.token);
 }
 
