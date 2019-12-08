@@ -165,3 +165,11 @@ export const loadUser = () => async dispatch => {
 
 - 4.2`Location: ./client/src/actions/types`
 - 4.2`Location: ./client/src/reducers/auth.js`
+
+
+### #5
+#### Time: 12/07/2019
+
+#### Topic: After logout, clear all info in auth state.
+
+- 5.1`Location: ./client/src/reducers/auth.js`
