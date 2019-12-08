@@ -174,3 +174,5 @@ export const loadUser = () => async dispatch => {
 #### Topic: After logout, clear all info in auth state.
 
 - 5.1`Location: ./client/src/reducers/auth.js`
+
+#### I discard this change, because if a login user try to register a new one and then fail, the user doesn't want the current account logout.
