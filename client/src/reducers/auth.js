@@ -1,5 +1,5 @@
 //*10.3 *11.3 *12.2 *13.2
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, USER_LOAD_FAIL,NO_TOKEN_IN_LOCAL_STORAGE, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from '../actions/types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, USER_LOAD_FAIL, NO_TOKEN_IN_LOCAL_STORAGE, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from '../actions/types';
 
 const initialState = {
     token: localStorage.getItem('token'),
