@@ -12,7 +12,7 @@
 #### `Login:`
 
 <p align="center">
-<img src="../assets/Login.png" width=90%>
+<img src="../assets/Login.png" width=100%>
 </p>
 
 #### `Load User:`
@@ -24,6 +24,6 @@
 #### `Logout:`
 
 <p align="center">
-<img src="../assets/Logout.png" width=90%>
+<img src="../assets/Logout.png" width=100%>
 </p>
 
