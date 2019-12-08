@@ -175,7 +175,7 @@ export const loadUser = () => async dispatch => {
 
 - 5.1`Location: ./client/src/reducers/auth.js`
 
-#### I discard this change, because if a login user try to register a new one and then fail, the user doesn't want the current account logout.
+#### I seperated the case LOGOUT from origin.
 
 
 ### #6
