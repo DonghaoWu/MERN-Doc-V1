@@ -1,6 +1,6 @@
 //*10.4 *11.4 *12.3 *13.3
 import axios from 'axios';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, USER_LOAD_FAIL, NO_TOKEN_IN_LOCAL_STORAGE } from './types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, LOAD_USER_FAILED, NO_LOCAL_TOKEN } from './types';
 import { setAlert } from './alert';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -22,13 +22,13 @@ export const loadUser = () => async dispatch => {
             })
         } catch (error) {
             dispatch({
-                type: USER_LOAD_FAIL
+                type: LOAD_USER_FAILED
             })
         }
     }
     else {
         dispatch({
-            type: NO_TOKEN_IN_LOCAL_STORAGE
+            type: NO_LOCAL_TOKEN
         })
     }
 }

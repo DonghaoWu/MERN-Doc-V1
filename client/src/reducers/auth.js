@@ -1,5 +1,5 @@
 //*10.3 *11.3 *12.2 *13.2
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, USER_LOAD_FAIL, NO_TOKEN_IN_LOCAL_STORAGE, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from '../actions/types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, LOAD_USER_FAILED, NO_LOCAL_TOKEN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from '../actions/types';
 import setAuthToken from '../utils/setAuthToken';
 
 const initialState = {
@@ -29,8 +29,8 @@ export default function (state = initialState, action) {
                 user: payload,
             }
         case REGISTER_FAIL:
-        case NO_TOKEN_IN_LOCAL_STORAGE:
-        case USER_LOAD_FAIL:
+        case NO_LOCAL_TOKEN:
+        case LOAD_USER_FAILED:
         case LOGIN_FAIL:
         case LOGOUT:
             localStorage.removeItem('token');

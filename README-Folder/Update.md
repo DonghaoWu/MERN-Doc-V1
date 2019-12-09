@@ -152,13 +152,13 @@ export const loadUser = () => async dispatch => {
             })
         } catch (error) {
             dispatch({
-                type: USER_LOAD_FAIL
+                type: LOAD_USER_FAILED
             })
         }
     }
     else {
         dispatch({
-            type: NO_TOKEN_IN_LOCAL_STORAGE
+            type: NO_LOCAL_TOKEN
         })
     }
 }
@@ -176,8 +176,8 @@ export const loadUser = () => async dispatch => {
 
 ```js
         case REGISTER_FAIL:
-        case NO_TOKEN_IN_LOCAL_STORAGE:
-        case USER_LOAD_FAIL:
+        case NO_LOCAL_TOKEN:
+        case LOAD_USER_FAILED:
         case LOGIN_FAIL:
         case LOGOUT:
             localStorage.removeItem('token');
