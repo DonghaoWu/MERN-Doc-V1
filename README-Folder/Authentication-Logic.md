@@ -18,7 +18,7 @@
 #### `Load User:`
 
 <p align="center">
-<img src="../assets/Load-User.png" width=90%>
+<img src="../assets/LoadUser.png" width=90%>
 </p>
 
 #### `Logout:`
