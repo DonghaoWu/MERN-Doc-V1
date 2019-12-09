@@ -27,7 +27,6 @@ export const loadUser = () => async dispatch => {
         }
     }
     else {
-        setAuthToken(localStorage.token);
         dispatch({
             type: NO_TOKEN_IN_LOCAL_STORAGE
         })
@@ -92,7 +91,7 @@ export const login = (email, password) => async dispatch => {
         })
 
         //loadUser()错误;
-        dispatch(loadUser());
+        //dispatch(loadUser());
 
     } catch (error) {
         //---./routes/users.js line 23
