@@ -11,7 +11,9 @@
 <img src="./assets/59-2.png" width=85%>
 </p>
 
-### `Update note:`[MERN Stack Doc V1 Update file - Latest: 12/06/2019](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
+### `Update note:`[MERN Stack Doc V1 Update file - Latest: 12/08/2019](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Update.md)
+
+### `Design:`[Front-end Authentication Logic - Latest: 12/09/2019](https://github.com/DonghaoWu/MERN-Doc-V1/blob/master/README-Folder/Authentication-Logic.md)
 
 ### `References:`
 
