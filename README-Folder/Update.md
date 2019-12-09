@@ -163,6 +163,11 @@ export const loadUser = () => async dispatch => {
     }
 }
 ```
+#### After fixed the bug:
+<p align="center">
+<img src="../assets/U4.png" width=85%>
+</p>
+
 
 - 4.2`Location: ./client/src/actions/types`
 - 4.2`Location: ./client/src/reducers/auth.js`
