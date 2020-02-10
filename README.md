@@ -1,6 +1,6 @@
 # MERN-Template-Documentation-Guide
 
-## This is a documentation about creating the MERN stack.
+## This is a documentation about buliding a MERN stack with Redux authentication.
 
 ### Final view(deployed): [https://safe-oasis-55973.herokuapp.com/](https://safe-oasis-55973.herokuapp.com/)
 
