@@ -2,7 +2,7 @@
 
 ## `Section: Backend`(Organized back end route)
 
-### `Summary`: In this documentation, we set up api route tree.
+### `Summary`: In this documentation, we set up apis route tree.
 
 ### `Check Dependencies`
 
